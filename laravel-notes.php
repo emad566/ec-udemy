@@ -55,4 +55,7 @@ emade09@gmail.com
 *** add boot startp files to view
 {{ $user->created_at->diffForHumans() }}
 
+//-- 022. Eloquent ORM Read Users Data
+--------------------------------------
+
 
