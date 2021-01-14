@@ -14,13 +14,19 @@ use Illuminate\Support\Facades\DB;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::group([
+    'prefix' => LaravelLocalization::setLocale(),
+    'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath']
+], function () {
 
-Route::get('/', function () {
-    return view('welcome');
+    Route::get('/', function () {
+        return view('welcome');
+    });
+
+    Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+        // $users = User::all();
+        $users = DB::table('users')->get();
+        return view('dashboard', compact(['users']));
+    })->name('dashboard');
+
 });
-
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    // $users = User::all();
-    $users = DB::table('users')->get();
-    return view('dashboard', compact(['users']));
-})->name('dashboard');
