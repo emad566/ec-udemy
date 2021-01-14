@@ -57,5 +57,8 @@ emade09@gmail.com
 
 //-- 022. Eloquent ORM Read Users Data
 --------------------------------------
-
+if use::
+    DB::table('users')->get();
+Then 
+{{ Carbon\Carbon::parse($user->created_at)->diffForHumans() }}
 

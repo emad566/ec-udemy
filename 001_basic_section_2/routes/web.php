@@ -2,7 +2,8 @@
 
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
-face
+use Illuminate\Support\Facades\DB;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,6 +21,6 @@ Route::get('/', function () {
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     // $users = User::all();
-    DB::table('users')->get();
+    $users = DB::table('users')->get();
     return view('dashboard', compact(['users']));
 })->name('dashboard');
