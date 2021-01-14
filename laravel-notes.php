@@ -46,3 +46,13 @@ npm install && npm run dev
 
 php artisan migrate
 php artisan serve
+
+*** Register New user:
+admin
+emade09@gmail.com
+12345678
+
+*** add boot startp files to view
+{{ $user->created_at->diffForHumans() }}
+
+
