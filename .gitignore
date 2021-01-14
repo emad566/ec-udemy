@@ -1,0 +1,13 @@
+/ec-udemy-laravel/node_modules
+/public_html/hot
+/public_html/storage
+/ec-udemy-laravel/storage/*.key
+/ec-udemy-laravel/vendor
+/ec-udemy-laravel/.env
+/ec-udemy-laravel/.env.backup
+/ec-udemy-laravel/.phpunit.result.cache
+/ec-udemy-laravel/docker-compose.override.yml
+/ec-udemy-laravel/Homestead.json
+/ec-udemy-laravel/Homestead.yaml
+/ec-udemy-laravel/npm-debug.log
+/ec-udemy-laravel/yarn-error.log
