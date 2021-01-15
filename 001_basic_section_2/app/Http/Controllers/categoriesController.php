@@ -143,6 +143,7 @@ class categoriesController extends Controller
 
             $node->update($request->except('_token'));
             $node->parent_id = $request->parent_id;
+            $node->category_name = $request->category_name;
             $node->save();
             $node::fixTree();
 
