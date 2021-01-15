@@ -38,6 +38,11 @@ Route::group([
         Route::post('categories/delete', 'categoriesController@delete')->name('categories.delete');
         Route::post('categories/p_delete', 'categoriesController@p_delete')->name('categories.p_delete');
         Route::get('categories/{category_id?}/restore', 'categoriesController@restore')->name('categories.restore');
+
+        Route::resource('brands', 'brandsController');
+        Route::get('brands/{category_id?}/delete', 'brandsController@destroy')->name('brands.destroy');
+        Route::post('brands/delete', 'brandsController@delete')->name('brands.delete');
+
     });
 
 

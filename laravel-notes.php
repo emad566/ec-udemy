@@ -100,3 +100,7 @@ https://github.com/Astrotomic/laravel-translatable
 https://github.com/lazychaser/laravel-nestedset
 composer require kalnoy/nestedset
 
+/*** 42. Image Insert & Resize With Intervention Package */
+------------------------------------------------------------
+Awsame package for image editing.
+http://image.intervention.io/
