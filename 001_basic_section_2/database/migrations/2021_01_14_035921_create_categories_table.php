@@ -15,6 +15,11 @@ class CreateCategoriesTable extends Migration
     {
         Schema::create('categories', function (Blueprint $table) {
             $table->id();
+            $table->integer('user_id');
+            $table->string('slug');
+            $table->boolean('is_active');
+            $table->nestedSet();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

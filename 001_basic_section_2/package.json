@@ -22,6 +22,8 @@
         "tailwindcss": "^2.0.1"
     },
     "dependencies": {
-        "bootstrap-v4-rtl": "^4.5.2-1"
+        "bootstrap-v4-rtl": "^4.5.2-1",
+        "datatables.net-bs4": "^1.10.23",
+        "datatables.net-buttons-bs4": "^1.6.5"
     }
 }

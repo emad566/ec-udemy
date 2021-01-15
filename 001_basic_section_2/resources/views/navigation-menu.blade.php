@@ -16,7 +16,7 @@
                         {{ __('Dashboard') }}
                     </x-jet-nav-link>
 
-                    <x-jet-nav-link href="">
+                    <x-jet-nav-link href="{{ route('categories.index') }}">
                         All Categories
                     </x-jet-nav-link>
                 </div>
