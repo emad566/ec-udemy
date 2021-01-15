@@ -52,9 +52,17 @@ class Brand extends Model
         return  $this -> is_active  == 0 ?  'غير مفعل'   : 'مفعل' ;
     }
 
-    public function  getImageAttribute($path=true){
-        if($this->image)
-            return ($path) ? asset('assets/images/brands/' . $this->image) : $this->image;
-        return false;
+    public function image_delete()
+    {
+        delete_img($this->image_rel_path());
+    }
+
+    public function image_rel_path()
+    {
+        return 'assets/images/brands/' . $this->attributes['image'];
+    }
+
+    public function  getImageAttribute($val){
+        return ($val && file_exists($this->image_rel_path())) ?  asset($this->image_rel_path()) : false;
     }
 }

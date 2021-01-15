@@ -32,6 +32,16 @@
                             </div>
                         </div>
 
+                        <div class="input-group mb-1">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="inputGroupFileAddon01">Choose file</span>
+                            </div>
+                            <div class="custom-file">
+                                <input type="file" name="image" class="custom-file-input image" id="image" aria-describedby="inputGroupFileAddon01">
+                                <label class="custom-file-label" for="inputGroupFile01">Upload Image</label>
+                            </div>
+                        </div>
+
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group mt-1">
@@ -73,6 +83,7 @@
                             <thead>
                                 <tr>
                                 <th scope="col">{!! Form::checkbox('allbrands', 1, false, ['class'=>'allbrands', 'id'=>'allbrands']) !!} Name</th>
+                                <th>Image</th>
                                 <th scope="col">is Active</th>
                                 <th scope="col">Created_at</th>
                                 <th>Actions</th>
@@ -84,6 +95,7 @@
                                     <th scope="col"><a href="{{ route('brands.edit', $brand->id) }}">
                                         {!! Form::checkbox('brands[]', $brand->id, false, ['class'=>'brands']) !!} {{ $brand->brand_name }}
                                     </a></th>
+                                    <td>@if($brand->image) <img width="50" height="50" src="{{ $brand->image }}" alt="{{ $brand->brand_name }}">@endif</td>
                                     <td>{{ $brand->getActive() }}</td>
                                     <td>{{ $brand->created_at->diffForHumans() }}</td>
 

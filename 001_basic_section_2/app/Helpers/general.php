@@ -1,6 +1,11 @@
 <?php
 
 define('PAGINATION_COUNT', 10);
+function delete_img($img_path){
+    if (file_exists($img_path)) {
+        unlink($img_path);
+    }
+}
 
 // function getFolder()
 // {
