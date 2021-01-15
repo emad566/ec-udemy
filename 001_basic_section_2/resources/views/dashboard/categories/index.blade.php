@@ -109,7 +109,7 @@
 
 
                         <div class="form-actions">
-                            
+
                             <button type="submit" class="btn btn-primary">
                                 <i class="la la-check-square-o"></i> Add New Category
                             </button>
@@ -176,17 +176,89 @@
                             </tbody>
                         </table>
 
-                        </form>
-                        <a href="" onclick="
-                        var result = confirm('Do you want to delete, It will be deleted with all its sub catecgries!!!');
-                        if(result) {
-                            event.preventDefault();
-                            document.getElementById('delete-formMulti').submit();
-                        }else{
-                            event.preventDefault();
-                        }"
+                    </form>
+                    <a href="" onclick="
+                    var result = confirm('Do you want to delete, It will be deleted with all its sub catecgries!!!');
+                    if(result) {
+                        event.preventDefault();
+                        document.getElementById('delete-formMulti').submit();
+                    }else{
+                        event.preventDefault();
+                    }"
 
-                        class="btn btn-outline-danger btn-min-width box-shadow-3 mr-1 mb-1">Delete</a>
+                    class="btn btn-outline-danger btn-min-width box-shadow-3 mr-1 mb-1">Delete</a>
+
+
+                    <h4 class="form-section"><i class="ft-home"></i> Trashed Category</h4>
+                    <form id='delete-formMultiTrashed' class='delete-formMultiTrashed'
+                        method='post'
+                        action='{{ route('categories.p_delete') }}'>
+                        @csrf
+                        <input type='hidden' name='_method' value='post'>
+
+                        <p></p>
+                        <table class="table display nowrap table-striped table-bordered scroll-horizontal">
+                            <thead>
+                                <tr>
+                                <th scope="col">{!! Form::checkbox('allCategoriesTrashed', 1, false, ['class'=>'allCategoriesTrashed', 'id'=>'allCategoriesTrashed']) !!} Name</th>
+                                <th scope="col">Slug</th>
+                                <th scope="col">is Active</th>
+                                <th scope="col">Created_at</th>
+                                <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
+
+                                    $traverse = function ($categories, $prefix = '') use (&$traverse) {
+                                        foreach ($categories as $category) {
+                                ?>
+                                            <tr>
+                                                <th scope="col"><a href="{{ route('categories.edit', $category->id) }}">
+                                                    {!! Form::checkbox('categoriesTrashed[]', $category->id, false, ['class'=>'categoriesTrashed']) !!} {{ PHP_EOL.$prefix.' '.$category->category_name }}
+                                                </a></th>
+                                                <td>{{ $category->slug }}</td>
+                                                <td>{{ $category->getActive() }}</td>
+                                                <td>{{ $category->created_at->diffForHumans() }}</td>
+
+                                                <td>
+                                                    <a href="{{route('categories.restore',$category->id)}}"
+                                                        class="btn btn-outline-primary btn-min-width box-shadow-3 mr-1 mb-1">Restore</a>
+
+                                                        <a href="{{route('categories.p_destroy',$category->id)}}" onclick="
+                                                        var result = confirm('Do you want to Premently delete:  {{ $category->category_name }}, @if($category->hasChildren()) It will be deleted with all its sub catecgries!!!@endif');
+                                                        if(!result) {
+                                                            event.preventDefault();
+                                                        }"
+
+                                                        class="btn btn-outline-danger btn-min-width box-shadow-3 mr-1 mb-1">P Delete</a>
+
+
+                                                    <!--#delete-form .delete-form -->
+                                                </td>
+                                            </tr>
+                                <?php
+                                            $traverse($category->children, $prefix.'-');
+                                        }
+                                    };
+
+                                    $traverse($nodesTrashed);
+
+                                ?>
+                            </tbody>
+                        </table>
+
+                    </form>
+                    <a href="" onclick="
+                    var result = confirm('Do you want to delete, It will be deleted with all its sub catecgries!!!');
+                    if(result) {
+                        event.preventDefault();
+                        document.getElementById('delete-formMultiTrashed').submit();
+                    }else{
+                        event.preventDefault();
+                    }"
+
+                    class="btn btn-outline-danger btn-min-width box-shadow-3 mr-1 mb-1">P Delete</a>
                 </div>
             </div>
         </div>

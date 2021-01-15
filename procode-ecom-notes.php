@@ -24,7 +24,7 @@ git push -u origin master                   // // push in a master to hold all v
 git branch              //git current branch on local
 git status              //git status on new files on local
 
-
+git push -d origin <branch name >           //delet branch
 
 #=======================================================================
 # 003

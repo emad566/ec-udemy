@@ -34,7 +34,10 @@ Route::group([
 
         Route::resource('categories', 'categoriesController');
         Route::get('categories/{category_id?}/delete', 'categoriesController@destroy')->name('categories.destroy');
+        Route::get('categories/{category_id?}/p_delete', 'categoriesController@p_destroy')->name('categories.p_destroy');
         Route::post('categories/delete', 'categoriesController@delete')->name('categories.delete');
+        Route::post('categories/p_delete', 'categoriesController@p_delete')->name('categories.p_delete');
+        Route::get('categories/{category_id?}/restore', 'categoriesController@restore')->name('categories.restore');
     });
 
 

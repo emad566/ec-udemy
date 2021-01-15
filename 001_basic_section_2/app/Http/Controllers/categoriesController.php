@@ -29,9 +29,11 @@ class categoriesController extends Controller
     public function index()
     {
         $categories = Category::all();
-        $nodes = Category::get()->toTree();
+        $nodes = $categories->toTree();
+        $categoriesTrashed = Category::onlyTrashed()->get();
+        $nodesTrashed = $categoriesTrashed->toTree();
 
-        return view('dashboard.categories.index', compact(['categories', 'nodes']));
+        return view('dashboard.categories.index', compact(['categories', 'nodes', 'categoriesTrashed', 'nodesTrashed']));
     }
 
     /**
@@ -94,8 +96,11 @@ class categoriesController extends Controller
     public function show(Category $category)
     {
         $categories = Category::all();
-        $nodes = Category::get()->toTree();
-        return view('dashboard.categories.edit', compact(['categories', 'nodes', 'category']));
+        $nodes = $categories->toTree();
+        $categoriesTrashed = Category::onlyTrashed()->get();
+        $nodesTrashed = $categoriesTrashed->toTree();
+
+        return view('dashboard.categories.edit', compact(['categories', 'nodes', 'categoriesTrashed', 'nodesTrashed', 'category']));
     }
 
     /**
@@ -107,8 +112,11 @@ class categoriesController extends Controller
     public function edit(Category $category)
     {
         $categories = Category::all();
-        $nodes = Category::get()->toTree();
-        return view('dashboard.categories.edit', compact(['categories', 'nodes', 'category']));
+        $nodes = $categories->toTree();
+        $categoriesTrashed = Category::onlyTrashed()->get();
+        $nodesTrashed = $categoriesTrashed->toTree();
+
+        return view('dashboard.categories.edit', compact(['categories', 'nodes', 'categoriesTrashed', 'nodesTrashed', 'category']));
     }
 
     /**
@@ -135,6 +143,7 @@ class categoriesController extends Controller
 
             $node->update($request->except('_token'));
             $node->parent_id = $request->parent_id;
+            $node->category_name = $request->category_name;
             $node->save();
             $node::fixTree();
 
@@ -171,13 +180,62 @@ class categoriesController extends Controller
     {
         // try {
             $category_ids = $request->categories;
-            foreach($category_ids as $category_id){
-                $category = Category::find($category_id);
-                if($category)
-                    $category->delete();
+            if($category_ids){
+                foreach($category_ids as $category_id){
+                    $category = Category::find($category_id);
+                    if($category)
+                        $category->delete();
+                }
             }
 
             return redirect()->route('categories.index')->with(['success' => 'Delete Success']);
+
+        // } catch (\Exception $ex) {
+        //     return back()->withInput($request->all())->with(['error' => $this->getFileNameError('destroy')]);
+        // }
+    }
+
+    public function p_destroy($category_id)
+    {
+        // try {
+            $category = Category::onlyTrashed()->find($category_id);
+            if($category)
+                $category->forceDelete();
+
+            return redirect()->route('categories.index')->with(['success' => 'P Delete Success']);
+
+        // } catch (\Exception $ex) {
+        //     return back()->withInput($request->all())->with(['error' => $this->getFileNameError('destroy')]);
+        // }
+    }
+
+    public function p_delete(Request $request)
+    {
+        // try {
+            $category_ids = $request->categoriesTrashed;
+            if($category_ids){
+                foreach($category_ids as $category_id){
+                    $category = Category::onlyTrashed()->find($category_id);
+                    if($category)
+                        $category->forceDelete();
+                }
+            }
+
+            return redirect()->route('categories.index')->with(['success' => 'M P Delete Success']);
+
+        // } catch (\Exception $ex) {
+        //     return back()->withInput($request->all())->with(['error' => $this->getFileNameError('destroy')]);
+        // }
+    }
+
+    public function restore($category_id)
+    {
+        // try {
+            $category = Category::withTrashed()->find($category_id);
+            if($category)
+                $category->restore();
+
+            return redirect()->route('categories.index')->with(['success' => 'Restore Success']);
 
         // } catch (\Exception $ex) {
         //     return back()->withInput($request->all())->with(['error' => $this->getFileNameError('destroy')]);
