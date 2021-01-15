@@ -100,7 +100,8 @@
                                             name="is_active"
                                             id="switcheryColor4"
                                             class="switchery" data-color="success"
-                                            checked/>
+                                            @if($category->is_active) checked @endif
+                                            />
                                     <label for="switcheryColor4"
                                             class="card-title ml-1">Active </label>
 
@@ -254,7 +255,7 @@
                         </table>
 
                     </form>
-                    
+
                 </div>
             </div>
         </div>

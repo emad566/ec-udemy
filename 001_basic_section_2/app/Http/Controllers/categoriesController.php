@@ -100,7 +100,7 @@ class categoriesController extends Controller
         $categoriesTrashed = Category::onlyTrashed()->get();
         $nodesTrashed = $categoriesTrashed->toTree();
 
-        return view('dashboard.categories.index', compact(['categories', 'nodes', 'categoriesTrashed', 'nodesTrashed', 'category']));
+        return view('dashboard.categories.edit', compact(['categories', 'nodes', 'categoriesTrashed', 'nodesTrashed', 'category']));
     }
 
     /**
@@ -116,7 +116,7 @@ class categoriesController extends Controller
         $categoriesTrashed = Category::onlyTrashed()->get();
         $nodesTrashed = $categoriesTrashed->toTree();
 
-        return view('dashboard.categories.index', compact(['categories', 'nodes', 'categoriesTrashed', 'nodesTrashed', 'category']));
+        return view('dashboard.categories.edit', compact(['categories', 'nodes', 'categoriesTrashed', 'nodesTrashed', 'category']));
     }
 
     /**
@@ -179,10 +179,12 @@ class categoriesController extends Controller
     {
         // try {
             $category_ids = $request->categories;
-            foreach($category_ids as $category_id){
-                $category = Category::find($category_id);
-                if($category)
-                    $category->delete();
+            if($category_ids){
+                foreach($category_ids as $category_id){
+                    $category = Category::find($category_id);
+                    if($category)
+                        $category->delete();
+                }
             }
 
             return redirect()->route('categories.index')->with(['success' => 'Delete Success']);
@@ -210,10 +212,12 @@ class categoriesController extends Controller
     {
         // try {
             $category_ids = $request->categoriesTrashed;
-            foreach($category_ids as $category_id){
-                $category = Category::onlyTrashed()->find($category_id);
-                if($category)
-                    $category->forceDelete();
+            if($category_ids){
+                foreach($category_ids as $category_id){
+                    $category = Category::onlyTrashed()->find($category_id);
+                    if($category)
+                        $category->forceDelete();
+                }
             }
 
             return redirect()->route('categories.index')->with(['success' => 'M P Delete Success']);
