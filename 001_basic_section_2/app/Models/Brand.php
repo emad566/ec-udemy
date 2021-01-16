@@ -52,6 +52,10 @@ class Brand extends Model
         return  $this -> is_active  == 0 ?  'غير مفعل'   : 'مفعل' ;
     }
 
+    public static function files_path() {
+        return 'assets/dashboard/images/brands/';
+    }
+    
     public function image_delete()
     {
         delete_img($this->image_rel_path());
@@ -59,10 +63,12 @@ class Brand extends Model
 
     public function image_rel_path()
     {
-        return 'assets/images/brands/' . $this->attributes['image'];
+        return $this->files_path() . $this->attributes['image'];
     }
 
     public function  getImageAttribute($val){
         return ($val && file_exists($this->image_rel_path())) ?  asset($this->image_rel_path()) : false;
     }
+
+
 }

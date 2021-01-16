@@ -68,7 +68,7 @@ class brandsController extends Controller
 
             if($image  = $request->file('image')){
                 $image_name = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
-                Image::make($image)->resize(300,200)->save('assets/images/brands/'.$image_name);
+                Image::make($image)->resize(300,200)->save(Brand::files_path().$image_name);
                 $brand->image = $image_name;
             }
 
@@ -128,7 +128,7 @@ class brandsController extends Controller
 
             if($image  = $request->file('image')){
                 $inputs['image'] = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
-                Image::make($image)->resize(300,200)->save('assets/images/brands/'.$inputs['image']);
+                Image::make($image)->resize(300,200)->save(Brand::files_path().$inputs['image']);
                 $brand->image_delete();
             }
             $brand->update($inputs);

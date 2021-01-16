@@ -33,7 +33,7 @@ Route::group([
         Route::get('/', function () {
             // $users = User::all();
             $users = DB::table('users')->get();
-            return view('dashboard', compact(['users']));
+            return view('dashboard.index', compact(['users']));
         })->name('dashboard');
 
 
