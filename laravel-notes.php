@@ -104,3 +104,27 @@ composer require kalnoy/nestedset
 ------------------------------------------------------------
 Awsame package for image editing.
 http://image.intervention.io/
+
+/** 45. Update User Profile and Change Password */
+----------------------------------------------------
+php artisan storage:link
+
+in .env file:
+APP_URL=http://127.0.0.1:8000
+
+/** 46. Forgot Password & Password Reset */
+--------------------------------------------
+--
+MAIL_MAILER=smtp
+--- App URL SHULD BE EMPTY IN .env file
+APP_URL=http://127.0.0.1:8000
+----
+MAIL_MAILER=smtp
+MAIL_HOST=smtp.mailtrap.io
+MAIL_PORT=2525
+MAIL_USERNAME=2dac6776d30617
+MAIL_PASSWORD=9ce19dab9de248
+MAIL_ENCRYPTION=null
+MAIL_FROM_ADDRESS=info@emadeldeen.com
+MAIL_FROM_NAME="${APP_NAME}"
+
