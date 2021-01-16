@@ -15,6 +15,10 @@ use Illuminate\Support\Facades\DB;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/email/verify', function () {
+    return view('auth.verify-email');
+})->middleware('auth')->name('verification.notice');
+
 Route::group([
     'prefix' => LaravelLocalization::setLocale(),
     'namespace'=>'App\Http\Controllers',
@@ -31,6 +35,8 @@ Route::group([
             $users = DB::table('users')->get();
             return view('dashboard', compact(['users']));
         })->name('dashboard');
+
+
 
         Route::resource('categories', 'categoriesController');
         Route::get('categories/{category_id?}/delete', 'categoriesController@destroy')->name('categories.destroy');

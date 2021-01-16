@@ -128,3 +128,23 @@ MAIL_ENCRYPTION=null
 MAIL_FROM_ADDRESS=info@emadeldeen.com
 MAIL_FROM_NAME="${APP_NAME}"
 
+/** 47. Email Verify in Laravel */
+---------------------------------
+1:
+https://laravel.com/docs/8.x/verification#model-preparation
+
+In User.php model:
+class User extends Authenticatable implements MustVerifyEmail
+
+2:
+https://laravel.com/docs/8.x/verification#the-email-verification-notice
+Route:
+
+Route::get('/email/verify', function () {
+    return view('auth.verify-email');
+})->middleware('auth')->name('verification.notice');
+
+3:
+config\fortify.php
+enable 
+Features::emailVerification(),
