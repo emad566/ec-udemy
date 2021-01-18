@@ -96,7 +96,7 @@
                                             name="is_active"
                                             id="switcheryColor4"
                                             class="switchery" data-color="success"
-                                            checked/>
+                                    />
                                     <label for="switcheryColor4"
                                             class="card-title ml-1">Active </label>
 

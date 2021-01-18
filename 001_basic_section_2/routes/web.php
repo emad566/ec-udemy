@@ -15,6 +15,10 @@ use Illuminate\Support\Facades\DB;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/email/verify', function () {
+    return view('auth.verify-email');
+})->middleware('auth')->name('verification.notice');
+
 Route::group([
     'prefix' => LaravelLocalization::setLocale(),
     'namespace'=>'App\Http\Controllers',
@@ -29,8 +33,10 @@ Route::group([
         Route::get('/', function () {
             // $users = User::all();
             $users = DB::table('users')->get();
-            return view('dashboard', compact(['users']));
+            return view('dashboard.index', compact(['users']));
         })->name('dashboard');
+
+
 
         Route::resource('categories', 'categoriesController');
         Route::get('categories/{category_id?}/delete', 'categoriesController@destroy')->name('categories.destroy');
@@ -38,6 +44,11 @@ Route::group([
         Route::post('categories/delete', 'categoriesController@delete')->name('categories.delete');
         Route::post('categories/p_delete', 'categoriesController@p_delete')->name('categories.p_delete');
         Route::get('categories/{category_id?}/restore', 'categoriesController@restore')->name('categories.restore');
+
+        Route::resource('brands', 'brandsController');
+        Route::get('brands/{category_id?}/delete', 'brandsController@destroy')->name('brands.destroy');
+        Route::post('brands/delete', 'brandsController@delete')->name('brands.delete');
+
     });
 
 

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Jan 15, 2021 at 06:14 AM
+-- Generation Time: Jan 16, 2021 at 01:27 AM
 -- Server version: 5.7.31
 -- PHP Version: 7.3.21
 
@@ -20,6 +20,53 @@ SET time_zone = "+00:00";
 --
 -- Database: `01_basic`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `brands`
+--
+
+DROP TABLE IF EXISTS `brands`;
+CREATE TABLE IF NOT EXISTS `brands` (
+  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
+  `image` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `is_active` tinyint(1) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `brands`
+--
+
+INSERT INTO `brands` (`id`, `user_id`, `image`, `is_active`, `created_at`, `updated_at`) VALUES
+(1, 1, '1688985575650702.png', 0, '2021-01-15 18:17:38', '2021-01-15 18:22:44');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `brand_translations`
+--
+
+DROP TABLE IF EXISTS `brand_translations`;
+CREATE TABLE IF NOT EXISTS `brand_translations` (
+  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `brand_id` int(11) NOT NULL,
+  `locale` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `brand_name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `brand_translations_brand_id_locale_unique` (`brand_id`,`locale`)
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `brand_translations`
+--
+
+INSERT INTO `brand_translations` (`id`, `brand_id`, `locale`, `brand_name`) VALUES
+(1, 1, 'en', 'dwed');
 
 -- --------------------------------------------------------
 
@@ -48,15 +95,8 @@ CREATE TABLE IF NOT EXISTS `categories` (
 --
 
 INSERT INTO `categories` (`id`, `user_id`, `slug`, `is_active`, `_lft`, `_rgt`, `parent_id`, `deleted_at`, `created_at`, `updated_at`) VALUES
-(1, 1, '1', 1, 1, 2, NULL, '2021-01-15 03:55:12', '2021-01-15 03:22:57', '2021-01-15 03:55:12'),
-(2, 1, '2', 1, 3, 12, NULL, '2021-01-15 03:55:31', '2021-01-15 03:23:03', '2021-01-15 03:55:31'),
-(3, 1, '1.1', 1, 4, 9, 2, '2021-01-15 03:55:31', '2021-01-15 03:23:14', '2021-01-15 03:55:31'),
-(4, 1, '1.2N', 1, 15, 18, NULL, NULL, '2021-01-15 03:23:25', '2021-01-15 03:57:54'),
-(5, 1, '1.1.1', 1, 5, 6, 3, '2021-01-15 03:55:31', '2021-01-15 03:23:36', '2021-01-15 03:55:31'),
-(6, 1, '1.1.2', 1, 7, 8, 3, '2021-01-15 03:55:31', '2021-01-15 03:23:48', '2021-01-15 03:55:31'),
-(7, 1, '1.2.1', 1, 13, 14, NULL, NULL, '2021-01-15 03:23:58', '2021-01-15 03:48:48'),
-(8, 1, '1.2.2', 1, 16, 17, 4, NULL, '2021-01-15 03:24:11', '2021-01-15 03:41:49'),
-(9, 1, '2.1', 1, 10, 11, 2, '2021-01-15 03:55:31', '2021-01-15 03:26:15', '2021-01-15 03:55:31');
+(1, 1, '1', 1, 1, 2, NULL, NULL, '2021-01-15 03:22:57', '2021-01-15 05:44:42'),
+(4, 1, '1.2N', 0, 3, 4, NULL, NULL, '2021-01-15 03:23:25', '2021-01-15 05:39:01');
 
 -- --------------------------------------------------------
 
@@ -76,7 +116,7 @@ CREATE TABLE IF NOT EXISTS `category_translations` (
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `category_translations_category_id_locale_unique` (`category_id`,`locale`)
-) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `category_translations`
@@ -91,7 +131,8 @@ INSERT INTO `category_translations` (`id`, `category_id`, `locale`, `category_na
 (6, 6, 'en', '1.1.2', NULL, NULL, NULL, NULL),
 (7, 7, 'en', '1.2.1', NULL, NULL, NULL, NULL),
 (8, 8, 'en', '1.2.2', NULL, NULL, NULL, NULL),
-(9, 9, 'en', '2.1', NULL, NULL, NULL, NULL);
+(9, 9, 'en', '2.1', NULL, NULL, NULL, NULL),
+(10, 1, 'ar', 'سبسبسب', NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -124,7 +165,7 @@ CREATE TABLE IF NOT EXISTS `migrations` (
   `migration` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=39 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=53 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `migrations`
@@ -139,7 +180,9 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (6, '2021_01_14_023721_create_sessions_table', 1),
 (38, '2021_01_14_045312_create_category_translations_table', 2),
 (37, '2021_01_14_045045_create_user_translations_table', 2),
-(36, '2021_01_14_035921_create_categories_table', 2);
+(36, '2021_01_14_035921_create_categories_table', 2),
+(51, '2021_01_15_085008_create_brands_table', 3),
+(52, '2021_01_15_085550_create_brand_translations_table', 3);
 
 -- --------------------------------------------------------
 
@@ -154,6 +197,13 @@ CREATE TABLE IF NOT EXISTS `password_resets` (
   `created_at` timestamp NULL DEFAULT NULL,
   KEY `password_resets_email_index` (`email`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `password_resets`
+--
+
+INSERT INTO `password_resets` (`email`, `token`, `created_at`) VALUES
+('emade09@gmail.com', '$2y$10$ZgT9gygLku4i4A9/2wLK7OElLZWMDfuA3na6xKKDBFqr6NliGU38u', '2021-01-15 23:10:34');
 
 -- --------------------------------------------------------
 
@@ -201,7 +251,7 @@ CREATE TABLE IF NOT EXISTS `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('r3FOS5CoEmTTMDOWl7afxdCWdnl4Fh0K9bUS5jzu', 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.141 Safari/537.36 Edg/87.0.664.75', 'YTo4OntzOjY6Il90b2tlbiI7czo0MDoiSURjcEVIYWxOUGQzSm1uV2dQVlBhbUFXV0M0cXBQckRkTEVUemVaaSI7czozOiJ1cmwiO2E6MDp7fXM6OToiX3ByZXZpb3VzIjthOjE6e3M6MzoidXJsIjtzOjQ1OiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvZW4vZGFzaGJvYXJkL2NhdGVnb3JpZXMiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX1zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aToxO3M6MTc6InBhc3N3b3JkX2hhc2hfd2ViIjtzOjYwOiIkMnkkMTAkQmIyamVXTUt5WXhjMUtEOWNTa3I2dVp1bEt3a1B1MG9pbktaQ2pRUEFEand4bnFub2xwSXkiO3M6NjoibG9jYWxlIjtzOjI6ImVuIjtzOjIxOiJwYXNzd29yZF9oYXNoX3NhbmN0dW0iO3M6NjA6IiQyeSQxMCRCYjJqZVdNS3lZeGMxS0Q5Y1NrcjZ1WnVsS3drUHUwb2luS1pDalFQQURqd3hucW5vbHBJeSI7fQ==', 1610690468);
+('l92HQnsL82NsszMqhgNILLai8ne2Xp04B5j4fQbK', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.141 Safari/537.36 Edg/87.0.664.75', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiRXJkUk5iWGNNSzk1WmRTZTJRMHE2U1p6b2htVWxLTWlOM2gxckhVVyI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mjc6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9sb2dpbiI7fXM6NjoibG9jYWxlIjtzOjI6ImVuIjtzOjM6InVybCI7YToxOntzOjg6ImludGVuZGVkIjtzOjQ1OiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvZW4vZGFzaGJvYXJkL2NhdGVnb3JpZXMiO319', 1610759829);
 
 -- --------------------------------------------------------
 
@@ -232,7 +282,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `two_factor_secret`, `two_factor_recovery_codes`, `remember_token`, `current_team_id`, `profile_photo_path`, `created_at`, `updated_at`) VALUES
-(1, 'admin', 'emade09@gmail.com', NULL, '$2y$10$Bb2jeWMKyYxc1KD9cSkr6uZulKwkPu0oinKZCjQPADjwxnqnolpIy', NULL, NULL, NULL, NULL, NULL, '2021-01-14 00:52:35', '2021-01-14 01:03:38');
+(1, 'admin', 'emade09@gmail.com', '2021-01-15 23:13:03', '$2y$10$NykpnbVxTv.M3zE70bemy.WopPw6C.N.5gKTxSj3aEtu8Abl4o3HS', NULL, NULL, 'r0c4CbctmPUJ8amaIckomtAjTkRT9EQNSoewLxyc8VwAHJfa2IHXXyNH0G8G', NULL, 'profile-photos/CLuVkjWLITzcdg7kPy77Z3rPBVw6zTY8h0MZn80S.png', '2021-01-14 00:52:35', '2021-01-15 23:13:03');
 
 -- --------------------------------------------------------
 

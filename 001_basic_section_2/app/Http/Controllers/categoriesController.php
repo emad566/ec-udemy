@@ -77,11 +77,13 @@ class categoriesController extends Controller
 
                 $parent->appendNode($node);
             }
-
-            return redirect()->route('categories.index')->with(['success' => 'ٍSave Success']);
             DB::commit();
+            return redirect()->route('categories.index')->with(['success' => 'ٍSave Success']);
+
 
         // } catch (\Exception $ex) {
+        //     DB::rollback();
+        //     DB::rollback();
         //     return back()->withInput($request->all())->with(['error' => $this->getFileNameError('store')]);
         // }
 
@@ -151,6 +153,8 @@ class categoriesController extends Controller
             DB::commit();
 
         // } catch (\Exception $ex) {
+        //     DB::rollback();
+        //     DB::rollback();
         //     return back()->withInput($request->all())->with(['error' => $this->getFileNameError('store')]);
         // }
     }
@@ -172,6 +176,7 @@ class categoriesController extends Controller
             return redirect()->route('categories.index')->with(['success' => 'Delete Success']);
 
         // } catch (\Exception $ex) {
+        //     DB::rollback();
         //     return back()->withInput($request->all())->with(['error' => $this->getFileNameError('destroy')]);
         // }
     }
@@ -191,6 +196,7 @@ class categoriesController extends Controller
             return redirect()->route('categories.index')->with(['success' => 'Delete Success']);
 
         // } catch (\Exception $ex) {
+        //     DB::rollback();
         //     return back()->withInput($request->all())->with(['error' => $this->getFileNameError('destroy')]);
         // }
     }
@@ -205,6 +211,7 @@ class categoriesController extends Controller
             return redirect()->route('categories.index')->with(['success' => 'P Delete Success']);
 
         // } catch (\Exception $ex) {
+        //     DB::rollback();
         //     return back()->withInput($request->all())->with(['error' => $this->getFileNameError('destroy')]);
         // }
     }
@@ -224,6 +231,7 @@ class categoriesController extends Controller
             return redirect()->route('categories.index')->with(['success' => 'M P Delete Success']);
 
         // } catch (\Exception $ex) {
+        //     DB::rollback();
         //     return back()->withInput($request->all())->with(['error' => $this->getFileNameError('destroy')]);
         // }
     }
@@ -238,6 +246,7 @@ class categoriesController extends Controller
             return redirect()->route('categories.index')->with(['success' => 'Restore Success']);
 
         // } catch (\Exception $ex) {
+        //     DB::rollback();
         //     return back()->withInput($request->all())->with(['error' => $this->getFileNameError('destroy')]);
         // }
     }
