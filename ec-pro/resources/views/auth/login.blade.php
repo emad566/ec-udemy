@@ -22,7 +22,7 @@
                 <h4 class="text-dark mb-5">Sign In</h4>
                 @include('dashboard.includes.alerts.success')
                 @include('dashboard.includes.alerts.errors')
-                <form method="POST" action="{{ isset($guard) ? url($guard.'/login') : route('login') }}">
+                <form method="POST" action="{{ isset($guard) ? route($guard.'.login') : route('login') }}">
                 {{-- <form method="POST" action="{{ route('login') }}"> --}}
                     @csrf
                     <div class="row">

@@ -88,7 +88,15 @@
                             <img src="{{ asset('assets/dashboard/img/user/user.png') }}" class="img-circle"
                                 alt="User Image" />
                             <div class="d-inline-block">
-                                {{ Auth::user()->name }} <small class="pt-1">{{ Auth::user()->email }}</small>
+                                {{ Auth::user()->name }} :
+                                Guard:
+                                @if(Auth::guard('admin')->check())
+                                admin
+                                @elseif(Auth::guard('web')->check())
+                                web
+                                @endif
+
+                                <small class="pt-1">{{ Auth::user()->email }}</small>
                             </div>
                         </li>
 
