@@ -269,9 +269,9 @@
         $(document).ready(function(){
             $(document).on("change", '#allCategories', function(event) {
                 if($(this).is(':checked')){
-                    $('.categories').attr('checked', true)
+                    $('.categories').prop('checked', true)
                 }else{
-                    $('.categories').attr('checked', false)
+                    $('.categories').prop('checked', false)
                 }
             });
 

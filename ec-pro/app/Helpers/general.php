@@ -43,7 +43,7 @@ function updateIsActive($obj, $table, $name='is_active', $field=''){
 
     $html = '';
 
-    $html .= '<input '.$checked .' action="'. route($route,$obj->id) .'" type="checkbox" formid="'. $obj->id .'" name="'.$name.'" id="'.$name.'"  class="'.$name.' switcher">';
+    $html .= '<input '.$checked .' action="'. route($route,$obj->id) .'" type="checkbox" formid="'. $obj->id .'" name="'.$name.'" id="'.$name.'"  class="'.$name.' switcher updateIsActive">';
     return $html;
 }
 

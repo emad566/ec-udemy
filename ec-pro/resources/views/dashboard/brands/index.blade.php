@@ -144,9 +144,9 @@
         $(document).ready(function(){
             $(document).on("change", '#allbrands', function(event) {
                 if($(this).is(':checked')){
-                    $('.brands').attr('checked', true)
+                    $('.brands').prop('checked', true)
                 }else{
-                    $('.brands').attr('checked', false)
+                    $('.brands').prop('checked', false)
                 }
             });
 

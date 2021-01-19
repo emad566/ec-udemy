@@ -58,9 +58,9 @@ class couponsController extends Controller
             $coupon = Coupon::create($inputs);
             DB::commit();
             $notification = array(
-                'message' => trans('SavedSuccessfully'),
+                'message' => trans('main.SavedSuccessfully'),
                 'alert-type' => 'success',
-                'success' => trans('SavedSuccessfully'),
+                'success' => trans('main.SavedSuccessfully'),
             );
             return redirect()->route('coupons.index')->with($notification);
 
@@ -111,9 +111,9 @@ class couponsController extends Controller
             DB::commit();
 
             $notification = array(
-                'message' => trans('UpdateSuccess'),
+                'message' => trans('main.UpdateSuccess'),
                 'alert-type' => 'success',
-                'success' => trans('UpdateSuccess'),
+                'success' => trans('main.UpdateSuccess'),
             );
 
             return redirect()->route('coupons.index')->with($notification);
@@ -143,9 +143,9 @@ class couponsController extends Controller
             // $coupon->delete();
             DB::commit();
             $notification = array(
-                'message' => trans('DeleteSuccess'),
+                'message' => trans('main.DeleteSuccess'),
                 'alert-type' => 'success',
-                'success' => trans('DeleteSuccess'),
+                'success' => trans('main.DeleteSuccess'),
             );
 
             return redirect()->route('coupons.index')->with($notification);
@@ -172,9 +172,9 @@ class couponsController extends Controller
             DB::commit();
 
             $notification = array(
-                'message' => trans('DeleteSuccess'),
+                'message' => trans('main.DeleteSuccess'),
                 'alert-type' => 'success',
-                'success' => trans('DeleteSuccess'),
+                'success' => trans('main.DeleteSuccess'),
             );
             return redirect()->route('coupons.index')->with($notification);
 
@@ -194,9 +194,9 @@ class couponsController extends Controller
             $coupon->update(['is_active'=>$is_active]);
             DB::commit();
             $notification = array(
-                'message' => trans('UpdateSuccess'),
+                'message' => trans('main.UpdateSuccess'),
                 'alert-type' => 'success',
-                'success' => trans('UpdateSuccess'),
+                'success' => trans('main.UpdateSuccess'),
             );
             return redirect()->route('coupons.index')->with($notification);
 

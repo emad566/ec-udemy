@@ -597,7 +597,7 @@ return [
     'CouponCode'=>'كود الخصم',
     'CouponDiscount'=>'نسبة الخصم',
     'delete'=>'حذف',
-    ''=>'',
+    'Thenewsletters'=>'الأشتراكات',
     ''=>'',
     ''=>'',
     ''=>'',

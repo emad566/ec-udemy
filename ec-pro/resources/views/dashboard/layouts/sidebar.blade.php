@@ -101,6 +101,32 @@
                     </ul>
                 </li>
 
+                <li class="has-sub  @if(Request::is('*/newsletters*')) expand active @endif">
+                    <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse"
+                        data-target="#newsletters" aria-expanded="false" aria-controls="newsletters">
+                        <i class="mdi mdi-view-dashboard-outline"></i>
+                        <span class="nav-text">الاشراكات</span> <b class="caret"></b>
+                    </a>
+                    <ul class="collapse @if(Request::is('*/newsletters*')) show @endif" id="newsletters" data-parent="#sidebar-menu">
+                        <div class="sub-menu">
+
+                            <li class="@if(Request::is('*/newsletters')) active @endif">
+                                <a class="sidenav-item-link" href="{{ route('newsletters.index') }}">
+                                    <span class="nav-text">كل الاشراكات</span>
+
+                                </a>
+                            </li>
+
+                            <li class="@if(Request::is('*/newsletters/create*')) active @endif">
+                                <a class="sidenav-item-link" href="{{ route('newsletters.create') }}">
+                                    <span class="nav-text">أضف بريدإلكتروني</span>
+                                </a>
+                            </li>
+
+                        </div>
+                    </ul>
+                </li>
+
 
                 <li class="has-sub">
                     <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse"

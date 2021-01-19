@@ -40,7 +40,7 @@
                         ]) !!}
 
                     </form>
-                    
+
                 </div>
             </div>
         </div>
@@ -49,17 +49,7 @@
 
 @section('script')
     <script>
-        $(document).ready(function(){
-            $(document).on("change", '#allItems', function(event) {
-                if($(this).is(':checked')){
-                    $('.boxItem').attr('checked', true)
-                }else{
-                    $('.boxItem').attr('checked', false)
-                }
-            });
-
-
-        })
+        
     </script>
 @endsection
 

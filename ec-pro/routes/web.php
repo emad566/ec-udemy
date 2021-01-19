@@ -96,10 +96,21 @@ Route::group([
         Route::get('coupons/{coupon_id?}/delete', 'couponsController@destroy')->name('coupons.destroy');
         Route::post('coupons/delete', 'couponsController@delete')->name('coupons.delete');
         Route::get('couponsUpdateIsActive/{coupon}', 'couponsController@updateIsActive')->name('coupons.updateIsActive');
-
         //================ /coupons =================//
+
+        //================ newsletters =================//
+        Route::resource('newsletters', 'newslettersController');
+        Route::get('newsletters/{newsletter_id?}/delete', 'newslettersController@destroy')->name('newsletters.destroy');
+        Route::post('newsletters/delete', 'newslettersController@delete')->name('newsletters.delete');
+        Route::get('newslettersUpdateIsActive/{newsletter}', 'newslettersController@updateIsActive')->name('newsletters.updateIsActive');
+        //================ /newsletters =================//
 
     });
     //================ /webGuard Routes =================//
+
+    //================ Fornt Site Routes =================//
+    Route::get('/',  'HomeController@home')->name('site.home');
+    Route::post('/subscribe',  'newslettersController@subscribe')->name('newsletters.subscribe');
+    //================ /Fornt Site Routes =================//
 
 });

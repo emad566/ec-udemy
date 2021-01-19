@@ -39,7 +39,7 @@
 
     <!-- datatable -->
     <link href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css" rel="stylesheet">
-    
+
     @yield('style')
 
     <!-- FAVICON -->
@@ -230,7 +230,7 @@
             });
 
             //UpdateIsActive
-            $('.is_active').change(function(){
+            $('.updateIsActive').change(function(){
                 action = $(this).attr('action')
                 window.location.href = action;
             })
@@ -262,6 +262,18 @@
                 }
 
             });
+
+            // MultiSelect checkbox for delete
+            $(document).on("change", '#allItems', function(event) {
+                if($(this).is(':checked')){
+                    // alert('oK')
+                    $('.boxItem').prop('checked', true)
+                }else{
+                    // alert('no')
+                    $('.boxItem').prop('checked', false)
+                }
+            });
+
         })
     </script>
     @yield('script')
