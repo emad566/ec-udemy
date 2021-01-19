@@ -78,15 +78,15 @@
                 <!-- User Account -->
                 <li class="dropdown user-menu">
                     <button href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
-                        <img src="{{ asset('assets/dashboard/img/user/user.png') }}" class="user-image"
-                            alt="User Image" />
+                        <img src="{{ Auth::user()->image }}" class="user-image"
+                            alt="{{ Auth::user()->name }}" />
                         <span class="d-none d-lg-inline-block">{{ Auth::user()->name }}</span>
                     </button>
                     <ul class="dropdown-menu dropdown-menu-right">
                         <!-- User image -->
                         <li class="dropdown-header">
-                            <img src="{{ asset('assets/dashboard/img/user/user.png') }}" class="img-circle"
-                                alt="User Image" />
+                            <img src="{{ Auth::user()->image }}" class="img-circle"
+                                alt="{{ Auth::user()->name }}" />
                             <div class="d-inline-block">
                                 {{ Auth::user()->name }} :
                                 Guard:
@@ -101,8 +101,8 @@
                         </li>
 
                         <li>
-                            <a href="profile.html">
-                                <i class="mdi mdi-account"></i> My Profile
+                            <a href="{{ route('mainUser.profile') }}">
+                                <i class="mdi mdi-account"></i> الصفحة الشخصية
                             </a>
                         </li>
                         <li>
@@ -124,7 +124,7 @@
                             > <i class="mdi mdi-logout"></i> Log Out
 
                             </a>
-                            <form id="logOutForm" method="POST" action="{{ route('logout') }}">
+                            <form id="logOutForm" method="POST" action="{{ (Auth::guard('admin')->check()) ? route('admin.logout') : route('logout') }}">
                                 @csrf
 
                             </form>

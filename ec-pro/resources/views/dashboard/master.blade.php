@@ -2,7 +2,7 @@
 <html lang="en" dir="rtl">
 
 <head>
-    <?php $ver = '1.0.0'; ?>
+    <?php $ver = '1.4.0'; ?>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -142,6 +142,53 @@
                 break;
             }
         @endif
+
+        $(document).ready(function(){
+            /* ======================================
+            priew image before uploaded
+            ===================================== */
+            $('.uploadbtn').change(function(){
+                if ($(this).prop('files') && $(this).prop('files')[0]) {
+                    var reader = new FileReader();
+                    $imgId = $(this).attr('img');
+                    reader.onload = function (e) {
+
+                        $('.uploadbtnDiv img.'+$imgId).attr('src', e.target.result);
+                        $('.uploadbtnDiv img.'+$imgId).addClass('showimg');
+                    }
+                    imgsize = $(this).prop('files')[0]['size']
+                    imgsize = Math.round(imgsize / 1024, 4) + ' KB';
+
+                    imgname = $(this).prop('files')[0]['name']
+
+                    $('div.'+$imgId+' #image_size').html(imgsize);
+                    $('div.'+$imgId+' #image_name').html(imgname);
+
+                    reader.readAsDataURL($(this).prop('files')[0]);
+                }
+            })
+
+            $('.pdfuploadbtn').change(function(){
+                if ($(this).prop('files') && $(this).prop('files')[0]) {
+                    var reader = new FileReader();
+                    $imgId = $(this).attr('img');
+                    reader.onload = function (e) {
+
+                        // $('.pdfuploadbtn img.'+$imgId).attr('src', https://mwjood.emadeldeen.com/assests/images/pdf.png);
+                        $('.pdfuploadbtn img.'+$imgId).addClass('showimg');
+                    }
+                    imgsize = $(this).prop('files')[0]['size']
+                    imgsize = Math.round(imgsize / 1024, 4) + ' KB';
+
+                    imgname = $(this).prop('files')[0]['name']
+
+                    $('div.'+$imgId+' #image_size').html(imgsize);
+                    $('div.'+$imgId+' #image_name').html(imgname);
+
+                    reader.readAsDataURL($(this).prop('files')[0]);
+                }
+            }) 
+        })
     </script>
     @yield('script')
 </body>

@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class AdminTranslation extends Model
 {
     use HasFactory;
+    protected $fillable = ['fName', 'lName'];
+    public  $timestamps = false;
 }
