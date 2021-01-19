@@ -594,9 +594,9 @@ return [
     //ec-pro Translations
     'fName'=>'الأسم الأول',
     'lName'=>'باقي الأسم',
-    ''=>'',
-    ''=>'',
-    ''=>'',
+    'CouponCode'=>'كود الخصم',
+    'CouponDiscount'=>'نسبة الخصم',
+    'delete'=>'حذف',
     ''=>'',
     ''=>'',
     ''=>'',

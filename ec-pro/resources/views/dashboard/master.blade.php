@@ -2,7 +2,7 @@
 <html lang="en" dir="rtl">
 
 <head>
-    <?php $ver = '1.4.0'; ?>
+    <?php $ver = '1.6.0'; ?>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -34,6 +34,12 @@
      <!-- toaster js-->
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 
+     <!-- Fontawesome Fonts-->
+    <script src="https://kit.fontawesome.com/c7125b87e6.js" crossorigin="anonymous"></script>
+
+    <!-- datatable -->
+    <link href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css" rel="stylesheet">
+    
     @yield('style')
 
     <!-- FAVICON -->
@@ -115,6 +121,14 @@
     <!-- Emad Js && Emad Bootstrap JS Files -->
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
 
+    <!-- swal alert Files -->
+    <script src="{{ asset('https://unpkg.com/sweetalert/dist/sweetalert.min.js')}}"></script>
+    <!-- /swal alert Files -->
+
+    <!-- dataTable -->
+    <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js" type="text/javascript"></script>
+    <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js" type="text/javascript"></script>
+    <!-- /dataTable -->
 
 
     <script>
@@ -187,7 +201,67 @@
 
                     reader.readAsDataURL($(this).prop('files')[0]);
                 }
-            }) 
+            })
+
+            //Delete Verfy
+            $(document).on("click", ".deleteMe", function(e){
+                e.preventDefault();
+                var link = $(this).attr("href");
+                var msg = $(this).attr("msg");
+                var formId = $(this).attr("formId");
+                if(!msg) msg = "Once Delete, This will be Permanently Delete!"
+                swal({
+                  title: "Are you Want to delete?",
+                  text: msg,
+                  icon: "warning",
+                  buttons: true,
+                  dangerMode: true,
+                })
+                .then((willDelete) => {
+                  if (willDelete) {
+                    if(formId)
+                        document.getElementById(formId).submit();
+                    else
+                        window.location.href = link;
+                  } else {
+                    swal("Safe Data!");
+                  }
+                });
+            });
+
+            //UpdateIsActive
+            $('.is_active').change(function(){
+                action = $(this).attr('action')
+                window.location.href = action;
+            })
+
+            // dataTable
+            $('.datatable').DataTable( {
+                "language": {
+                    "search": "بحث :",
+                    "sLengthMenu ": "اعرض ",
+                },
+                "lengthMenu": [[10, 25, 50, 100, 200, 500 , 1000, -1], [10, 25, 50, 100, 200, 500 , 1000, "All"]],
+                "pageLength": 10,
+                "oLanguage": {
+                    "sProcessing":   "جارٍ التحميل...",
+                    "sLengthMenu":   "أظهر _MENU_ مدخلات",
+                    "sZeroRecords":  "لم يعثر على أية سجلات",
+                    "sInfo":         "إظهار _START_ إلى _END_ من أصل _TOTAL_ مدخل",
+                    "sInfoEmpty":    "يعرض 0 إلى 0 من أصل 0 سجل",
+                    "sInfoFiltered": "(منتقاة من مجموع _MAX_ مُدخل)",
+                    "sInfoPostFix":  "",
+                    "sSearch":       "ابحث:",
+                    "sUrl":          "",
+                    "oPaginate": {
+                        "sFirst":    "الأول",
+                        "sPrevious": "السابق",
+                        "sNext":     "التالي",
+                        "sLast":     "الأخير"
+                    }
+                }
+
+            });
         })
     </script>
     @yield('script')

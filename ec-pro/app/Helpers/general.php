@@ -29,61 +29,39 @@ function delete_img($img_path){
 
 
 
-// function updateIsActive($obj, $table, $name='is_active', $field=''){
-//     $checked = ($obj->$name)? 'checked' : '';
-//     $route = $table;
-//     $route .= ($name=='is_active')? '.updateIsActive' : '.update'.$name;
+function updateIsActive($obj, $table, $name='is_active', $field=''){
+    $checked = ($obj->$name)? 'checked' : '';
+    $route = $table;
+    $route .= ($name=='is_active')? '.updateIsActive' : '.update'.$name;
 
-//     if(is_array($field) && array_key_exists(5,$field)){
-//         $route = $field[5];
-//     }
-//     if(is_array($field) && array_key_exists(4,$field)){
-//         $checked = ($obj->$name == $field[4])? 'checked' : '';
-//     }
+    if(is_array($field) && array_key_exists(5,$field)){
+        $route = $field[5];
+    }
+    if(is_array($field) && array_key_exists(4,$field)){
+        $checked = ($obj->$name == $field[4])? 'checked' : '';
+    }
 
-//     $html = '';
+    $html = '';
 
-//     $html .= '<form id="'.$name . $obj->id .'" action="'. route($route,$obj->id) .'" method="POST">
-//         '.csrf_field().'
-//         <input '.$checked .' type="checkbox" formid="'. $obj->id .'" name="'.$name.'" id="'.$name.'"  class="'.$name.'">
-//         <input type="hidden" name="formurl" value="'.URL::current().'">
-//     </form>';
-//     return $html;
-// }
+    $html .= '<input '.$checked .' action="'. route($route,$obj->id) .'" type="checkbox" formid="'. $obj->id .'" name="'.$name.'" id="'.$name.'"  class="'.$name.' switcher">';
+    return $html;
+}
 
-// function indexEdit($obj, $table, $vars=false, $abbr)
-// {
-//     if(!$vars) $vars = [$obj->id];
-//     $routs = route($table.'.edit', $vars);
+function indexEdit($obj, $table, $vars=false)
+{
+    if(!$vars) $vars = [$obj->id];
+    $routs = route($table.'.edit', $vars);
+    $html = '<a href="'.$routs.'"><i class="fas fa-edit delEdit"></i></a>';
+    return $html;
+}
 
-//     $domain = LaravelLocalization::localizeUrl('/');
-
-//     if($abbr)
-//         $url = str_replace( $domain,  url('/').'/'. 'ar', $routs);
-//     else
-//         $url = str_replace( $domain,  url('/').'/'. $obj->childe_org()->get_lang_org->abbr, $routs);
-
-//     $html ='';
-//     $html .= '<a href="'.$url.'"><i class="fas fa-edit delEdit"></i></a>';
-//     return $html;
-// }
-
-// function indexView($obj, $table, $vars=false, $abbr)
-// {
-//     if(!$vars) $vars = [$obj->id];
-//     $routs = route($table.'.show', $vars);
-
-//     $domain = LaravelLocalization::localizeUrl('/');
-
-//     if($abbr)
-//         $url = str_replace( $domain,  url('/').'/'. 'ar', $routs);
-//     else
-//         $url = str_replace( $domain,  url('/').'/'. $obj->childe_org()->get_lang_org->abbr, $routs);
-
-//     $html ='';
-//     $html .= '<a href="'.$url.'"><i class="fas fa-eye delEdit"></i></a>';
-//     return $html;
-// }
+function indexView($obj, $table, $vars=false)
+{
+    if(!$vars) $vars = [$obj->id];
+    $routs = route($table.'.show', $vars);
+    $html = '<a href="'.$routs.'"><i class="fas fa-eye delEdit"></i></a>';
+    return $html;
+}
 
 // function indexImg($obg)
 // {
@@ -94,244 +72,227 @@ function delete_img($img_path){
 //     return $html;
 // }
 
-// function indexDel($data)
-// {
-//     extract($data);
-//     if(!isset($noview)) $noview = '';
-//     if($nodel) return "";
-//     if(!isset($del)) return 'Pls Pass del Obj';
-//     if(!isset($trans)) $trans = "deleteitemNote";
-//     if(!isset($title)) $title = 'title';
-//     if(!isset($vars)) $vars = [$del->id];
-
-//     $str = get_class($del);
-//     $strArr = explode("\\", $str);
-//     $objname = end($strArr);
-//     if(!isset($table)) $table = strtolower($objname) .'s';
-
-//     $html ='';
-
-//     $html .= '
-//     <a href="#" onclick="
-//         var result = confirm(\''. trans('main.'.$trans) .'  '. $del->childe_org()->$title .'\');
-//         if(result) {
-//             event.preventDefault();
-//             document.getElementById(\'delete-form'. $del->id .'\').submit();
-//         }
-
-//     "><i class="fas fa-trash-alt delEdit"></i></a>
-
-//     <form id="delete-form'. $del->id .'" class="delete-form"
-//         method="post"
-//         action="'. route($table.'.destroy', $vars) .'">
-//         '. csrf_field() .'
-//         <input type="hidden" name="_method" value="DELETE">
-//     </form>
-//     ';
-//     return $html;
-// }
-
-// function indexTableHead($fields, $type='thead', $active=true, $action=true)
-// {
-//     $html = '<'. $type .'>';
-//     $html .= '
-//         <tr>
-//             <th>#id</th>
-//     ';
-
-//     if($action)
-//         $html .= '<th>'. trans('main.Actions') .'</th>';
-
-//     foreach($fields as $field){
-//         $html .= '<td>'. trans('main.'.$field[2]) .'</td>';
-//     }
-//     if($active)
-//     $html .= '<th>'. trans('main.Active') .'</th>';
-
-//     if($action)
-//         $html .= '<th>'. trans('main.Actions') .'</th>';
-
-//     $html .= '</tr>
-//     ';
-//     return $html .= '<'. $type .'/>';
-// }
-
-// function indexTableTds($obj, $fields, $abbr = false, $table)
-// {
-//     // $abbr is the logo lang abbriviation
-//     $html = '';
-//     foreach($fields as $field){
-//         $attr = $field[0];
-//         $html .= '<td>';
-
-//         if(is_array($field[0])){
-//             $fieldArr = $field[0];
-//             if(array_key_exists($obj->id,$fieldArr)){
-//                 $html .= $fieldArr[$obj->id];
-//             }
-//         }elseif(array_key_exists(3,$field) && $field[3] == 'check') {
-//             $html .= updateIsActive($obj, $table, $field[0], $field);
-//         }elseif(array_key_exists(3,$field) && $field[3] == 'trans') {
-//             $html .= trans('main.'.$obj->$attr);
-//         }else{
-//             if($field[1])
-//                 $html .= $obj->childe_org()->$attr;
-//             else{
-//                 $attrArr = explode('->', $attr);
-//                 $value = $obj;
-//                 foreach($attrArr as $key=>$attr){
-//                     // $value .= $attr;
-//                     if($value){
-//                         if(strpos($attr, '()')){
-//                             $attr = str_replace('()', '', $attr);
-//                             $value = $value->$attr();
-//                         }else
-//                             $value = $value->$attr;
-//                     }else
-//                         $value = "";
-//                 }
-//                 $html .= $value;
-//             }
+function indexDel($data)
+{
+    extract($data);
+    if(!isset($noview)) $noview = '';
+    if($nodel) return "";
+    if(!isset($del)) return 'Pls Pass del Obj';
+    if(!isset($trans)) $trans = "deleteitemNote";
+    if(!isset($title)) $title = 'title';
+    if(!isset($indexDel)) $indexDel = true;
+    if(!isset($vars)) $vars = [$del->id];
 
 
-//             if(array_key_exists(3,$field) && $field[3] == 'abbr') $html .= '
-//             <span class="text-info">
-//                 <i id="langLogoAbbr" class="flag-icon flag-icon-'.$obj->logo_abbr.'"></i>
-//             </span>
-//             ';
-//         }
-//         $html .= '</td>';
-//     }
-//     return $html;
+    $str = get_class($del);
+    $strArr = explode("\\", $str);
+    $objname = end($strArr);
+    if(!isset($table)) $table = strtolower($objname) .'s';
 
-// }
-// function indexTable($data)
-// {
-//     //$objs, $table, $title, $trans, $vars, $fields
-//     //$abbr is the logo lang abbriviation
+    $html ='';
+    if($indexDel){
+        $html .= '
+        <a href="'.route($table.'.destroy',$del->id).'"
+            msg="'. trans('main.'.$trans) .'  '. $del->$title .'"
+            class="deleteMe"
+        ><i class="fas fa-trash-alt delEdit"></i></a>
+        ';
+    }
 
-//     extract($data);
-//     if(!isset($noview)) $noview = '';
-//     if(!isset($objs)) return 'Pls Pass objs';
-//     if(!isset($trans)) $trans = "deleteitemNote";
-//     if(!isset($title)) $title = 'title';
-//     if(!isset($abbr)) $abbr = false;
-//     if(!isset($vars)) $vars = false;
-//     if(!isset($logo_abbr)) $logo_abbr = true;
-//     if(!isset($nodel)) $nodel = false;
-//     if(!isset($active)) $active = true;
-//     if(!isset($action)) $action = true;
-//     if(!isset($indexEdit)) $indexEdit = true;
-//     if(!isset($isread)) $isread = false;
-//     if(!isset($view)) $view = false;
+    return $html;
+}
+
+function indexTableHead($fields, $type='thead', $active=true, $action=true, $indexDel)
+{
+    $html = '<'. $type .'>';
+    $html .= '
+        <tr>
+            <th>';
+
+    if($indexDel){
+        $html .= '<input type="checkbox" name="allItems" value="1" id="allItems" class="allItems">';
+    }
+
+    $html .='#id</th>';
+
+
+
+    if($action)
+        $html .= '<th>'. trans('main.Actions') .'</th>';
+
+    foreach($fields as $field){
+        $html .= '<td>'. trans('main.'.$field[2]) .'</td>';
+    }
+
+    if($active)
+        $html .= '<th>'. trans('main.Active') .'</th>';
+
+    if($action)
+        $html .= '<th>'. trans('main.Actions') .'</th>';
+
+    $html .= '</tr>
+    ';
+    return $html .= '<'. $type .'/>';
+}
+
+function indexTableTds($obj, $fields, $table, $indexDel)
+{
+    // $abbr is the logo lang abbriviation
+    $html = '';
+    foreach($fields as $field){
+        $attr = $field[0];
+        $html .= '<td>';
+
+        if(is_array($field[0])){
+            $fieldArr = $field[0];
+            if(array_key_exists($obj->id,$fieldArr)){
+                $html .= $fieldArr[$obj->id];
+            }
+        }elseif(array_key_exists(3,$field) && $field[3] == 'check') {
+            $html .= updateIsActive($obj, $table, $field[0], $field);
+        }elseif(array_key_exists(3,$field) && $field[3] == 'trans') {
+            $html .= trans('main.'.$obj->$attr);
+        }else{
+            if($field[1])
+                $html .= $obj->$attr;
+            else{
+                $attrArr = explode('->', $attr);
+                $value = $obj;
+                foreach($attrArr as $key=>$attr){
+                    // $value .= $attr;
+                    if($value){
+                        if(strpos($attr, '()')){
+                            $attr = str_replace('()', '', $attr);
+                            $value = $value->$attr();
+                        }else
+                            $value = $value->$attr;
+                    }else
+                        $value = "";
+                }
+                $html .= $value;
+            }
+        }
+        $html .= '</td>';
+    }
+    return $html;
+
+}
+
+function indexTable($data)
+{
+    //$objs, $table, $title, $trans, $vars, $fields
+    //$abbr is the logo lang abbriviation
+
+    extract($data);
+    if(!isset($noview)) $noview = '';
+    if(!isset($objs)) return 'Pls Pass objs';
+    if(!isset($trans)) $trans = "deleteitemNote";
+    if(!isset($title)) $title = 'title';
+    if(!isset($abbr)) $abbr = false;
+    if(!isset($vars)) $vars = false;
+    if(!isset($logo_abbr)) $logo_abbr = true;
+    if(!isset($nodel)) $nodel = false;
+    if(!isset($active)) $active = true;
+    if(!isset($action)) $action = true;
+    if(!isset($indexEdit)) $indexEdit = true;
+    if(!isset($indexDel)) $indexDel = true;
+    if(!isset($isread)) $isread = false;
+    if(!isset($view)) $view = false;
 
 
 
 
-//     $html = '';
-//     $html .= '
-//     <table class="table display nowrap table-striped table-bordered datatable">
-//         '.indexTableHead($fields, 'thead', $active, $action).'
-//         <tbody>
-//     ';
+    $html = '';
+    $html .= '
+    <table class="table display nowrap table-striped table-bordered datatable">
+        '.indexTableHead($fields, 'thead', $active, $action, $indexDel).'
+        <tbody>
+    ';
 
-//     $i=1;
+    $i=1;
 
-//     if(isset($objs)){
-//         foreach($objs as $obj){
-//             if($i == 1){
-//                 $str = get_class($obj);
-//                 $strArr = explode("\\", $str);
-//                 $objTitle = end($strArr);
-//                 if(!isset($table)) $table = strtolower($objTitle) .'s';
-//                 if(!isset($objname)) $objname = strtolower($objTitle);
-//             }
+    if(isset($objs)){
+        foreach($objs as $obj){
+            if(is_array($vars)){
+            $varsArr = $vars;
+            array_push($varsArr, $obj->id);
+            }else{
+                $varsArr = '';
+            }
+            if($i == 1){
+                $str = get_class($obj);
+                $strArr = explode("\\", $str);
+                $objTitle = end($strArr);
+                if(!isset($table)) $table = strtolower($objTitle) .'s';
+                if(!isset($objname)) $objname = strtolower($objTitle);
+            }
 
-//             if($obj->childe_org() || $abbr){
-//                 if(is_array($vars)){
-//                     $varsArr = $vars;
-//                     array_push($varsArr, $obj->id);
-//                 }else{
-//                     $varsArr =($vars)? [$obj->adv->id, $obj->id] : [$obj->id];
-//                 }
 
-//                 $iconLogoAbbr = ($abbr)? $abbr : $obj->childe_org()->get_lang_org->logo_abbr;
-//                 $color ='';
-//                 if($table == 'packages'){
-//                     $color = 'style="background:'.$obj->color . '"';
-//                 }elseif($table == 'advs'){
-//                      $color = 'style="background:'.$obj->package->color . '"';
-//                 }
+            $html .='<tr class="rowAction">
+            <td>';
+            if($indexDel){
+                $html .= '<input type="checkbox" name="'.$table.'[]" value="'.$obj->id.'" class="boxItem">';
+            }
+            $html .= $i.'</td>';
 
-//                 $unreadmsg = (!$obj->read_user_id && $isread)? 'unreadmsg' : '' ;
-//                 $html .='<tr class="rowAction '.$unreadmsg.'">
-//                 <td '.$color.'>';
-//                 if($obj->childes() && $logo_abbr){
-//                     foreach($obj->childes as $childe){
-//                         $org = ($childe->trans_of == 0)? "tansOrg" : "";
-//                         $html .='<span class="text-info '.$org.'">
-//                         <a href="'.route($table.'.edit', $varsArr).'" title="'.$childe->lang->lang_name.'">
-//                         <i id="countryLogoAbbr" class="flag-icon flag-icon-'.$childe->lang->logo_abbr.'"></i>
-//                         </a>
-//                         </span>';
-//                     }
-//                 }
+            if($action){
 
-//                 $html .= $i.'
-//                 </td>
-//                 ';
+            $html .='<td class="actionLinks">';
+            if($indexEdit){
+                $html .=  indexEdit($obj, $table, $varsArr);
+            }
+            if($view){
+                $html .=  indexview($obj, $table, $varsArr, $abbr);
+            }
+                $html .=  indexDel(['del'=>$obj, 'table'=>$table, 'title'=>$title, 'indexDel'=>$indexDel, 'vars'=>$varsArr, 'trans'=> $trans, 'nodel'=>$nodel]) .'
+            </td>';
+            }
 
-//                 if($action){
+            $html .= indexTableTds($obj, $fields, $table, $indexDel);
 
-//                 $html .='<td class="actionLinks">
-//                     '.  indexImg($obj);
-//                 if($indexEdit){
-//                     $html .=  indexEdit($obj, $table, $varsArr, $abbr);
-//                 }
-//                 if($view){
-//                     $html .=  indexview($obj, $table, $varsArr, $abbr);
-//                 }
-//                     $html .=  indexDel(['del'=>$obj, 'table'=>$table, 'title'=>$title, 'vars'=>$varsArr, 'trans'=> $trans, 'nodel'=>$nodel]) .'
-//                 </td>';
-//                 }
+            if($active){
+            $html .='<td>
 
-//                 $html .= indexTableTds($obj, $fields, $abbr, $table);
+            '.updateIsActive($obj, $table).'
 
-//                 if($active){
-//                 $html .='<td>
+            </td>';
+            }
 
-//                 '.updateIsActive($obj, $table).'
+            if($action){
 
-//                 </td>';
-//                 }
+            $html .='<td class="actionLinks">';
+                if($indexEdit){
+                    $html .=  indexEdit($obj, $table, $varsArr);
+                }
+                if($view){
+                    $html .=  indexview($obj, $table, $varsArr);
+                }
+                $html .=  indexDel(['del'=>$obj, 'table'=>$table, 'title'=>$title, 'indexDel'=>$indexDel, 'vars'=>$varsArr, 'trans'=> $trans, 'nodel'=>$nodel]) .'
+            </td>';
+            }
 
-//                 if($action){
+            $html .='</tr>';
+            $i++;
+        }
+    }
 
-//                 $html .='<td class="actionLinks">
-//                     '.  indexImg($obj);
-//                     if($indexEdit){
-//                         $html .=  indexEdit($obj, $table, $varsArr, $abbr);
-//                     }
-//                     if($view){
-//                         $html .=  indexview($obj, $table, $varsArr, $abbr);
-//                     }
-//                         $html .=  indexDel(['del'=>$obj, 'table'=>$table, 'title'=>$title, 'vars'=>$varsArr, 'trans'=> $trans, 'nodel'=>$nodel]) .'
-//                 </td>';
-//                 }
+    $html .= '
+    </tbody>
+    ';
+if($i>13)
+    indexTableHead($fields, 'tfoot', $active, $action, false);
 
-//                 $html .='</tr>';
-//             $i++;
-//             }
-//         }
-//     }
-
-//     $html .= '
-//     </tbody>
-//     '.indexTableHead($fields, 'tfoot', $active, $action).'
-//     </table>
-//     ';
-//     return $html;
-// }
+    $html .= '</table>
+    ';
+    if($indexDel){
+        $html .= '
+        <a href="" formId="delete-formMulti"
+        class="deleteMe btn btn-outline-danger btn-min-width box-shadow-3 mr-1 mb-1"
+        >'.trans('main.delete').'</a>
+        ';
+    }
+    return $html;
+}
 
 // function cur_lang($active=true){
 //     if($active){
@@ -693,6 +654,7 @@ function checkbox($data){
     if(!isset($cols)) $cols = 12;
     if(!isset($required)) $required = "";
     if(!isset($label)) $label = true;
+    if(!isset($class)) $class = true;
 
     $value = ($edit)? $edit->$name : '';
 
@@ -707,10 +669,10 @@ function checkbox($data){
     <div class="col-md-'.$cols.'">
         <div class="form-group mt-1">
             <input type="checkbox" '.$required.' value="1" name="'.$name.'"
-                id="switcheryColor4" class="switchery '.$name.'" data-color="success"
+                id="switcheryColor4" class="switchery '.$class.' '.$name.'" data-color="success"
                 '.$checked.' />';
     if($label){
-            $html .= '<label for="'.$name.'" class="card-title ml-1">'.trans('main.'.$trans).'
+            $html .= '<label for="'.$name.'" class="card-title ml-1 ">'.trans('main.'.$trans).'
             </label>
     ';
     }

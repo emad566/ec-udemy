@@ -156,13 +156,11 @@
                                                     <a href="{{route('categories.edit',$category->id)}}"
                                                         class="btn btn-outline-primary btn-min-width box-shadow-3 mr-1 mb-1">Edit</a>
 
-                                                        <a href="{{route('categories.destroy',$category->id)}}" onclick="
-                                                        var result = confirm('Do you want to delete:  {{ $category->category_name }}, @if($category->hasChildren()) It will be deleted with all its sub catecgries!!!@endif');
-                                                        if(!result) {
-                                                            event.preventDefault();
-                                                        }"
-
-                                                        class="btn btn-outline-danger btn-min-width box-shadow-3 mr-1 mb-1">Delete</a>
+                                                    <a
+                                                        href="{{route('categories.destroy',$category->id)}}"
+                                                        class="btn btn-outline-danger btn-min-width box-shadow-3 mr-1 mb-1 deleteMe"
+                                                        msg="Do you want to delete:  {{ $category->category_name }}, @if($category->hasChildren()) It will be deleted with all its sub catecgries!!!@endif"
+                                                    >Delete</a>
 
 
                                                     <!--#delete-form .delete-form -->
@@ -228,13 +226,11 @@
                                                     <a href="{{route('categories.restore',$category->id)}}"
                                                         class="btn btn-outline-primary btn-min-width box-shadow-3 mr-1 mb-1">Restore</a>
 
-                                                        <a href="{{route('categories.p_destroy',$category->id)}}" onclick="
-                                                        var result = confirm('Do you want to Premently delete:  {{ $category->category_name }}, @if($category->hasChildren()) It will be deleted with all its sub catecgries!!!@endif');
-                                                        if(!result) {
-                                                            event.preventDefault();
-                                                        }"
-
-                                                        class="btn btn-outline-danger btn-min-width box-shadow-3 mr-1 mb-1">P Delete</a>
+                                                        <a
+                                                            msg="'Do you want to Premently delete:  {{ $category->category_name }}, @if($category->hasChildren()) It will be deleted with all its sub catecgries!!!@endif'"
+                                                            href="{{route('categories.p_destroy',$category->id)}}"
+                                                            class="deleteMe btn btn-outline-danger btn-min-width box-shadow-3 mr-1 mb-1"
+                                                        >P Delete</a>
 
 
                                                     <!--#delete-form .delete-form -->

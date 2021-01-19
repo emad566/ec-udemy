@@ -47,6 +47,7 @@
                     </ul>
                 </li>
 
+
                 <li class="has-sub  @if(Request::is('*/brands*')) expand active @endif">
                     <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse"
                         data-target="#brands" aria-expanded="false" aria-controls="brands">
@@ -74,7 +75,31 @@
                 </li>
 
 
+                <li class="has-sub  @if(Request::is('*/coupons*')) expand active @endif">
+                    <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse"
+                        data-target="#coupons" aria-expanded="false" aria-controls="coupons">
+                        <i class="mdi mdi-view-dashboard-outline"></i>
+                        <span class="nav-text">الكبونات</span> <b class="caret"></b>
+                    </a>
+                    <ul class="collapse @if(Request::is('*/coupons*')) show @endif" id="coupons" data-parent="#sidebar-menu">
+                        <div class="sub-menu">
 
+                            <li class="@if(Request::is('*/coupons')) active @endif">
+                                <a class="sidenav-item-link" href="{{ route('coupons.index') }}">
+                                    <span class="nav-text">كل الكبونات</span>
+
+                                </a>
+                            </li>
+
+                            <li class="@if(Request::is('*/coupons/create*')) active @endif">
+                                <a class="sidenav-item-link" href="{{ route('coupons.create') }}">
+                                    <span class="nav-text">أضف كبون</span>
+                                </a>
+                            </li>
+
+                        </div>
+                    </ul>
+                </li>
 
 
                 <li class="has-sub">

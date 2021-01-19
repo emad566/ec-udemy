@@ -13,7 +13,7 @@ body {
 }
 
 /* Checkbox switcher */
-input[type="checkbox"]{
+input[type="checkbox"].switcher{
   position: relative;
   width: 60px;
   height: 30px;
@@ -24,10 +24,10 @@ input[type="checkbox"]{
   box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
   /* transition: 0.5s; */
 }
-input:checked[type="checkbox"]{
+input:checked[type="checkbox"].switcher{
   background: #03a9f4;
 }
-input[type="checkbox"]:before{
+input[type="checkbox"].switcher:before{
   content: '';
   position: absolute;
   width: 30px;
@@ -40,7 +40,7 @@ input[type="checkbox"]:before{
   transition: 0.5s;
   background: #fff;
 }
-input:checked[type="checkbox"]:before{
+input:checked[type="checkbox"].switcher:before{
   left: 30px;
 }
 /* /EndCheckbox switcher */
@@ -119,3 +119,42 @@ input:checked[type="checkbox"]:before{
     background-color: #36a265;
   }
 /* /Upload file */
+
+/* Start image action ling in index */
+
+.actionLinks i{
+    margin-left: 3px;
+    font-size: 18px;
+    color: #024987;
+    background: transparent;
+    border-radius:8px;
+    padding: 8px;
+    transition: color .5s ease-in, background 0.5s, border-radius 0.5;
+  }
+  .actionLinks i:hover{
+     color: #FDCC03;
+     background-color: #000;
+     border-radius: 50%;
+  }
+
+  .rowAction{
+    position: relative;
+  }
+  .actionLinks img{
+    position: absolute;
+    z-index: 1000;
+    height: 0;
+    width: 0;
+    right: 0px;
+    top: 10px;
+    transition: right .5s ease-in, top 0.5s;
+  }
+
+  .rowAction:hover img{
+    height: 70px;
+    width: 70px;
+    top: 0;
+    right: -10px;
+  }
+
+  /* End image action ling in index */

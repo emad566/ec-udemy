@@ -155,7 +155,7 @@ class brandsController extends Controller
         // try {
             $brand = Brand::find($brand_id);
             if (!$brand)
-                return back()->withInput($request->all())->with(['error' => 'Error: No Brand with this ID ']);
+                return back()->with(['error' => 'Error: No Brand with this ID ']);
 
             $brand->image_delete();
             $brand->delete();

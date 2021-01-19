@@ -91,6 +91,14 @@ Route::group([
         Route::put('/user/updatePass', 'MainUserController@updatePass')->name('mainUser.updatePass');
         //================ /MainUser =================//
 
+        //================ coupons =================//
+        Route::resource('coupons', 'couponsController');
+        Route::get('coupons/{coupon_id?}/delete', 'couponsController@destroy')->name('coupons.destroy');
+        Route::post('coupons/delete', 'couponsController@delete')->name('coupons.delete');
+        Route::get('couponsUpdateIsActive/{coupon}', 'couponsController@updateIsActive')->name('coupons.updateIsActive');
+
+        //================ /coupons =================//
+
     });
     //================ /webGuard Routes =================//
 
