@@ -1,510 +1,402 @@
-@extends('dashboard.master')
+@extends('dashboard.master', ['ishome'=>1, 'dashboard1'=>1, 'charts'=>1, 'morris'=>1, 'toast'=>1])
 
 @section('content')
-    <!-- Top Statistics -->
-    <div class="row">
-        <div class="col-xl-3 col-sm-6">
-            <div class="card card-mini mb-4">
-                <div class="card-body">
-                    <h2 class="mb-1">71,503</h2>
-                    <p>Online Signups</p>
-                    <div class="chartjs-wrapper">
-                        <canvas id="barChart"></canvas>
+<div class="container-fluid">
+    <!-- ============================================================== -->
+    <!-- page-title Bread crumb and right sidebar toggle  -->
+    <!-- ============================================================== -->
+
+    <div class="row page-titles">
+        <div class="col-md-5 align-self-center">
+            <h4 class="text-themecolor">Dashboard 1</h4>
+        </div>
+        <div class="col-md-7 align-self-center text-right">
+            <div class="d-flex justify-content-end align-items-center">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
+                    <li class="breadcrumb-item active">Dashboard 1</li>
+                </ol>
+                <button type="button" class="btn btn-info d-none d-lg-block m-l-15"><i class="fa fa-plus-circle"></i> Create New</button>
+            </div>
+        </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- End page-title Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- Info box -->
+    <!-- ============================================================== -->
+    <div class="card-group">
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="d-flex no-block align-items-center">
+                            <div>
+                                <h3><i class="icon-screen-desktop"></i></h3>
+                                <p class="text-muted">MYNEW CLIENTS</p>
+                            </div>
+                            <div class="ml-auto">
+                                <h2 class="counter text-primary">23</h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="progress">
+                            <div class="progress-bar bg-primary" role="progressbar" style="width: 85%; height: 6px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col-xl-3 col-sm-6">
-            <div class="card card-mini  mb-4">
-                <div class="card-body">
-                    <h2 class="mb-1">9,503</h2>
-                    <p>New Visitors Today</p>
-                    <div class="chartjs-wrapper">
-                        <canvas id="dual-line"></canvas>
+        <!-- Column -->
+        <!-- Column -->
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="d-flex no-block align-items-center">
+                            <div>
+                                <h3><i class="icon-note"></i></h3>
+                                <p class="text-muted">NEW PROJECTS</p>
+                            </div>
+                            <div class="ml-auto">
+                                <h2 class="counter text-cyan">169</h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="progress">
+                            <div class="progress-bar bg-cyan" role="progressbar" style="width: 85%; height: 6px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col-xl-3 col-sm-6">
-            <div class="card card-mini mb-4">
-                <div class="card-body">
-                    <h2 class="mb-1">71,503</h2>
-                    <p>Monthly Total Order</p>
-                    <div class="chartjs-wrapper">
-                        <canvas id="area-chart"></canvas>
+        <!-- Column -->
+        <!-- Column -->
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="d-flex no-block align-items-center">
+                            <div>
+                                <h3><i class="icon-doc"></i></h3>
+                                <p class="text-muted">NEW INVOICES</p>
+                            </div>
+                            <div class="ml-auto">
+                                <h2 class="counter text-purple">157</h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="progress">
+                            <div class="progress-bar bg-purple" role="progressbar" style="width: 85%; height: 6px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col-xl-3 col-sm-6">
-            <div class="card card-mini mb-4">
-                <div class="card-body">
-                    <h2 class="mb-1">9,503</h2>
-                    <p>Total Revenue This Year</p>
-                    <div class="chartjs-wrapper">
-                        <canvas id="line"></canvas>
+        <!-- Column -->
+        <!-- Column -->
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="d-flex no-block align-items-center">
+                            <div>
+                                <h3><i class="icon-bag"></i></h3>
+                                <p class="text-muted">All PROJECTS</p>
+                            </div>
+                            <div class="ml-auto">
+                                <h2 class="counter text-success">431</h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="progress">
+                            <div class="progress-bar bg-success" role="progressbar" style="width: 85%; height: 6px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
-
+    <!-- ============================================================== -->
+    <!-- End Info box -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- Over Visitor, Our income , slaes different and  sales prediction -->
+    <!-- ============================================================== -->
     <div class="row">
-        <div class="col-xl-8 col-md-12">
-            <!-- Sales Graph -->
-            <div class="card card-default" data-scroll-height="675">
-                <div class="card-header">
-                    <h2>Sales Of The Year</h2>
-                </div>
+        <!-- Column -->
+        <div class="col-lg-8 col-md-12">
+            <div class="card">
                 <div class="card-body">
-                    <canvas id="linechart" class="chartjs"></canvas>
-                </div>
-                <div class="card-footer d-flex flex-wrap bg-white p-0">
-                    <div class="col-6 px-0">
-                        <div class="text-center p-4">
-                            <h4>$6,308</h4>
-                            <p class="mt-2">Total orders of this year</p>
+                    <div class="d-flex m-b-40 align-items-center no-block">
+                        <h5 class="card-title ">YEARLY SALES</h5>
+                        <div class="ml-auto">
+                            <ul class="list-inline font-12">
+                                <li><i class="fa fa-circle text-cyan"></i> Iphone</li>
+                                <li><i class="fa fa-circle text-primary"></i> Ipad</li>
+                                <li><i class="fa fa-circle text-purple"></i> Ipod</li>
+                            </ul>
                         </div>
                     </div>
-                    <div class="col-6 px-0">
-                        <div class="text-center p-4 border-left">
-                            <h4>$70,506</h4>
-                            <p class="mt-2">Total revenue of this year</p>
-                        </div>
-                    </div>
+                    <div id="morris-area-chart" style="height: 340px;"></div>
                 </div>
             </div>
         </div>
-        <div class="col-xl-4 col-md-12">
-            <!-- Doughnut Chart -->
-            <div class="card card-default" data-scroll-height="675">
-                <div class="card-header justify-content-center">
-                    <h2>Orders Overview</h2>
-                </div>
-                <div class="card-body">
-                    <canvas id="doChart"></canvas>
-                </div>
-                <a href="#" class="pb-5 d-block text-center text-muted"><i class="mdi mdi-download mr-2"></i> Download
-                    overall report</a>
-                <div class="card-footer d-flex flex-wrap bg-white p-0">
-                    <div class="col-6">
-                        <div class="py-4 px-4">
-                            <ul class="d-flex flex-column justify-content-between">
-                                <li class="mb-2"><i class="mdi mdi-checkbox-blank-circle-outline mr-2"
-                                        style="color: #4c84ff"></i>Order Completed</li>
-                                <li><i class="mdi mdi-checkbox-blank-circle-outline mr-2" style="color: #80e1c1 "></i>Order
-                                    Unpaid</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-6 border-left">
-                        <div class="py-4 px-4 ">
-                            <ul class="d-flex flex-column justify-content-between">
-                                <li class="mb-2"><i class="mdi mdi-checkbox-blank-circle-outline mr-2"
-                                        style="color: #8061ef"></i>Order Pending</li>
-                                <li><i class="mdi mdi-checkbox-blank-circle-outline mr-2" style="color: #ffa128"></i>Order
-                                    Canceled</li>
-                            </ul>
+        <!-- Column -->
+        <div class="col-lg-4 col-md-12">
+            <div class="row">
+                <!-- Column -->
+                <div class="col-md-12">
+                    <div class="card bg-cyan text-white">
+                        <div class="card-body ">
+                            <div class="row weather">
+                                <div class="col-6 m-t-40">
+                                    <h3>&nbsp;</h3>
+                                    <div class="display-4">73<sup>°F</sup></div>
+                                    <p class="text-white">AHMEDABAD, INDIA</p>
+                                </div>
+                                <div class="col-6 text-right">
+                                    <h1 class="m-b-"><i class="wi wi-day-cloudy-high"></i></h1>
+                                    <b class="text-white">SUNNEY DAY</b>
+                                    <p class="op-5">April 14</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
+                <!-- Column -->
+                <div class="col-md-12">
+                    <div class="card bg-primary text-white">
+                        <div class="card-body">
+                            <div id="myCarouse2" class="carousel slide" data-ride="carousel">
+                                <!-- Carousel items -->
+                                <div class="carousel-inner">
+                                    <div class="carousel-item active">
+                                        <h4 class="cmin-height">My Acting blown <span class="font-medium">Your Mind</span> and you also <br/>laugh at the moment</h4>
+                                        <div class="d-flex no-block">
+                                            <span><img src="{{ asset('assets/dashboard/eliteadmin-theme/assets/images/users/1.jpg') }}" alt="user" width="50" class="img-circle"></span>
+                                            <span class="m-l-10">
+                                        <h4 class="text-white m-b-0">Govinda</h4>
+                                        <p class="text-white">Actor</p>
+                                        </span>
+                                        </div>
+                                    </div>
+                                    <div class="carousel-item">
+                                        <h4 class="cmin-height">My Acting blown <span class="font-medium">Your Mind</span> and you also <br/>laugh at the moment</h4>
+                                        <div class="d-flex no-block">
+                                            <span><img src="{{ asset('assets/dashboard/eliteadmin-theme/assets/images/users/2.jpg') }}" alt="user" width="50" class="img-circle"></span>
+                                            <span class="m-l-10">
+                                        <h4 class="text-white m-b-0">Govinda</h4>
+                                        <p class="text-white">Actor</p>
+                                        </span>
+                                        </div>
+                                    </div>
+                                    <div class="carousel-item">
+                                        <h4 class="cmin-height">My Acting blown <span class="font-medium">Your Mind</span> and you also <br/>laugh at the moment</h4>
+                                        <div class="d-flex no-block">
+                                            <span><img src="{{ asset('assets/dashboard/eliteadmin-theme/assets/images/users/3.jpg') }}" alt="user" width="50" class="img-circle"></span>
+                                            <span class="m-l-10">
+                                        <h4 class="text-white m-b-0">Govinda</h4>
+                                        <p class="text-white">Actor</p>
+                                        </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Column -->
             </div>
         </div>
     </div>
-
+    <!-- ============================================================== -->
+    <!-- Comment - table -->
+    <!-- ============================================================== -->
     <div class="row">
-        <div class="col-xl-4 col-lg-6 col-12">
-
-            <!-- Polar and Radar Chart -->
-            <div class="card card-default">
-                <div class="card-header justify-content-center">
-                    <h2>Sales Overview</h2>
+        <!-- ============================================================== -->
+        <!-- Comment widgets -->
+        <!-- ============================================================== -->
+        <div class="col-lg-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Recent Comments</h5>
                 </div>
-                <div class="card-body pt-0">
-                    <ul class="nav nav-pills mb-5 mt-5 nav-style-fill nav-justified" id="pills-tab" role="tablist">
-                        <li class="nav-item">
-                            <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab"
-                                aria-controls="pills-home" aria-selected="true">Sales Status</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab"
-                                aria-controls="pills-profile" aria-selected="false">Monthly Sales</a>
-                        </li>
-                    </ul>
-                    <div class="tab-content" id="pills-tabContent">
-                        <div class="tab-pane fade show active" id="pills-home" role="tabpanel"
-                            aria-labelledby="pills-home-tab">
-                            <canvas id="polar"></canvas>
-                        </div>
-                        <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
-                            <canvas id="radar"></canvas>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-        <div class="col-xl-4 col-lg-6 col-12">
-            <!-- Top Sell Table -->
-            <div class="card card-table-border-none" data-scroll-height="550">
-                <div class="card-header justify-content-between">
-                    <h2>Sold by Units</h2>
-                    <div>
-                        <button class="text-black-50 mr-2 font-size-20"><i class="mdi mdi-cached"></i></button>
-                        <div class="dropdown show d-inline-block widget-dropdown">
-                            <a class="dropdown-toggle icon-burger-mini" href="#" role="button" id="dropdown-units"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static"></a>
-                            <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown-units">
-                                <li class="dropdown-item"><a href="#">Action</a></li>
-                                <li class="dropdown-item"><a href="#">Another action</a></li>
-                                <li class="dropdown-item"><a href="#">Something else here</a></li>
-                            </ul>
+                <!-- ============================================================== -->
+                <!-- Comment widgets -->
+                <!-- ============================================================== -->
+                <div class="comment-widgets">
+                    <!-- Comment Row -->
+                    <div class="d-flex no-block comment-row">
+                        <div class="p-2"><span class="round"><img src="{{ asset('assets/dashboard/eliteadmin-theme/assets/images/users/1.jpg') }}" alt="user" width="50"></span></div>
+                        <div class="comment-text w-100">
+                            <h5 class="font-medium">James Anderson</h5>
+                            <p class="m-b-10 text-muted">Lorem Ipsum is simply dummy text of the printing and type setting industry. Lorem Ipsum has beenorem Ipsum is simply dummy text of the printing and type setting industry.</p>
+                            <div class="comment-footer">
+                                <span class="text-muted pull-right">April 14, 2016</span> <span class="badge badge-pill badge-info">Pending</span> <span class="action-icons">
+                                        <a href="javascript:void(0)"><i class="ti-pencil-alt"></i></a>
+                                        <a href="javascript:void(0)"><i class="ti-check"></i></a>
+                                        <a href="javascript:void(0)"><i class="ti-heart"></i></a>
+                                    </span>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="card-body slim-scroll py-0">
-                    <table class="table ">
-                        <tbody>
-                            <tr>
-                                <td class="text-dark">Backpack</td>
-                                <td class="text-center">9</td>
-                                <td class="text-right">33% <i
-                                        class="mdi mdi-arrow-up-bold text-success pl-1 font-size-12"></i>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="text-dark">T-Shirt</td>
-                                <td class="text-center">6</td>
-                                <td class="text-right">150% <i
-                                        class="mdi mdi-arrow-up-bold text-success pl-1 font-size-12"></i>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="text-dark">Coat</td>
-                                <td class="text-center">3</td>
-                                <td class="text-right">50% <i
-                                        class="mdi mdi-arrow-up-bold text-success pl-1 font-size-12"></i>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="text-dark">Necklace</td>
-                                <td class="text-center">7</td>
-                                <td class="text-right">150% <i
-                                        class="mdi mdi-arrow-up-bold text-success pl-1 font-size-12"></i>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="text-dark">Jeans Pant</td>
-                                <td class="text-center">10</td>
-                                <td class="text-right">300% <i
-                                        class="mdi mdi-arrow-down-bold text-danger pl-1 font-size-12"></i>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="text-dark">Shoes</td>
-                                <td class="text-center">5</td>
-                                <td class="text-right">100% <i
-                                        class="mdi mdi-arrow-up-bold text-success pl-1 font-size-12"></i>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="text-dark">T-Shirt</td>
-                                <td class="text-center">6</td>
-                                <td class="text-right">150% <i
-                                        class="mdi mdi-arrow-up-bold text-success pl-1 font-size-12"></i>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-
-                </div>
-                <div class="card-footer bg-white py-4">
-                    <a href="#" class="btn-link py-3 text-uppercase">View Report</a>
+                    <!-- Comment Row -->
+                    <div class="d-flex no-block comment-row border-top">
+                        <div class="p-2"><span class="round"><img src="{{ asset('assets/dashboard/eliteadmin-theme/assets/images/users/2.jpg') }}" alt="user" width="50"></span></div>
+                        <div class="comment-text active w-100">
+                            <h5 class="font-medium">Michael Jorden</h5>
+                            <p class="m-b-10 text-muted">Lorem Ipsum is simply dummy text of the printing and type setting industry. Lorem Ipsum has beenorem Ipsum is simply dummy text of the printing and type setting industry..</p>
+                            <div class="comment-footer">
+                                <span class="text-muted pull-right">April 14, 2016</span>
+                                <span class="badge badge-pill badge-success">Approved</span>
+                                <span class="action-icons active">
+                                        <a href="javascript:void(0)"><i class="ti-pencil-alt"></i></a>
+                                        <a href="javascript:void(0)"><i class="icon-close"></i></a>
+                                        <a href="javascript:void(0)"><i class="ti-heart text-danger"></i></a>
+                                    </span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Comment Row -->
+                    <div class="d-flex no-block comment-row border-top">
+                        <div class="p-2"><span class="round"><img src="{{ asset('assets/dashboard/eliteadmin-theme/assets/images/users/3.jpg') }}" alt="user" width="50"></span></div>
+                        <div class="comment-text w-100">
+                            <h5 class="font-medium">Johnathan Doeting</h5>
+                            <p class="m-b-10 text-muted">Lorem Ipsum is simply dummy text of the printing and type setting industry. Lorem Ipsum has beenorem Ipsum is simply dummy text of the printing and type setting industry.</p>
+                            <div class="comment-footer">
+                                <span class="text-muted pull-right">April 14, 2016</span>
+                                <span class="badge badge-pill badge-danger">Rejected</span>
+                                <span class="action-icons">
+                                        <a href="javascript:void(0)"><i class="ti-pencil-alt"></i></a>
+                                        <a href="javascript:void(0)"><i class="ti-check"></i></a>
+                                        <a href="javascript:void(0)"><i class="ti-heart"></i></a>
+                                    </span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Comment Row -->
+                    <div class="d-flex no-block comment-row border-top">
+                        <div class="p-2"><span class="round"><img src="{{ asset('assets/dashboard/eliteadmin-theme/assets/images/users/4.jpg') }}" alt="user" width="50"></span></div>
+                        <div class="comment-text active w-100">
+                            <h5 class="font-medium">Genelia doe</h5>
+                            <p class="m-b-10 text-muted">Lorem Ipsum is simply dummy text of the printing and type setting industry. Lorem Ipsum has beenorem Ipsum is simply dummy text of the printing and type setting industry..</p>
+                            <div class="comment-footer">
+                                <span class="text-muted pull-right">April 14, 2016</span>
+                                <span class="badge badge-pill badge-success">Approved</span>
+                                <span class="action-icons active">
+                                        <a href="javascript:void(0)"><i class="ti-pencil-alt"></i></a>
+                                        <a href="javascript:void(0)"><i class="icon-close"></i></a>
+                                        <a href="javascript:void(0)"><i class="ti-heart text-danger"></i></a>
+                                    </span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="col-xl-4 col-12">
-            <!-- Notification Table -->
-            <div class="card card-default" data-scroll-height="550">
-                <div class="card-header justify-content-between ">
-                    <h2>Latest Notifications</h2>
-                    <div>
-                        <button class="text-black-50 mr-2 font-size-20"><i class="mdi mdi-cached"></i></button>
-                        <div class="dropdown show d-inline-block widget-dropdown">
-                            <a class="dropdown-toggle icon-burger-mini" href="#" role="button" id="dropdown-notification"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static"></a>
-                            <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown-notification">
-                                <li class="dropdown-item"><a href="#">Action</a></li>
-                                <li class="dropdown-item"><a href="#">Another action</a></li>
-                                <li class="dropdown-item"><a href="#">Something else here</a></li>
-                            </ul>
+        <!-- ============================================================== -->
+        <!-- Table -->
+        <!-- ============================================================== -->
+        <div class="col-lg-6">
+            <div class="card">
+                <div class="card-body">
+                    <div class="d-flex">
+                        <div>
+                            <h5 class="card-title">Sales Overview</h5>
+                            <h6 class="card-subtitle">Check the monthly sales </h6>
                         </div>
-                    </div>
-
-                </div>
-                <div class="card-body slim-scroll">
-                    <div class="media pb-3 align-items-center justify-content-between">
-                        <div
-                            class="d-flex rounded-circle align-items-center justify-content-center mr-3 media-icon iconbox-45 bg-primary text-white">
-                            <i class="mdi mdi-cart-outline font-size-20"></i>
+                        <div class="ml-auto">
+                            <select class="form-control b-0">
+                                <option>January</option>
+                                <option value="1">February</option>
+                                <option value="2" selected="">March</option>
+                                <option value="3">April</option>
+                            </select>
                         </div>
-                        <div class="media-body pr-3 ">
-                            <a class="mt-0 mb-1 font-size-15 text-dark" href="#">New Order</a>
-                            <p>Selena has placed an new order</p>
-                        </div>
-                        <span class=" font-size-12 d-inline-block"><i class="mdi mdi-clock-outline"></i>
-                            10 AM</span>
-                    </div>
-
-                    <div class="media py-3 align-items-center justify-content-between">
-                        <div
-                            class="d-flex rounded-circle align-items-center justify-content-center mr-3 media-icon iconbox-45 bg-success text-white">
-                            <i class="mdi mdi-email-outline font-size-20"></i>
-                        </div>
-                        <div class="media-body pr-3">
-                            <a class="mt-0 mb-1 font-size-15 text-dark" href="#">New Enquiry</a>
-                            <p>Phileine has placed an new order</p>
-                        </div>
-                        <span class=" font-size-12 d-inline-block"><i class="mdi mdi-clock-outline"></i>
-                            9 AM</span>
-                    </div>
-
-
-                    <div class="media py-3 align-items-center justify-content-between">
-                        <div
-                            class="d-flex rounded-circle align-items-center justify-content-center mr-3 media-icon iconbox-45 bg-warning text-white">
-                            <i class="mdi mdi-stack-exchange font-size-20"></i>
-                        </div>
-                        <div class="media-body pr-3">
-                            <a class="mt-0 mb-1 font-size-15 text-dark" href="#">Support Ticket</a>
-                            <p>Emma has placed an new order</p>
-                        </div>
-                        <span class=" font-size-12 d-inline-block"><i class="mdi mdi-clock-outline"></i>
-                            10 AM</span>
-                    </div>
-
-                    <div class="media py-3 align-items-center justify-content-between">
-                        <div
-                            class="d-flex rounded-circle align-items-center justify-content-center mr-3 media-icon iconbox-45 bg-primary text-white">
-                            <i class="mdi mdi-cart-outline font-size-20"></i>
-                        </div>
-                        <div class="media-body pr-3">
-                            <a class="mt-0 mb-1 font-size-15 text-dark" href="#">New order</a>
-                            <p>Ryan has placed an new order</p>
-                        </div>
-                        <span class=" font-size-12 d-inline-block"><i class="mdi mdi-clock-outline"></i>
-                            10 AM</span>
-                    </div>
-
-                    <div class="media py-3 align-items-center justify-content-between">
-                        <div
-                            class="d-flex rounded-circle align-items-center justify-content-center mr-3 media-icon iconbox-45 bg-info text-white">
-                            <i class="mdi mdi-calendar-blank font-size-20"></i>
-                        </div>
-                        <div class="media-body pr-3">
-                            <a class="mt-0 mb-1 font-size-15 text-dark" href="">Comapny Meetup</a>
-                            <p>Phileine has placed an new order</p>
-                        </div>
-                        <span class=" font-size-12 d-inline-block"><i class="mdi mdi-clock-outline"></i>
-                            10 AM</span>
-                    </div>
-
-                    <div class="media py-3 align-items-center justify-content-between">
-                        <div
-                            class="d-flex rounded-circle align-items-center justify-content-center mr-3 media-icon iconbox-45 bg-warning text-white">
-                            <i class="mdi mdi-stack-exchange font-size-20"></i>
-                        </div>
-                        <div class="media-body pr-3">
-                            <a class="mt-0 mb-1 font-size-15 text-dark" href="#">Support Ticket</a>
-                            <p>Emma has placed an new order</p>
-                        </div>
-                        <span class=" font-size-12 d-inline-block"><i class="mdi mdi-clock-outline"></i>
-                            10 AM</span>
-                    </div>
-
-                    <div class="media py-3 align-items-center justify-content-between">
-                        <div
-                            class="d-flex rounded-circle align-items-center justify-content-center mr-3 media-icon iconbox-45 bg-success text-white">
-                            <i class="mdi mdi-email-outline font-size-20"></i>
-                        </div>
-                        <div class="media-body pr-3">
-                            <a class="mt-0 mb-1 font-size-15 text-dark" href="#">New Enquiry</a>
-                            <p>Phileine has placed an new order</p>
-                        </div>
-                        <span class=" font-size-12 d-inline-block"><i class="mdi mdi-clock-outline"></i>
-                            9 AM</span>
-                    </div>
-
-                </div>
-                <div class="mt-3"></div>
-            </div>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-12">
-            <!-- Recent Order Table -->
-            <div class="card card-table-border-none" id="recent-orders">
-                <div class="card-header justify-content-between">
-                    <h2>Recent Orders</h2>
-                    <div class="date-range-report ">
-                        <span></span>
                     </div>
                 </div>
-                <div class="card-body pt-0 pb-5">
-                    <table class="table card-table table-responsive table-responsive-large" style="width:100%">
+                <div class="card-body bg-light">
+                    <div class="row">
+                        <div class="col-6">
+                            <h3>March 2017</h3>
+                            <h5 class="font-light m-t-0">Report for this month</h5></div>
+                        <div class="col-6 align-self-center display-6 text-right">
+                            <h2 class="text-success">$3,690</h2></div>
+                    </div>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-hover no-wrap">
                         <thead>
                             <tr>
-                                <th>Order ID</th>
-                                <th>Product Name</th>
-                                <th class="d-none d-md-table-cell">Units</th>
-                                <th class="d-none d-md-table-cell">Order Date</th>
-                                <th class="d-none d-md-table-cell">Order Cost</th>
-                                <th>Status</th>
-                                <th></th>
+                                <th class="text-center">#</th>
+                                <th>NAME</th>
+                                <th>STATUS</th>
+                                <th>DATE</th>
+                                <th>PRICE</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td>24541</td>
-                                <td>
-                                    <a class="text-dark" href=""> Coach Swagger</a>
-                                </td>
-                                <td class="d-none d-md-table-cell">1 Unit</td>
-                                <td class="d-none d-md-table-cell">Oct 20, 2018</td>
-                                <td class="d-none d-md-table-cell">$230</td>
-                                <td>
-                                    <span class="badge badge-success">Completed</span>
-                                </td>
-                                <td class="text-right">
-                                    <div class="dropdown show d-inline-block widget-dropdown">
-                                        <a class="dropdown-toggle icon-burger-mini" href="" role="button"
-                                            id="dropdown-recent-order1" data-toggle="dropdown" aria-haspopup="true"
-                                            aria-expanded="false" data-display="static"></a>
-                                        <ul class="dropdown-menu dropdown-menu-right"
-                                            aria-labelledby="dropdown-recent-order1">
-                                            <li class="dropdown-item">
-                                                <a href="#">View</a>
-                                            </li>
-                                            <li class="dropdown-item">
-                                                <a href="#">Remove</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </td>
+                                <td class="text-center">1</td>
+                                <td class="txt-oflo">Elite admin</td>
+                                <td><span class="badge badge-success badge-pill">sale</span> </td>
+                                <td class="txt-oflo">April 18, 2017</td>
+                                <td><span class="text-success">$24</span></td>
                             </tr>
                             <tr>
-                                <td>24541</td>
-                                <td>
-                                    <a class="text-dark" href=""> Toddler Shoes, Gucci Watch</a>
-                                </td>
-                                <td class="d-none d-md-table-cell">2 Units</td>
-                                <td class="d-none d-md-table-cell">Nov 15, 2018</td>
-                                <td class="d-none d-md-table-cell">$550</td>
-                                <td>
-                                    <span class="badge badge-warning">Delayed</span>
-                                </td>
-                                <td class="text-right">
-                                    <div class="dropdown show d-inline-block widget-dropdown">
-                                        <a class="dropdown-toggle icon-burger-mini" href="#" role="button"
-                                            id="dropdown-recent-order2" data-toggle="dropdown" aria-haspopup="true"
-                                            aria-expanded="false" data-display="static"></a>
-                                        <ul class="dropdown-menu dropdown-menu-right"
-                                            aria-labelledby="dropdown-recent-order2">
-                                            <li class="dropdown-item">
-                                                <a href="#">View</a>
-                                            </li>
-                                            <li class="dropdown-item">
-                                                <a href="#">Remove</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </td>
+                                <td class="text-center">2</td>
+                                <td class="txt-oflo">Real Homes</td>
+                                <td><span class="badge badge-info badge-pill">extended</span></td>
+                                <td class="txt-oflo">April 19, 2017</td>
+                                <td><span class="text-info">$1250</span></td>
                             </tr>
                             <tr>
-                                <td>24541</td>
-                                <td>
-                                    <a class="text-dark" href=""> Hat Black Suits</a>
-                                </td>
-                                <td class="d-none d-md-table-cell">1 Unit</td>
-                                <td class="d-none d-md-table-cell">Nov 18, 2018</td>
-                                <td class="d-none d-md-table-cell">$325</td>
-                                <td>
-                                    <span class="badge badge-warning">On Hold</span>
-                                </td>
-                                <td class="text-right">
-                                    <div class="dropdown show d-inline-block widget-dropdown">
-                                        <a class="dropdown-toggle icon-burger-mini" href="#" role="button"
-                                            id="dropdown-recent-order3" data-toggle="dropdown" aria-haspopup="true"
-                                            aria-expanded="false" data-display="static"></a>
-                                        <ul class="dropdown-menu dropdown-menu-right"
-                                            aria-labelledby="dropdown-recent-order3">
-                                            <li class="dropdown-item">
-                                                <a href="#">View</a>
-                                            </li>
-                                            <li class="dropdown-item">
-                                                <a href="#">Remove</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </td>
+                                <td class="text-center">3</td>
+                                <td class="txt-oflo">Ample Admin</td>
+                                <td><span class="badge badge-info badge-pill">extended</span></td>
+                                <td class="txt-oflo">April 19, 2017</td>
+                                <td><span class="text-info">$1250</span></td>
                             </tr>
                             <tr>
-                                <td>24541</td>
-                                <td>
-                                    <a class="text-dark" href=""> Backpack Gents, Swimming Cap Slin</a>
-                                </td>
-                                <td class="d-none d-md-table-cell">5 Units</td>
-                                <td class="d-none d-md-table-cell">Dec 13, 2018</td>
-                                <td class="d-none d-md-table-cell">$200</td>
-                                <td>
-                                    <span class="badge badge-success">Completed</span>
-                                </td>
-                                <td class="text-right">
-                                    <div class="dropdown show d-inline-block widget-dropdown">
-                                        <a class="dropdown-toggle icon-burger-mini" href="#" role="button"
-                                            id="dropdown-recent-order4" data-toggle="dropdown" aria-haspopup="true"
-                                            aria-expanded="false" data-display="static"></a>
-                                        <ul class="dropdown-menu dropdown-menu-right"
-                                            aria-labelledby="dropdown-recent-order4">
-                                            <li class="dropdown-item">
-                                                <a href="#">View</a>
-                                            </li>
-                                            <li class="dropdown-item">
-                                                <a href="#">Remove</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </td>
+                                <td class="text-center">4</td>
+                                <td class="txt-oflo">Medical Pro</td>
+                                <td><span class="badge badge-danger badge-pill">tax</span></td>
+                                <td class="txt-oflo">April 20, 2017</td>
+                                <td><span class="text-danger">-$24</span></td>
                             </tr>
                             <tr>
-                                <td>24541</td>
-                                <td>
-                                    <a class="text-dark" href=""> Speed 500 Ignite</a>
-                                </td>
-                                <td class="d-none d-md-table-cell">1 Unit</td>
-                                <td class="d-none d-md-table-cell">Dec 23, 2018</td>
-                                <td class="d-none d-md-table-cell">$150</td>
-                                <td>
-                                    <span class="badge badge-danger">Cancelled</span>
-                                </td>
-                                <td class="text-right">
-                                    <div class="dropdown show d-inline-block widget-dropdown">
-                                        <a class="dropdown-toggle icon-burger-mini" href="#" role="button"
-                                            id="dropdown-recent-order5" data-toggle="dropdown" aria-haspopup="true"
-                                            aria-expanded="false" data-display="static"></a>
-                                        <ul class="dropdown-menu dropdown-menu-right"
-                                            aria-labelledby="dropdown-recent-order5">
-                                            <li class="dropdown-item">
-                                                <a href="#">View</a>
-                                            </li>
-                                            <li class="dropdown-item">
-                                                <a href="#">Remove</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </td>
+                                <td class="text-center">5</td>
+                                <td class="txt-oflo">Hosting press html</td>
+                                <td><span class="badge badge-success badge-pill">sale</span></td>
+                                <td class="txt-oflo">April 21, 2017</td>
+                                <td><span class="text-success">$24</span></td>
+                            </tr>
+                            <tr>
+                                <td class="text-center">6</td>
+                                <td class="txt-oflo">Digital Agency PSD</td>
+                                <td><span class="badge badge-success badge-pill">sale</span> </td>
+                                <td class="txt-oflo">April 23, 2017</td>
+                                <td><span class="text-danger">-$14</span></td>
+                            </tr>
+                            <tr>
+                                <td class="text-center">7</td>
+                                <td class="txt-oflo">Helping Hands</td>
+                                <td><span class="badge badge-warning badge-pill">member</span></td>
+                                <td class="txt-oflo">April 22, 2017</td>
+                                <td><span class="text-success">$64</span></td>
+                            </tr>
+                            <tr>
+                                <td class="text-center">8</td>
+                                <td class="txt-oflo">Ample Admin</td>
+                                <td><span class="badge badge-info badge-pill">extended</span></td>
+                                <td class="txt-oflo">April 19, 2017</td>
+                                <td><span class="text-info">$1250</span></td>
                             </tr>
                         </tbody>
                     </table>
@@ -512,329 +404,363 @@
             </div>
         </div>
     </div>
-
+    <!-- ============================================================== -->
+    <!-- End Comment - chats -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- Over Visitor, Our income , slaes different and  sales prediction -->
+    <!-- ============================================================== -->
     <div class="row">
-        <div class="col-xl-6">
-            <!-- To Do list -->
-            <div class="card card-default todo-table" id="todo" data-scroll-height="550">
-                <div class="card-header justify-content-between">
-                    <h2>To Do List</h2>
-                    <a class="btn btn-primary btn-pill" id="add-task" href="#" role="button"> Add task
-                    </a>
-                </div>
-                <div class="card-body slim-scroll">
-                    <div class="todo-single-item d-none" id="todo-input">
-                        <form>
-                            <div class="form-group">
-                                <input type="text" class="form-control" placeholder="Enter Todo" autofocus>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="todo-list" id="todo-list">
-                        <div class="todo-single-item d-flex flex-row justify-content-between finished">
-                            <i class="mdi"></i>
-                            <span>Finish Dashboard UI Kit update</span>
-                            <span class="badge badge-primary">Finished</span>
-                        </div>
-                        <div class="todo-single-item d-flex flex-row justify-content-between current">
-                            <i class="mdi"></i>
-                            <span>Create new prototype for the landing page</span>
-                            <span class="badge badge-primary">Today</span>
-                        </div>
-                        <div class="todo-single-item d-flex flex-row justify-content-between ">
-                            <i class="mdi"></i>
-                            <span> Add new Google Analytics code to all main files </span>
-                            <span class="badge badge-danger">Yesterday</span>
-                        </div>
-
-                        <div class="todo-single-item d-flex flex-row justify-content-between ">
-                            <i class="mdi"></i>
-                            <span>Update parallax scroll on team page</span>
-                            <span class="badge badge-success">Dec 15, 2018</span>
-                        </div>
-
-                        <div class="todo-single-item d-flex flex-row justify-content-between ">
-                            <i class="mdi"></i>
-                            <span>Update parallax scroll on team page</span>
-                            <span class="badge badge-success">Dec 15, 2018</span>
-                        </div>
-                        <div class="todo-single-item d-flex flex-row justify-content-between ">
-                            <i class="mdi"></i>
-                            <span>Create online customer list book</span>
-                            <span class="badge badge-success">Dec 15, 2018</span>
-                        </div>
-                        <div class="todo-single-item d-flex flex-row justify-content-between ">
-                            <i class="mdi"></i>
-                            <span>Lorem ipsum dolor sit amet, consectetur.</span>
-                            <span class="badge badge-success">Dec 15, 2018</span>
-                        </div>
-
-                        <div class="todo-single-item d-flex flex-row justify-content-between mb-1">
-                            <i class="mdi"></i>
-                            <span>Update parallax scroll on team page</span>
-                            <span class="badge badge-success">Dec 15, 2018</span>
+        <!-- Column -->
+        <div class="col-lg-8 col-md-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="d-flex m-b-40 align-items-center no-block">
+                        <h5 class="card-title ">SALES DIFFERENCE</h5>
+                        <div class="ml-auto">
+                            <ul class="list-inline font-12">
+                                <li><i class="fa fa-circle text-cyan"></i> SITE A</li>
+                                <li><i class="fa fa-circle text-primary"></i> SITE B</li>
+                            </ul>
                         </div>
                     </div>
+                    <div id="morris-area-chart2" style="height: 340px;"></div>
                 </div>
-                <div class="mt-3"></div>
             </div>
         </div>
-        <div class="col-xl-6">
-            <!-- area chart -->
-            <div class="card card-default">
-                <div class="card-header d-block d-md-flex justify-content-between">
-                    <h2>World Wide Customer </h2>
-                    <div class="dropdown show d-inline-block widget-dropdown ml-auto">
-                        <a class="dropdown-toggle" href="#" role="button" id="world-dropdown" data-toggle="dropdown"
-                            aria-haspopup="true" aria-expanded="false" data-display="static">
-                            World Wide
-                        </a>
-                        <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="world-dropdown">
-                            <li class="dropdown-item"><a href="#">Continetal chart</a></li>
-                            <li class="dropdown-item"><a href="#">Sub-continental</a></li>
+        <!-- Column -->
+        <div class="col-lg-4 col-md-12">
+            <div class="row">
+                <!-- Column -->
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">SALES DIFFERENCE</h5>
+                            <div class="row">
+                                <div class="col-6  m-t-30">
+                                    <h1 class="text-info">$647</h1>
+                                    <p class="text-muted">APRIL 2017</p>
+                                    <b>(150 Sales)</b> </div>
+                                <div class="col-6">
+                                    <div id="sparkline2dash" class="text-right"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Column -->
+                <div class="col-md-12">
+                    <div class="card bg-purple text-white">
+                        <div class="card-body">
+                            <h5 class="card-title">VISIT STATASTICS</h5>
+                            <div class="row">
+                                <div class="col-6  m-t-30">
+                                    <h1 class="text-white">$347</h1>
+                                    <p class="light_op_text">APRIL 2017</p>
+                                    <b class="text-white">(150 Sales)</b> </div>
+                                <div class="col-6">
+                                    <div id="sales1" class="text-right"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Column -->
+            </div>
+        </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Page Content -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- Todo, chat, notification -->
+    <!-- ============================================================== -->
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <div class="d-flex no-block align-items-center">
+                        <div>
+                            <h5 class="card-title m-b-0">TO DO LIST</h5>
+                        </div>
+                        <div class="ml-auto">
+                            <button class="pull-right btn btn-circle btn-success" data-toggle="modal" data-target="#myModal"><i class="ti-plus"></i></button>
+                        </div>
+                    </div>
+                    <!-- ============================================================== -->
+                    <!-- To do list widgets -->
+                    <!-- ============================================================== -->
+                    <div class="to-do-widget m-t-20" id="todo" style="height: 400px;position: relative;">
+                        <!-- .modal for add task -->
+                        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h4 class="modal-title">Add Task</h4>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form>
+                                            <div class="form-group">
+                                                <label>Task name</label>
+                                                <input type="text" class="form-control" placeholder="Enter Task Name"> </div>
+                                            <div class="form-group">
+                                                <label>Assign to</label>
+                                                <select class="custom-select form-control pull-right">
+                                                    <option selected="">Sachin</option>
+                                                    <option value="1">Sehwag</option>
+                                                    <option value="2">Pritam</option>
+                                                    <option value="3">Alia</option>
+                                                    <option value="4">Varun</option>
+                                                </select>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-success" data-dismiss="modal">Submit</button>
+                                    </div>
+                                </div>
+                                <!-- /.modal-content -->
+                            </div>
+                            <!-- /.modal-dialog -->
+                        </div>
+                        <!-- /.modal -->
+                        <ul class="list-task todo-list list-group m-b-0" data-role="tasklist">
+                            <li class="list-group-item" data-role="task">
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="customCheck">
+                                    <label class="custom-control-label" for="customCheck">
+                                        <span>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been</span> <span class="badge badge-pill badge-danger float-right">Today</span>
+                                    </label>
+                                </div>
+                                <ul class="assignedto">
+                                    <li><img src="{{ asset('assets/dashboard/eliteadmin-theme/assets/images/users/1.jpg') }}" alt="user" data-toggle="tooltip" data-placement="top" title="" data-original-title="Steave"></li>
+                                    <li><img src="{{ asset('assets/dashboard/eliteadmin-theme/assets/images/users/2.jpg') }}" alt="user" data-toggle="tooltip" data-placement="top" title="" data-original-title="Jessica"></li>
+                                    <li><img src="{{ asset('assets/dashboard/eliteadmin-theme/assets/images/users/3.jpg') }}" alt="user" data-toggle="tooltip" data-placement="top" title="" data-original-title="Priyanka"></li>
+                                    <li><img src="{{ asset('assets/dashboard/eliteadmin-theme/assets/images/users/4.jpg') }}" alt="user" data-toggle="tooltip" data-placement="top" title="" data-original-title="Selina"></li>
+                                </ul>
+                            </li>
+                            <li class="list-group-item" data-role="task">
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="customCheck1">
+                                    <label class="custom-control-label" for="customCheck1">
+                                        <span>Lorem Ipsum is simply dummy text of the printing</span><span class="badge badge-pill badge-primary float-right">1 week </span>
+                                    </label>
+                                </div>
+                                <div class="item-date"> 26 jun 2017</div>
+                            </li>
+                            <li class="list-group-item" data-role="task">
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="customCheck2">
+                                    <label class="custom-control-label" for="customCheck2">
+                                        <span>Give Purchase report to</span> <span class="badge badge-pill badge-info float-right">Yesterday</span>
+                                    </label>
+                                </div>
+                                <ul class="assignedto">
+                                    <li><img src="{{ asset('assets/dashboard/eliteadmin-theme/assets/images/users/3.jpg') }}" alt="user" data-toggle="tooltip" data-placement="top" title="" data-original-title="Priyanka"></li>
+                                    <li><img src="{{ asset('assets/dashboard/eliteadmin-theme/assets/images/users/4.jpg') }}" alt="user" data-toggle="tooltip" data-placement="top" title="" data-original-title="Selina"></li>
+                                </ul>
+                            </li>
+                            <li class="list-group-item" data-role="task">
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="customCheck3">
+                                    <label class="custom-control-label" for="customCheck3">
+                                        <span>Lorem Ipsum is simply dummy text of the printing </span> <span class="badge badge-pill badge-warning float-right">2 weeks</span>
+                                    </label>
+                                </div>
+                                <div class="item-date"> 26 jun 2017</div>
+                            </li>
+                            <li class="list-group-item" data-role="task">
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="customCheck4">
+                                    <label class="custom-control-label" for="customCheck4">
+                                        <span>Give Purchase report to</span> <span class="badge badge-pill badge-info float-right">Yesterday</span>
+                                    </label>
+                                </div>
+                                <ul class="assignedto">
+                                    <li><img src="{{ asset('assets/dashboard/eliteadmin-theme/assets/images/users/3.jpg') }}" alt="user" data-toggle="tooltip" data-placement="top" title="" data-original-title="Priyanka"></li>
+                                    <li><img src="{{ asset('assets/dashboard/eliteadmin-theme/assets/images/users/4.jpg') }}" alt="user" data-toggle="tooltip" data-placement="top" title="" data-original-title="Selina"></li>
+                                </ul>
+                            </li>
                         </ul>
                     </div>
                 </div>
-                <div class="card-body vector-map-world">
-                    <div id="world" style="height: 100%; width: 100%;"></div>
-                </div>
-                <div class="card-footer d-flex flex-wrap bg-white p-0">
-                    <div class="col-6">
-                        <div class="p-4">
-                            <ul class="d-flex flex-column justify-content-between">
-                                <li class="mb-2"><i class="mdi mdi-checkbox-blank-circle-outline mr-2"
-                                        style="color: #29cc97"></i>America <span class="float-right">5k</span></li>
-                                <li><i class="mdi mdi-checkbox-blank-circle-outline mr-2"
-                                        style="color: #4c84ff "></i>Australia <span class="float-right">3k</span></li>
-                            </ul>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">YOU HAVE 5 NEW MESSAGES</h5>
+                    <div class="message-box" id="msg" style="height: 430px;position: relative;">
+                        <div class="message-widget message-scroll">
+                            <!-- Message -->
+                            <a href="javascript:void(0)">
+                                <div class="user-img"> <img src="{{ asset('assets/dashboard/eliteadmin-theme/assets/images/users/1.jpg') }}" alt="user" class="img-circle"> <span class="profile-status online pull-right"></span> </div>
+                                <div class="mail-contnet">
+                                    <h5>Pavan kumar</h5> <span class="mail-desc">Lorem Ipsum is simply dummy text of the printing and type setting industry. Lorem Ipsum has been.</span> <span class="time">9:30 AM</span> </div>
+                            </a>
+                            <!-- Message -->
+                            <a href="javascript:void(0)">
+                                <div class="user-img"> <img src="{{ asset('assets/dashboard/eliteadmin-theme/assets/images/users/2.jpg') }}" alt="user" class="img-circle"> <span class="profile-status busy pull-right"></span> </div>
+                                <div class="mail-contnet">
+                                    <h5>Sonu Nigam</h5> <span class="mail-desc">I've sung a song! See you at</span> <span class="time">9:10 AM</span> </div>
+                            </a>
+                            <!-- Message -->
+                            <a href="javascript:void(0)">
+                                <div class="user-img"> <span class="round">A</span> <span class="profile-status away pull-right"></span> </div>
+                                <div class="mail-contnet">
+                                    <h5>Arijit Sinh</h5> <span class="mail-desc">Simply dummy text of the printing and typesetting industry.</span> <span class="time">9:08 AM</span> </div>
+                            </a>
+                            <!-- Message -->
+                            <a href="javascript:void(0)">
+                                <div class="user-img"> <img src="{{ asset('assets/dashboard/eliteadmin-theme/assets/images/users/4.jpg') }}" alt="user" class="img-circle"> <span class="profile-status offline pull-right"></span> </div>
+                                <div class="mail-contnet">
+                                    <h5>Pavan kumar</h5> <span class="mail-desc">Just see the my admin!</span> <span class="time">9:02 AM</span> </div>
+                            </a>
+                            <!-- Message -->
+                            <a href="javascript:void(0)">
+                                <div class="user-img"> <img src="{{ asset('assets/dashboard/eliteadmin-theme/assets/images/users/1.jpg') }}" alt="user" class="img-circle"> <span class="profile-status online pull-right"></span> </div>
+                                <div class="mail-contnet">
+                                    <h5>Pavan kumar</h5> <span class="mail-desc">Welcome to the Elite Admin</span> <span class="time">9:30 AM</span> </div>
+                            </a>
+                            <!-- Message -->
+                            <a href="javascript:void(0)">
+                                <div class="user-img"> <img src="{{ asset('assets/dashboard/eliteadmin-theme/assets/images/users/2.jpg') }}" alt="user" class="img-circle"> <span class="profile-status busy pull-right"></span> </div>
+                                <div class="mail-contnet">
+                                    <h5>Sonu Nigam</h5> <span class="mail-desc">I've sung a song! See you at</span> <span class="time">9:10 AM</span> </div>
+                            </a>
                         </div>
                     </div>
-                    <div class="col-6">
-                        <div class="p-4 border-left">
-                            <ul class="d-flex flex-column justify-content-between">
-                                <li class="mb-2"><i class="mdi mdi-checkbox-blank-circle-outline mr-2"
-                                        style="color: #ffa128"></i>Europe <span class="float-right">4k</span></li>
-                                <li><i class="mdi mdi-checkbox-blank-circle-outline mr-2" style="color: #fe5461"></i>Africa
-                                    <span class="float-right">2k</span>
-                                </li>
-                            </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">CHAT</h5>
+                    <div class="chat-box" id="chat" style="height: 327px;position: relative;">
+                        <!--chat Row -->
+                        <ul class="chat-list">
+                            <!--chat Row -->
+                            <li>
+                                <div class="chat-img"><img src="{{ asset('assets/dashboard/eliteadmin-theme/assets/images/users/1.jpg') }}" alt="user"></div>
+                                <div class="chat-content">
+                                    <h5>James Anderson</h5>
+                                    <div class="box bg-light-info">Lorem Ipsum is simply dummy text of the printing &amp; type setting industry.</div>
+                                </div>
+                                <div class="chat-time">10:56 am</div>
+                            </li>
+                            <!--chat Row -->
+                            <li>
+                                <div class="chat-img"><img src="{{ asset('assets/dashboard/eliteadmin-theme/assets/images/users/2.jpg') }}" alt="user"></div>
+                                <div class="chat-content">
+                                    <h5>Bianca Doe</h5>
+                                    <div class="box bg-light-info">It’s Great opportunity to work.</div>
+                                </div>
+                                <div class="chat-time">10:57 am</div>
+                            </li>
+                            <!--chat Row -->
+                            <li class="odd">
+                                <div class="chat-content">
+                                    <div class="box bg-light-inverse">I would love to join the team.</div>
+                                    <br>
+                                </div>
+                                <div class="chat-time">10:58 am</div>
+                            </li>
+                            <!--chat Row -->
+                            <li class="odd">
+                                <div class="chat-content">
+                                    <div class="box bg-light-inverse">Whats budget of the new project.</div>
+                                    <br>
+                                </div>
+                                <div class="chat-time">10:59 am</div>
+                            </li>
+                            <!--chat Row -->
+                            <li>
+                                <div class="chat-img"><img src="{{ asset('assets/dashboard/eliteadmin-theme/assets/images/users/3.jpg') }}" alt="user"></div>
+                                <div class="chat-content">
+                                    <h5>Angelina Rhodes</h5>
+                                    <div class="box bg-light-info">Well we have good budget for the project</div>
+                                </div>
+                                <div class="chat-time">11:00 am</div>
+                            </li>
+                            <!--chat Row -->
+                        </ul>
+                    </div>
+                </div>
+                <div class="card-body border-top">
+                    <div class="row">
+                        <div class="col-8">
+                            <textarea placeholder="Type your message here" class="form-control border-0"></textarea>
+                        </div>
+                        <div class="col-4 text-right">
+                            <button type="button" class="btn btn-info btn-circle btn-lg"><i class="fas fa-paper-plane"></i> </button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
-    <div class="row">
-        <div class="col-xl-5">
-            <!-- New Customers -->
-            <div class="card card-table-border-none" data-scroll-height="580">
-                <div class="card-header justify-content-between ">
-                    <h2>New Customers</h2>
-                    <div>
-                        <button class="text-black-50 mr-2 font-size-20">
-                            <i class="mdi mdi-cached"></i>
-                        </button>
-                        <div class="dropdown show d-inline-block widget-dropdown">
-                            <a class="dropdown-toggle icon-burger-mini" href="#" role="button" id="dropdown-customar"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static">
-                            </a>
-                            <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown-customar">
-                                <li class="dropdown-item"><a href="#">Action</a></li>
-                                <li class="dropdown-item"><a href="#">Another action</a></li>
-                                <li class="dropdown-item"><a href="#">Something else here</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="card-body pt-0">
-                    <table class="table ">
-                        <tbody>
-                            <tr>
-                                <td>
-                                    <div class="media">
-                                        <div class="media-image mr-3 rounded-circle">
-                                            <a href="profile.html"><img class="rounded-circle w-45"
-                                                    src="{{ asset('assets/dashboard/img/user/u1.jpg') }}"
-                                                    alt="customer image"></a>
-                                        </div>
-                                        <div class="media-body align-self-center">
-                                            <a href="profile.html">
-                                                <h6 class="mt-0 text-dark font-weight-medium">Selena
-                                                    Wagner</h6>
-                                            </a>
-                                            <small>@selena.oi</small>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>2 Orders</td>
-                                <td class="text-dark d-none d-md-block">$150</td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="media">
-                                        <div class="media-image mr-3 rounded-circle">
-                                            <a href="profile.html"><img class="rounded-circle w-45"
-                                                    src="{{ asset('assets/dashboard/img/user/u2.jpg') }}"
-                                                    alt="customer image"></a>
-                                        </div>
-                                        <div class="media-body align-self-center">
-                                            <a href="profile.html">
-                                                <h6 class="mt-0 text-dark font-weight-medium">Walter
-                                                    Reuter</h6>
-                                            </a>
-                                            <small>@walter.me</small>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>5 Orders</td>
-                                <td class="text-dark d-none d-md-block">$200</td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="media">
-                                        <div class="media-image mr-3 rounded-circle">
-                                            <a href="profile.html"><img class="rounded-circle w-45"
-                                                    src="{{ asset('assets/dashboard/img/user/u3.jpg') }}"
-                                                    alt="customer image"></a>
-                                        </div>
-                                        <div class="media-body align-self-center">
-                                            <a href="profile.html">
-                                                <h6 class="mt-0 text-dark font-weight-medium">Larissa
-                                                    Gebhardt</h6>
-                                            </a>
-                                            <small>@larissa.gb</small>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>1 Order</td>
-                                <td class="text-dark d-none d-md-block">$50</td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="media">
-                                        <div class="media-image mr-3 rounded-circle">
-                                            <a href="profile.html"><img class="rounded-circle w-45"
-                                                    src="{{ asset('assets/dashboard/img/user/u4.jpg') }}"
-                                                    alt="customer image"></a>
-                                        </div>
-                                        <div class="media-body align-self-center">
-                                            <a href="profile.html">
-                                                <h6 class="mt-0 text-dark font-weight-medium">Albrecht
-                                                    Straub</h6>
-                                            </a>
-                                            <small>@albrech.as</small>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>2 Orders</td>
-                                <td class="text-dark d-none d-md-block">$100</td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="media">
-                                        <div class="media-image mr-3 rounded-circle">
-                                            <a href="profile.html"><img class="rounded-circle w-45"
-                                                    src="{{ asset('assets/dashboard/img/user/u5.jpg') }}"
-                                                    alt="customer image"></a>
-                                        </div>
-                                        <div class="media-body align-self-center">
-                                            <a href="profile.html">
-                                                <h6 class="mt-0 text-dark font-weight-medium">Leopold
-                                                    Ebert</h6>
-                                            </a>
-                                            <small>@leopold.et</small>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>1 Order</td>
-                                <td class="text-dark d-none d-md-block">$60</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-        <div class="col-xl-7">
-            <!-- Top Products -->
-            <div class="card card-default" data-scroll-height="580">
-                <div class="card-header justify-content-between mb-4">
-                    <h2>Top Products</h2>
-                    <div>
-                        <button class="text-black-50 mr-2 font-size-20"><i class="mdi mdi-cached"></i></button>
-                        <div class="dropdown show d-inline-block widget-dropdown">
-                            <a class="dropdown-toggle icon-burger-mini" href="#" role="button" id="dropdown-product"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static">
-                            </a>
-                            <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown-product">
-                                <li class="dropdown-item"><a href="#">Update Data</a></li>
-                                <li class="dropdown-item"><a href="#">Detailed Log</a></li>
-                                <li class="dropdown-item"><a href="#">Statistics</a></li>
-                                <li class="dropdown-item"><a href="#">Clear Data</a></li>
-                            </ul>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="card-body py-0">
-                    <div class="media d-flex mb-5">
-                        <div class="media-image align-self-center mr-3 rounded">
-                            <a href="#"><img src="{{ asset('assets/dashboard/img/products/p1.jpg') }}"
-                                    alt="customer image"></a>
-                        </div>
-                        <div class="media-body align-self-center">
-                            <a href="#">
-                                <h6 class="mb-3 text-dark font-weight-medium"> Coach Swagger</h6>
-                            </a>
-                            <p class="float-md-right"><span class="text-dark mr-2">20</span>Sales</p>
-                            <p class="d-none d-md-block">Statement belting with double-turnlock hardware
-                                adds “swagger” to a simple.</p>
-                            <p class="mb-0">
-                                <del>$300</del>
-                                <span class="text-dark ml-3">$250</span>
-                            </p>
-                        </div>
-                    </div>
-
-                    <div class="media d-flex mb-5">
-                        <div class="media-image align-self-center mr-3 rounded">
-                            <a href="#"><img src="{{ asset('assets/dashboard/img/products/p2.jpg') }}"
-                                    alt="customer image"></a>
-                        </div>
-                        <div class="media-body align-self-center">
-                            <a href="#">
-                                <h6 class="mb-3 text-dark font-weight-medium"> Coach Swagger</h6>
-                            </a>
-                            <p class="float-md-right"><span class="text-dark mr-2">20</span>Sales</p>
-                            <p class="d-none d-md-block">Statement belting with double-turnlock hardware
-                                adds “swagger” to a simple.</p>
-                            <p class="mb-0">
-                                <del>$300</del>
-                                <span class="text-dark ml-3">$250</span>
-                            </p>
-                        </div>
-                    </div>
-
-                    <div class="media d-flex mb-5">
-                        <div class="media-image align-self-center mr-3 rounded">
-                            <a href="#"><img src="{{ asset('assets/dashboard/img/products/p3.jpg') }}"
-                                    alt="customer image"></a>
-                        </div>
-                        <div class="media-body align-self-center">
-                            <a href="#">
-                                <h6 class="mb-3 text-dark font-weight-medium"> Gucci Watch</h6>
-                            </a>
-                            <p class="float-md-right"><span class="text-dark mr-2">10</span>Sales</p>
-                            <p class="d-none d-md-block">Statement belting with double-turnlock hardware
-                                adds “swagger” to a simple.</p>
-                            <p class="mb-0">
-                                <del>$300</del>
-                                <span class="text-dark ml-3">$50</span>
-                            </p>
-                        </div>
-                    </div>
-                </div>
+    <!-- ============================================================== -->
+    <!-- End Page Content -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- Right sidebar -->
+    <!-- ============================================================== -->
+    <!-- .right-sidebar -->
+    <div class="right-sidebar">
+        <div class="slimscrollright">
+            <div class="rpanel-title"> Service Panel <span><i class="ti-close right-side-toggle"></i></span> </div>
+            <div class="r-panel-body">
+                <ul id="themecolors" class="m-t-20">
+                    <li><b>With Light sidebar</b></li>
+                    <li><a href="javascript:void(0)" data-skin="skin-default" class="default-theme">1</a></li>
+                    <li><a href="javascript:void(0)" data-skin="skin-green" class="green-theme">2</a></li>
+                    <li><a href="javascript:void(0)" data-skin="skin-red" class="red-theme">3</a></li>
+                    <li><a href="javascript:void(0)" data-skin="skin-blue" class="blue-theme working">4</a></li>
+                    <li><a href="javascript:void(0)" data-skin="skin-purple" class="purple-theme">5</a></li>
+                    <li><a href="javascript:void(0)" data-skin="skin-megna" class="megna-theme">6</a></li>
+                    <li class="d-block m-t-30"><b>With Dark sidebar</b></li>
+                    <li><a href="javascript:void(0)" data-skin="skin-default-dark" class="default-dark-theme ">7</a></li>
+                    <li><a href="javascript:void(0)" data-skin="skin-green-dark" class="green-dark-theme">8</a></li>
+                    <li><a href="javascript:void(0)" data-skin="skin-red-dark" class="red-dark-theme">9</a></li>
+                    <li><a href="javascript:void(0)" data-skin="skin-blue-dark" class="blue-dark-theme">10</a></li>
+                    <li><a href="javascript:void(0)" data-skin="skin-purple-dark" class="purple-dark-theme">11</a></li>
+                    <li><a href="javascript:void(0)" data-skin="skin-megna-dark" class="megna-dark-theme ">12</a></li>
+                </ul>
+                <ul class="m-t-20 chatonline">
+                    <li><b>Chat option</b></li>
+                    <li>
+                        <a href="javascript:void(0)"><img src="{{ asset('assets/dashboard/eliteadmin-theme/assets/images/users/1.jpg') }}" alt="user-img" class="img-circle"> <span>Varun Dhavan <small class="text-success">online</small></span></a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)"><img src="{{ asset('assets/dashboard/eliteadmin-theme/assets/images/users/2.jpg') }}" alt="user-img" class="img-circle"> <span>Genelia Deshmukh <small class="text-warning">Away</small></span></a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)"><img src="{{ asset('assets/dashboard/eliteadmin-theme/assets/images/users/3.jpg') }}" alt="user-img" class="img-circle"> <span>Ritesh Deshmukh <small class="text-danger">Busy</small></span></a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)"><img src="{{ asset('assets/dashboard/eliteadmin-theme/assets/images/users/4.jpg') }}" alt="user-img" class="img-circle"> <span>Arijit Sinh <small class="text-muted">Offline</small></span></a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)"><img src="{{ asset('assets/dashboard/eliteadmin-theme/assets/images/users/5.jpg') }}" alt="user-img" class="img-circle"> <span>Govinda Star <small class="text-success">online</small></span></a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)"><img src="{{ asset('assets/dashboard/eliteadmin-theme/assets/images/users/6.jpg') }}" alt="user-img" class="img-circle"> <span>John Abraham<small class="text-success">online</small></span></a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)"><img src="{{ asset('assets/dashboard/eliteadmin-theme/assets/images/users/7.jpg') }}" alt="user-img" class="img-circle"> <span>Hritik Roshan<small class="text-success">online</small></span></a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)"><img src="{{ asset('assets/dashboard/eliteadmin-theme/assets/images/users/8.jpg') }}" alt="user-img" class="img-circle"> <span>Pwandeep rajan <small class="text-success">online</small></span></a>
+                    </li>
+                </ul>
             </div>
         </div>
     </div>
+    <!-- ============================================================== -->
+    <!-- End Right sidebar -->
+    <!-- ============================================================== -->
+</div>
 @endsection

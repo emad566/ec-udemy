@@ -1,59 +1,47 @@
 @extends('dashboard.master')
 
 @section('content')
+<div class="container-fluid">
+    <!-- ============================================================== -->
+    <!-- page-title Bread crumb and right sidebar toggle  -->
+    <!-- ============================================================== -->
+
+    <div class="row page-titles">
+        <div class="col-md-5 align-self-center">
+            <h4 class="text-themecolor">{{ trans('main.The Categories') }}</h4>
+        </div>
+        <div class="col-md-7 align-self-center text-right">
+            <div class="d-flex justify-content-end align-items-center">
+
+                <a href="{{ route('categories.create') }}" class="btn btn-info d-none d-lg-block m-l-15"><i class="fa fa-plus-circle"></i> {{ trans('main.Add New') }}</a>
+            </div>
+        </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- End page-title Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+
     <div class="row">
-        <div class="col-lg-4 col-xs-12">
+        <div class="col-lg-6">
             <div class="card">
-                <div class="card-header">
-                    <i class="ft-home"></i> Add New Category</h4>
-                </div>
                 <div class="card-body">
+                    <h4 class="card-title">{{ trans('main.The Categories') }}</h4>
+                    <h6 class="card-subtitle">{{ trans('main.Add New') }}</h6>
+                    <hr>
                     @include('dashboard.includes.alerts.success')
                     @include('dashboard.includes.alerts.errors')
                     <form class="form" action="{{route('categories.store')}}" method="POST" enctype="multipart/form-data">
                         @csrf
-                        <div class="col-xs-12">
-                            <div class="form-group">
-                                <label for="category_name"> Category Name
-                                </label>
-                                <input type="text" id="category_name"
-                                        class="form-control"
-                                        placeholder="Category Name"
-                                        value="{{old('category_name')}}"
-                                        name="category_name">
-                                @error("category_name")
-                                <span class="text-danger">{{$message}}</span>
-                                @enderror
-                            </div>
+                        <div class="row">
+                            {!! input(['errors'=>$errors, 'type'=>'text', 'name'=>'category_name', 'trans'=>'Category Name', 'maxlength'=>50, 'required'=>'required', 'cols'=>12]) !!}
                         </div>
 
-                        <div class="col-xs-12">
-                            <div class="form-group">
-                                <label for="slug"> Slug
-                                </label>
-                                <input type="text" id="slug"
-                                        class="form-control"
-                                        placeholder="slug"
-                                        value="{{old('slug')}}"
-                                        name="slug">
-                                @error("slug")
-                                <span class="text-danger">{{$message}}</span>
-                                @enderror
-                            </div>
+                        <div class="row">
+                            {!! input(['errors'=>$errors, 'type'=>'text', 'name'=>'slug', 'trans'=>'Slug', 'maxlength'=>50, 'required'=>'required', 'cols'=>12]) !!}
                         </div>
 
-                        <div class="col-xs-12">
-                            <div class="form-group">
-                                <label for="description"> Cetegory Description
-                                </label>
-                                <textarea type="text" id="description"
-                                        class="form-control"
-                                        placeholder="Cetegory Description"
-                                        name="description">{{old('description')}}</textarea>
-                                @error("description")
-                                <span class="text-danger">{{$message}}</span>
-                                @enderror
-                            </div>
+                        <div class="row">
+                            {!! textarea(['errors'=>$errors, 'type'=>'text', 'name'=>'description', 'trans'=>'Cetegory Description', 'maxlength'=>150, 'required'=>'required', 'cols'=>12]) !!}
                         </div>
 
                         <div class="col-xs-12">
@@ -61,7 +49,7 @@
                                 <label for="parent_id"> Parent Category
                                 </label>
                                 <select name="parent_id" id="parent_id" class="select2 form-control">
-                                    <option value="">None</option>
+                                    <option value="">{{ trans('main.No Parent') }}</option>
                                     <?php
 
                                         $traverse = function ($categories, $prefix = '') use (&$traverse) {
@@ -85,42 +73,20 @@
                         </div>
 
                         <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group mt-1">
-                                    <input type="checkbox" value="1"
-                                            name="is_active"
-                                            id="switcheryColor4"
-                                            class="switchery" data-color="success"
-                                            @if(old('is_active')) checked @endif
-                                    />
-                                    <label for="switcheryColor4"
-                                            class="card-title ml-1">Active </label>
-
-                                    @error("is_active")
-                                    <span class="text-danger">{{$message }}</span>
-                                    @enderror
-                                </div>
-                            </div>
+                            {!! checkbox(['errors'=>$errors, 'name'=>'is_active', 'trans'=>'Active', 'cols'=>6, 'class'=>'switcher']) !!}
                         </div>
 
-
-                        <div class="form-actions">
-
-                            <button type="submit" class="btn btn-primary">
-                                <i class="la la-check-square-o"></i> Add New Category
-                            </button>
-                        </div>
+                        <hr>
+                        {!! buttonAction() !!}
                     </form>
-                    <p></p>
                 </div>
             </div>
         </div>
-        <div class="col-lg-8 col-xs-12 table-responsive">
+        <div class="col-lg-6">
             <div class="card">
-                <div class="card-header">
-                    <i class="ft-home"></i> Add New Category</h4>
-                </div>
                 <div class="card-body">
+                    <h4 class="card-title">{{ trans('main.The Categories') }}</h4>
+                    <h6 class="card-subtitle">{{ trans('main.Show All') }}</h6>
                     <form id='delete-formMulti' class='delete-formMulti'
                         method='post'
                         action='{{ route('categories.delete') }}'>
@@ -131,11 +97,11 @@
                         <table class="table display nowrap table-striped table-bordered scroll-horizontal">
                             <thead>
                                 <tr>
-                                <th scope="col">{!! Form::checkbox('allCategories', 1, false, ['class'=>'allCategories', 'id'=>'allCategories']) !!} Name</th>
-                                <th scope="col">Slug</th>
-                                <th scope="col">is Active</th>
-                                <th scope="col">Created_at</th>
-                                <th>Actions</th>
+                                <th scope="col">{!! Form::checkbox('allCategories', 1, false, ['class'=>'allCategories', 'id'=>'allCategories']) !!} {{ trans('main.Category Name') }}</th>
+                                <th scope="col">{{ trans('main.Slug') }}</th>
+                                <th scope="col">{{ trans('main.is_active') }}</th>
+                                <th scope="col">{{ trans('main.Created_at') }}</th>
+                                <th>{{ trans('main.Actions') }}</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -145,22 +111,23 @@
                                         foreach ($categories as $category) {
                                 ?>
                                             <tr>
-                                                <th scope="col"><a href="{{ route('categories.edit', $category->id) }}">
-                                                    {!! Form::checkbox('categories[]', $category->id, false, ['class'=>'categories']) !!} {{ PHP_EOL.$prefix.' '.$category->category_name }}
-                                                </a></th>
+                                                <th scope="col">
+                                                    {!! Form::checkbox('categories[]', $category->id, false, ['class'=>'categories']) !!}
+                                                    <a href="{{ route('categories.edit', $category->id) }}">{{ PHP_EOL.$prefix.' '.$category->category_name }}</a>
+                                                </th>
                                                 <td>{{ $category->slug }}</td>
                                                 <td>{{ $category->getActive() }}</td>
                                                 <td>{{ $category->created_at->diffForHumans() }}</td>
 
                                                 <td>
                                                     <a href="{{route('categories.edit',$category->id)}}"
-                                                        class="btn btn-outline-primary btn-min-width box-shadow-3 mr-1 mb-1">Edit</a>
+                                                        class="btn btn-outline-primary btn-min-width box-shadow-3 mr-1 mb-1">{{ trans('main.Edit') }}</a>
 
                                                     <a
                                                         href="{{route('categories.destroy',$category->id)}}"
                                                         class="btn btn-outline-danger btn-min-width box-shadow-3 mr-1 mb-1 deleteMe"
                                                         msg="Do you want to delete:  {{ $category->category_name }}, @if($category->hasChildren()) It will be deleted with all its sub catecgries!!!@endif"
-                                                    >Delete</a>
+                                                    >{{ trans('main.Delete') }}</a>
 
 
                                                     <!--#delete-form .delete-form -->
@@ -187,10 +154,10 @@
                         event.preventDefault();
                     }"
 
-                    class="btn btn-outline-danger btn-min-width box-shadow-3 mr-1 mb-1">Delete</a>
+                    class="btn btn-outline-danger btn-min-width box-shadow-3 mr-1 mb-1">{{ trans('main.Delete') }}</a>
 
 
-                    <h4 class="form-section"><i class="ft-home"></i> Trashed Category</h4>
+                    <h4 class="form-section"><i class="ft-home"></i> {{ trans('main.Trash') }} </h4>
                     <form id='delete-formMultiTrashed' class='delete-formMultiTrashed'
                         method='post'
                         action='{{ route('categories.p_delete') }}'>
@@ -201,11 +168,11 @@
                         <table class="table display nowrap table-striped table-bordered scroll-horizontal">
                             <thead>
                                 <tr>
-                                <th scope="col">{!! Form::checkbox('allCategoriesTrashed', 1, false, ['class'=>'allCategoriesTrashed', 'id'=>'allCategoriesTrashed']) !!} Name</th>
-                                <th scope="col">Slug</th>
-                                <th scope="col">is Active</th>
-                                <th scope="col">Created_at</th>
-                                <th>Actions</th>
+                                <th scope="col">{!! Form::checkbox('allCategoriesTrashed', 1, false, ['class'=>'allCategoriesTrashed', 'id'=>'allCategoriesTrashed']) !!} {{ trans('main.Category Name') }}</th>
+                                <th scope="col">{{ trans('main.Slug') }}</th>
+                                <th scope="col">{{ trans('main.is_active') }}</th>
+                                <th scope="col">{{ trans('main.Created_at') }}</th>
+                                <th>{{ trans('main.Actions') }}</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -224,13 +191,13 @@
 
                                                 <td>
                                                     <a href="{{route('categories.restore',$category->id)}}"
-                                                        class="btn btn-outline-primary btn-min-width box-shadow-3 mr-1 mb-1">Restore</a>
+                                                        class="btn btn-outline-primary btn-min-width box-shadow-3 mr-1 mb-1">{{ trans('main.Restore') }}</a>
 
                                                         <a
                                                             msg="'Do you want to Premently delete:  {{ $category->category_name }}, @if($category->hasChildren()) It will be deleted with all its sub catecgries!!!@endif'"
                                                             href="{{route('categories.p_destroy',$category->id)}}"
                                                             class="deleteMe btn btn-outline-danger btn-min-width box-shadow-3 mr-1 mb-1"
-                                                        >P Delete</a>
+                                                        >{{ trans('main.Permanently Delete') }}</a>
 
 
                                                     <!--#delete-form .delete-form -->
@@ -257,11 +224,12 @@
                         event.preventDefault();
                     }"
 
-                    class="btn btn-outline-danger btn-min-width box-shadow-3 mr-1 mb-1">P Delete</a>
+                    class="btn btn-outline-danger btn-min-width box-shadow-3 mr-1 mb-1">{{ trans('main.Permanently Delete') }}</a>
                 </div>
             </div>
         </div>
     </div>
+</div>
 @endsection
 
 @section('script')

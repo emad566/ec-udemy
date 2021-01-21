@@ -1,10 +1,11 @@
 <?php
+
 use App\Http\Controllers;
 use App\Http\Controllers\AdminController;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\DB;
-
+use Auth;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,7 +21,17 @@ Route::group([
         'prefix' => LaravelLocalization::setLocale(),
         'namespace'=>'App\Http\Controllers',
         'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath']
-    ], function () {
+    ], function () {;
+
+        // For Documentation Visit Link:
+        // https://laracasts.com/discuss/channels/laravel/localize-app-with-jetstream
+        include('routesFrtifyJetstream.php');
+
+
+
+
+
+
 
         //================ Guest =================//
         Route::get('/', function () {
@@ -104,6 +115,8 @@ Route::group([
         Route::post('newsletters/delete', 'newslettersController@delete')->name('newsletters.delete');
         Route::get('newslettersUpdateIsActive/{newsletter}', 'newslettersController@updateIsActive')->name('newsletters.updateIsActive');
         //================ /newsletters =================//
+
+
 
     });
     //================ /webGuard Routes =================//

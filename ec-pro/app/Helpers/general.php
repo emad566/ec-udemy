@@ -204,7 +204,7 @@ function indexTable($data)
 
     $html = '';
     $html .= '
-    <table class="table display nowrap table-striped table-bordered datatable">
+    <table class="display nowrap table table-hover table-striped table-bordered datatable" cellspacing="0" width="100%">
         '.indexTableHead($fields, 'thead', $active, $action, $indexDel).'
         <tbody>
     ';
@@ -438,36 +438,35 @@ function input($data){
     return $html;
 }
 
-// function textarea($data){
-//     //$name, $trans, $errors, $edit=false, $childe=false, $cols=6, $maxlength=191,  $required="required"
+function textarea($data){
+    //$name, $trans, $errors, $edit=false, $childe=false, $cols=6, $maxlength=191,  $required="required"
 
-//     extract($data);
-//     if(!isset($noview)) $noview = '';
-//     if(!isset($edit)) $edit = false;
-//     if(!isset($childe)) $childe = false;
-//     if(!isset($cols)) $cols = 6;
-//     if(!isset($maxlength)) $maxlength = 5000;
-//     if(!isset($required)) $required = "";
-//     if(!isset($attr)) $attr = "";
-//     if(!isset($class)) $class = "";
+    extract($data);
+    if(!isset($noview)) $noview = '';
+    if(!isset($edit)) $edit = false;
+    if(!isset($cols)) $cols = 6;
+    if(!isset($maxlength)) $maxlength = 5000;
+    if(!isset($required)) $required = "";
+    if(!isset($attr)) $attr = "";
+    if(!isset($class)) $class = "";
 
-//     $value = getvalue($name, $edit, $childe);
+    $value = ($edit)? $edit->name:'';
 
-//     $html = '
-//     <div class="col-md-'.$cols.' '.$name.'">
-//         <div class="form-group">
-//             <label for="'.$name.'">'.trans('main.'.$trans).'</label>
-//             <textarea maxlength='.$maxlength.' '.$required.' id="'.$name.'"
-//                 class="form-control '.$name.' '.$class.'" '.$attr.' placeholder="'.trans('main.'.$trans).'"
-//                 name="'.$name.'">'.$value.'</textarea>
-//     ';
+    $html = '
+    <div class="col-md-'.$cols.' '.$name.'">
+        <div class="form-group">
+            <label for="'.$name.'">'.trans('main.'.$trans).'</label>
+            <textarea maxlength='.$maxlength.' '.$required.' id="'.$name.'"
+                class="form-control '.$name.' '.$class.'" '.$attr.' placeholder="'.trans('main.'.$trans).'"
+                name="'.$name.'">'.$value.'</textarea>
+    ';
 
-//     $html .=getErrors($errors, $name, $noview).'
-//         </div>
-//     </div>
-//     ';
-//     return $html;
-// }
+    $html .=getErrors($errors, $name, $noview).'
+        </div>
+    </div>
+    ';
+    return $html;
+}
 
 function getSrc($edit, $name)
 {
@@ -701,70 +700,68 @@ function buttonAction($saveText='Save'){
 
 }
 
-// function select($data){
-//     //$name, $frkName, $rows, $trans, $errors, $edit=false, $childe=false, $cols=6, $required="required"
+function select($data){
+    //$name, $frkName, $rows, $trans, $errors, $edit=false, $childe=false, $cols=6, $required="required"
 
-//     extract($data);
-//     if(!isset($noview)) $noview = '';
-//     if(!isset($edit)) $edit = false;
-//     if(!isset($childe)) $childe = false;
-//     if(!isset($parent)) $parent = false;
-//     if(!isset($notrans)) $notrans = false;
-//     if(!isset($label)) $label = false;
-//     if(!isset($cols)) $cols = 6;
-//     if(!isset($required)) $required = "";
+    extract($data);
+    if(!isset($noview)) $noview = '';
+    if(!isset($edit)) $edit = false;
+    if(!isset($notrans)) $notrans = false;
+    if(!isset($parent)) $parent = false;
+    if(!isset($label)) $label = false;
+    if(!isset($cols)) $cols = 6;
+    if(!isset($required)) $required = "";
 
-//     $html = '
-//     <div class="col-md-'.$cols.' '.$name.'">
-//         ';
-//         if(($rows && is_object($rows) && $rows->count() > 0) || is_array($rows)){
-//      $html .= '<div class="form-group">';
-//             if($label){
-//              $html .=' <label for="'.$name.'">'.trans('main.'.$trans).'</label>';
-//             }
-//              $html .='  <select '.$required.' id="'.$name.'" class="form-control '.$name.'" name="'.$name.'">
+    $html = '
+    <div class="col-md-'.$cols.' '.$name.'">
+        ';
+        if(($rows && is_object($rows) && $rows->count() > 0) || is_array($rows)){
+     $html .= '<div class="form-group">';
+            if($label){
+             $html .=' <label for="'.$name.'">'.trans('main.'.$trans).'</label>';
+            }
+             $html .='  <select '.$required.' id="'.$name.'" class="form-control '.$name.'" name="'.$name.'">
 
 
-//                 <option value="">'.trans('main.'.$trans).'</option>
-//     ';      if(is_array($rows)){
-//                 foreach ($rows as $row){
-//                     $html .='<option value="'.$row.'"';
+                <option value="">'.trans('main.'.$trans).'</option>
+    ';      if(is_array($rows)){
+                foreach ($rows as $row){
+                    $html .='<option value="'.$row.'"';
 
-//                     if(($edit && $edit->$name == $row) || old($name) == $row){
-//                         $html .='selected';
-//                     }
-//                     if(!$notrans)
-//                         $html .= '>'.trans('main.'.$row) .'</option>';
-//                     else
-//                         $html .= '>'.$row.'</option>';
-//                 }
-//             }else{
-//                 foreach ($rows as $row){
-//                     $id = ($parent)? $row->parent->id : $row->id;
-//                     if(($childe && $row->childe()) || !$childe){
-//                         $html .='<option value="'.$id.'"';
+                    if(($edit && $edit->$name == $row) || old($name) == $row){
+                        $html .='selected';
+                    }
+                    if(!$notrans)
+                        $html .= '>'.trans('main.'.$row) .'</option>';
+                    else
+                        $html .= '>'.$row.'</option>';
+                }
+            }else{
+                foreach ($rows as $row){
+                    $id = ($parent)? $row->parent->id : $row->id;
 
-//                         if(($edit && is_object($edit) && $edit->$name == $id) || (!is_object($edit) && $edit == $id) || old($name) == $id){
-//                             // return $edit;
-//                             $html .='selected';
-//                         }
-//                         $html .= '>'.getvalue($frkName, $row, $childe) .'</option>
-//                         ';
-//                     }
-//                 }
-//             }
+                    $html .='<option value="'.$id.'"';
 
-//     $html .='
-//             </select>
-//     ';
+                    if(($edit && is_object($edit) && $edit->$name == $id) || (!is_object($edit) && $edit == $id) || old($name) == $id){
+                        // return $edit;
+                        $html .='selected';
+                    }
+                    $html .= '>'.$row->frkName .'</option>
+                    ';
+                }
+            }
 
-//     $html .=getErrors($errors, $name, $noview).'
-//         </div>';
-//             }
-//     $html .= '</div>
-//     ';
-//     return $html;
-// }
+    $html .='
+            </select>
+    ';
+
+    $html .=getErrors($errors, $name, $noview).'
+        </div>';
+            }
+    $html .= '</div>
+    ';
+    return $html;
+}
 
 
 // function langsSupport($edit, $childe=""){

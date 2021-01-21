@@ -2,8 +2,7 @@
 
 @section('content')
     <div class="row">
-        <div class="col-xs-12 table-responsive">
-            <div class="card">
+            <div class="card w-100">
                 <div class="card-header">
                     <h4><i class="ft-home"></i>{{ trans('main.Thenewsletters') }}</h4>
                     <a href="{{ route('newsletters.create') }}" class="btn btn-primary float-right">{{ trans('main.AddNew') }}</a>
@@ -23,7 +22,7 @@
                                 ['email', false, 'email'],
                                 ];
                         @endphp
-
+                        <div class="table-responsive">
                         {!! indexTable([
                             'objs'=>$newsletters,
                             'table'=>'newsletters',
@@ -37,18 +36,17 @@
                             'vars'=>false,
                             'fields'=>$fields
                         ]) !!}
-
+                        </div>
                     </form>
 
                 </div>
             </div>
-        </div>
     </div>
 @endsection
 
 @section('script')
     <script>
-        
+
     </script>
 @endsection
 

@@ -1,625 +1,271 @@
-<aside class="left-sidebar bg-sidebar">
-    <div id="sidebar" class="sidebar sidebar-with-footer">
-        <!-- Aplication Brand -->
-        <div class="app-brand">
-            <a href="{{ route('dashboard') }}">
-                <svg class="brand-icon" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid" width="30"
-                    height="33" viewBox="0 0 30 33">
-                    <g fill="none" fill-rule="evenodd">
-                        <path class="logo-fill-blue" fill="#7DBCFF" d="M0 4v25l8 4V0zM22 4v25l8 4V0z" />
-                        <path class="logo-fill-white" fill="#FFF" d="M11 4v25l8 4V0z" />
-                    </g>
-                </svg>
-                <span class="brand-name">Sleek Dashboard</span>
-            </a>
-        </div>
-        <!-- begin sidebar scrollbar -->
-        <div class="sidebar-scrollbar">
-
-            <!-- sidebar menu -->
-            <ul class="nav sidebar-inner" id="sidebar-menu">
-
-
-
-                <li class="has-sub  @if(Request::is('*/categories*')) expand active @endif">
-                    <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse"
-                        data-target="#categories" aria-expanded="false" aria-controls="categories">
-                        <i class="mdi mdi-view-dashboard-outline"></i>
-                        <span class="nav-text">الأقسام</span> <b class="caret"></b>
+<aside class="left-sidebar">
+    <!-- Sidebar scroll-->
+    <div class="scroll-sidebar">
+        <!-- Sidebar navigation-->
+        <nav class="sidebar-nav">
+            <ul id="sidebarnav">
+                <li class="user-pro">
+                    <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
+                        <img src="{{ Auth::user()->image }}" alt="{{ Auth::user()->name }}" class="img-circle">
+                        <span class="hide-menu"> {{ Auth::user()->name }} </span>
                     </a>
-                    <ul class="collapse @if(Request::is('*/categories*')) show @endif" id="categories" data-parent="#sidebar-menu">
-                        <div class="sub-menu">
+                    <ul aria-expanded="false" class="collapse">
+                        <li><a href="{{ route('mainUser.profile') }}"><i class="ti-user"></i> {{ trans('main.My Profile') }}</a></li>
+                        <li><a href="javascript:void(0)"><i class="ti-wallet"></i> My Balance</a></li>
+                        <li><a href="javascript:void(0)"><i class="ti-email"></i> Inbox</a></li>
+                        <li><a href="javascript:void(0)"><i class="ti-settings"></i> Account Setting</a></li>
+                        <li><a href="javascript:void(0)"><i class="fa fa-power-off"></i> Logout</a></li>
+                        <li>
+                            <a href="javascript:void(0)" onclick="event.preventDefault();
+                                $('#logOutForm2').submit();"
+                            ><i class="fa fa-power-off"></i> {{ trans('main.Logout') }}</a>
+                            <form id="logOutForm2" method="POST" action="{{ (Auth::guard('admin')->check()) ? route('admin.logout') : route('logout') }}">
+                                @csrf
+                            </form>
+                        </li>
+                    </ul>
+                </li>
+                {{-- <li class="nav-small-cap">--- PERSONAL</li> --}}
 
-                            <li class="@if(Request::is('*/categories')) active @endif">
-                                <a class="sidenav-item-link" href="{{ route('categories.index') }}">
-                                    <span class="nav-text">كل الأقسام</span>
-
-                                </a>
-                            </li>
-
-                            <li class="@if(Request::is('*/categories')) active @endif">
-                                <a class="sidenav-item-link" href="{{ route('categories.index') }}">
-                                    <span class="nav-text">أضف قسم</span>
-                                </a>
-                            </li>
-
-                        </div>
+                <li> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i
+                            class="icon-speedometer"></i><span class="hide-menu">{{ trans('main.The Categories') }} <span
+                                class="badge badge-pill badge-cyan ml-auto">{{ App\Models\Category::all()->count() }}</span></span></a>
+                    <ul aria-expanded="false" class="collapse">
+                        <li><a href="{{ route('categories.index') }}">{{ trans('main.Show All') }}</a></li>
+                        <li><a href="{{ route('categories.create') }}">{{ trans('main.Add New') }}</a></li>
                     </ul>
                 </li>
 
-
-                <li class="has-sub  @if(Request::is('*/brands*')) expand active @endif">
-                    <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse"
-                        data-target="#brands" aria-expanded="false" aria-controls="brands">
-                        <i class="mdi mdi-view-dashboard-outline"></i>
-                        <span class="nav-text">الماركات</span> <b class="caret"></b>
-                    </a>
-                    <ul class="collapse @if(Request::is('*/brands*')) show @endif" id="brands" data-parent="#sidebar-menu">
-                        <div class="sub-menu">
-
-                            <li class="@if(Request::is('*/brands')) active @endif">
-                                <a class="sidenav-item-link" href="{{ route('brands.index') }}">
-                                    <span class="nav-text">كل الماركات</span>
-
-                                </a>
-                            </li>
-
-                            <li class="@if(Request::is('*/brands')) active @endif">
-                                <a class="sidenav-item-link" href="{{ route('brands.index') }}">
-                                    <span class="nav-text">أضف ماركة</span>
-                                </a>
-                            </li>
-
-                        </div>
+                <li> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i
+                            class="icon-speedometer"></i><span class="hide-menu">{{ trans('main.The Brands') }} <span
+                                class="badge badge-pill badge-cyan ml-auto">{{ App\Models\Brand::all()->count() }}</span></span></a>
+                    <ul aria-expanded="false" class="collapse">
+                        <li><a href="{{ route('brands.index') }}">{{ trans('main.Show All') }}</a></li>
+                        <li><a href="{{ route('brands.create') }}">{{ trans('main.Add New') }}</a></li>
                     </ul>
                 </li>
 
-
-                <li class="has-sub  @if(Request::is('*/coupons*')) expand active @endif">
-                    <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse"
-                        data-target="#coupons" aria-expanded="false" aria-controls="coupons">
-                        <i class="mdi mdi-view-dashboard-outline"></i>
-                        <span class="nav-text">الكبونات</span> <b class="caret"></b>
-                    </a>
-                    <ul class="collapse @if(Request::is('*/coupons*')) show @endif" id="coupons" data-parent="#sidebar-menu">
-                        <div class="sub-menu">
-
-                            <li class="@if(Request::is('*/coupons')) active @endif">
-                                <a class="sidenav-item-link" href="{{ route('coupons.index') }}">
-                                    <span class="nav-text">كل الكبونات</span>
-
-                                </a>
-                            </li>
-
-                            <li class="@if(Request::is('*/coupons/create*')) active @endif">
-                                <a class="sidenav-item-link" href="{{ route('coupons.create') }}">
-                                    <span class="nav-text">أضف كبون</span>
-                                </a>
-                            </li>
-
-                        </div>
+                <li> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i
+                            class="icon-speedometer"></i><span class="hide-menu">{{ trans('main.The Coupons') }} <span
+                                class="badge badge-pill badge-cyan ml-auto">{{ App\Models\Coupon::all()->count() }}</span></span></a>
+                    <ul aria-expanded="false" class="collapse">
+                        <li><a href="{{ route('coupons.index') }}">{{ trans('main.Show All') }}</a></li>
+                        <li><a href="{{ route('coupons.create') }}">{{ trans('main.Add New') }}</a></li>
                     </ul>
                 </li>
 
-                <li class="has-sub  @if(Request::is('*/newsletters*')) expand active @endif">
-                    <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse"
-                        data-target="#newsletters" aria-expanded="false" aria-controls="newsletters">
-                        <i class="mdi mdi-view-dashboard-outline"></i>
-                        <span class="nav-text">الاشراكات</span> <b class="caret"></b>
-                    </a>
-                    <ul class="collapse @if(Request::is('*/newsletters*')) show @endif" id="newsletters" data-parent="#sidebar-menu">
-                        <div class="sub-menu">
-
-                            <li class="@if(Request::is('*/newsletters')) active @endif">
-                                <a class="sidenav-item-link" href="{{ route('newsletters.index') }}">
-                                    <span class="nav-text">كل الاشراكات</span>
-
-                                </a>
-                            </li>
-
-                            <li class="@if(Request::is('*/newsletters/create*')) active @endif">
-                                <a class="sidenav-item-link" href="{{ route('newsletters.create') }}">
-                                    <span class="nav-text">أضف بريدإلكتروني</span>
-                                </a>
-                            </li>
-
-                        </div>
+                <li> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i
+                            class="ti-layout-grid2"></i><span class="hide-menu">Apps</span></a>
+                    <ul aria-expanded="false" class="collapse">
+                        <li><a href="app-calendar.html">Calendar</a></li>
+                        <li><a href="app-chat.html">Chat app</a></li>
+                        <li><a href="app-ticket.html">Support Ticket</a></li>
+                        <li><a href="app-contact.html">Contact / Employee</a></li>
+                        <li><a href="app-contact2.html">Contact Grid</a></li>
+                        <li><a href="app-contact-detail.html">Contact Detail</a></li>
                     </ul>
                 </li>
-
-
-                <li class="has-sub">
-                    <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse"
-                        data-target="#ui-elements" aria-expanded="false" aria-controls="ui-elements">
-                        <i class="mdi mdi-folder-multiple-outline"></i>
-                        <span class="nav-text">UI Elements</span> <b class="caret"></b>
-                    </a>
-                    <ul class="collapse" id="ui-elements" data-parent="#sidebar-menu">
-                        <div class="sub-menu">
-
-
-                            <li class="has-sub">
-                                <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse"
-                                    data-target="#components" aria-expanded="false" aria-controls="components">
-                                    <span class="nav-text">Components</span> <b class="caret"></b>
-                                </a>
-                                <ul class="collapse" id="components">
-                                    <div class="sub-menu">
-
-                                        <li>
-                                            <a href="alert.html">Alert</a>
-                                        </li>
-
-                                        <li>
-                                            <a href="badge.html">Badge</a>
-                                        </li>
-
-                                        <li>
-                                            <a href="breadcrumb.html">Breadcrumb</a>
-                                        </li>
-
-                                        <li>
-                                            <a href="button-default.html">Button Default</a>
-                                        </li>
-
-                                        <li>
-                                            <a href="button-dropdown.html">Button Dropdown</a>
-                                        </li>
-
-                                        <li>
-                                            <a href="button-group.html">Button Group</a>
-                                        </li>
-
-                                        <li>
-                                            <a href="button-social.html">Button Social</a>
-                                        </li>
-
-                                        <li>
-                                            <a href="button-loading.html">Button Loading</a>
-                                        </li>
-
-                                        <li>
-                                            <a href="card.html">Card</a>
-                                        </li>
-
-                                        <li>
-                                            <a href="carousel.html">Carousel</a>
-                                        </li>
-
-                                        <li>
-                                            <a href="collapse.html">Collapse</a>
-                                        </li>
-
-                                        <li>
-                                            <a href="list-group.html">List Group</a>
-                                        </li>
-
-                                        <li>
-                                            <a href="modal.html">Modal</a>
-                                        </li>
-
-                                        <li>
-                                            <a href="pagination.html">Pagination</a>
-                                        </li>
-
-                                        <li>
-                                            <a href="popover-tooltip.html">Popover & Tooltip</a>
-                                        </li>
-
-                                        <li>
-                                            <a href="progress-bar.html">Progress Bar</a>
-                                        </li>
-
-                                        <li>
-                                            <a href="spinner.html">Spinner</a>
-                                        </li>
-
-                                        <li>
-                                            <a href="switcher.html">Switcher</a>
-                                        </li>
-
-                                        <li>
-                                            <a href="table.html">Table</a>
-                                        </li>
-
-                                        <li>
-                                            <a href="tab.html">Tab</a>
-                                        </li>
-
-                                    </div>
-                                </ul>
-                            </li>
-
-
-
-
-                            <li class="has-sub">
-                                <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse"
-                                    data-target="#icons" aria-expanded="false" aria-controls="icons">
-                                    <span class="nav-text">Icons</span> <b class="caret"></b>
-                                </a>
-                                <ul class="collapse" id="icons">
-                                    <div class="sub-menu">
-
-                                        <li>
-                                            <a href="material-icon.html">Material Icon</a>
-                                        </li>
-
-                                        <li>
-                                            <a href="flag-icon.html">Flag Icon</a>
-                                        </li>
-
-                                    </div>
-                                </ul>
-                            </li>
-
-
-
-
-                            <li class="has-sub">
-                                <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse"
-                                    data-target="#forms" aria-expanded="false" aria-controls="forms">
-                                    <span class="nav-text">Forms</span> <b class="caret"></b>
-                                </a>
-                                <ul class="collapse" id="forms">
-                                    <div class="sub-menu">
-
-                                        <li>
-                                            <a href="basic-input.html">Basic Input</a>
-                                        </li>
-
-                                        <li>
-                                            <a href="input-group.html">Input Group</a>
-                                        </li>
-
-                                        <li>
-                                            <a href="checkbox-radio.html">Checkbox & Radio</a>
-                                        </li>
-
-                                        <li>
-                                            <a href="form-validation.html">Form Validation</a>
-                                        </li>
-
-                                        <li>
-                                            <a href="form-advance.html">Form Advance</a>
-                                        </li>
-
-                                    </div>
-                                </ul>
-                            </li>
-
-
-
-
-                            <li class="has-sub">
-                                <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse"
-                                    data-target="#maps" aria-expanded="false" aria-controls="maps">
-                                    <span class="nav-text">Maps</span> <b class="caret"></b>
-                                </a>
-                                <ul class="collapse" id="maps">
-                                    <div class="sub-menu">
-
-                                        <li>
-                                            <a href="google-map.html">Google Map</a>
-                                        </li>
-
-                                        <li>
-                                            <a href="vector-map.html">Vector Map</a>
-                                        </li>
-
-                                    </div>
-                                </ul>
-                            </li>
-
-
-
-
-                            <li class="has-sub">
-                                <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse"
-                                    data-target="#widgets" aria-expanded="false" aria-controls="widgets">
-                                    <span class="nav-text">Widgets</span> <b class="caret"></b>
-                                </a>
-                                <ul class="collapse" id="widgets">
-                                    <div class="sub-menu">
-
-                                        <li>
-                                            <a href="general-widget.html">General Widget</a>
-                                        </li>
-
-                                        <li>
-                                            <a href="chart-widget.html">Chart Widget</a>
-                                        </li>
-
-                                    </div>
-                                </ul>
-                            </li>
-
-
-
-                        </div>
+                <li> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i
+                            class="ti-email"></i><span class="hide-menu">Inbox</span></a>
+                    <ul aria-expanded="false" class="collapse">
+                        <li><a href="app-email.html">Mailbox</a></li>
+                        <li><a href="app-email-detail.html">Mailbox Detail</a></li>
+                        <li><a href="app-compose.html">Compose Mail</a></li>
                     </ul>
                 </li>
-
-
-
-
-
-                <li class="has-sub">
-                    <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#charts"
-                        aria-expanded="false" aria-controls="charts">
-                        <i class="mdi mdi-chart-pie"></i>
-                        <span class="nav-text">Charts</span> <b class="caret"></b>
-                    </a>
-                    <ul class="collapse" id="charts" data-parent="#sidebar-menu">
-                        <div class="sub-menu">
-
-
-
-                            <li>
-                                <a class="sidenav-item-link" href="chartjs.html">
-                                    <span class="nav-text">ChartJS</span>
-
-                                </a>
-                            </li>
-
-
-
-
-                        </div>
+                <li> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i
+                            class="ti-palette"></i><span class="hide-menu">Ui Elements <span
+                                class="badge badge-pill badge-primary text-white ml-auto">25</span></span></a>
+                    <ul aria-expanded="false" class="collapse">
+                        <li><a href="ui-cards.html">Cards</a></li>
+                        <li><a href="ui-user-card.html">User Cards</a></li>
+                        <li><a href="ui-buttons.html">Buttons</a></li>
+                        <li><a href="ui-modals.html">Modals</a></li>
+                        <li><a href="ui-tab.html">Tab</a></li>
+                        <li><a href="ui-tooltip-popover.html">Tooltip &amp; Popover</a></li>
+                        <li><a href="ui-tooltip-stylish.html">Tooltip stylish</a></li>
+                        <li><a href="ui-sweetalert.html">Sweet Alert</a></li>
+                        <li><a href="ui-notification.html">Notification</a></li>
+                        <li><a href="ui-progressbar.html">Progressbar</a></li>
+                        <li><a href="ui-nestable.html">Nestable</a></li>
+                        <li><a href="ui-range-slider.html">Range slider</a></li>
+                        <li><a href="ui-timeline.html">Timeline</a></li>
+                        <li><a href="ui-typography.html">Typography</a></li>
+                        <li><a href="ui-horizontal-timeline.html">Horizontal Timeline</a></li>
+                        <li><a href="ui-session-timeout.html">Session Timeout</a></li>
+                        <li><a href="ui-session-ideal-timeout.html">Session Ideal Timeout</a></li>
+                        <li><a href="ui-bootstrap.html">Bootstrap Ui</a></li>
+                        <li><a href="ui-breadcrumb.html">Breadcrumb</a></li>
+                        <li><a href="ui-bootstrap-switch.html">Bootstrap Switch</a></li>
+                        <li><a href="ui-list-media.html">List Media</a></li>
+                        <li><a href="ui-ribbons.html">Ribbons</a></li>
+                        <li><a href="ui-grid.html">Grid</a></li>
+                        <li><a href="ui-carousel.html">Carousel</a></li>
+                        <li><a href="ui-date-paginator.html">Date-paginator</a></li>
+                        <li><a href="ui-dragable-portlet.html">Dragable Portlet</a></li>
+                        <li><a href="ui-spinner.html">Spinner</a></li>
+                        <li><a href="ui-scrollspy.html">Scrollspy</a></li>
+                        <li><a href="ui-toasts.html">Toasts</a></li>
                     </ul>
                 </li>
-
-
-
-
-
-                <li class="has-sub">
-                    <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#pages"
-                        aria-expanded="false" aria-controls="pages">
-                        <i class="mdi mdi-image-filter-none"></i>
-                        <span class="nav-text">Pages</span> <b class="caret"></b>
-                    </a>
-                    <ul class="collapse" id="pages" data-parent="#sidebar-menu">
-                        <div class="sub-menu">
-
-
-
-                            <li>
-                                <a class="sidenav-item-link" href="user-profile.html">
-                                    <span class="nav-text">User Profile</span>
-
-                                </a>
-                            </li>
-
-
-
-
-
-                            <li class="has-sub">
-                                <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse"
-                                    data-target="#authentication" aria-expanded="false" aria-controls="authentication">
-                                    <span class="nav-text">Authentication</span> <b class="caret"></b>
-                                </a>
-                                <ul class="collapse" id="authentication">
-                                    <div class="sub-menu">
-
-                                        <li>
-                                            <a href="sign-in.html">Sign In</a>
-                                        </li>
-
-                                        <li>
-                                            <a href="sign-up.html">Sign Up</a>
-                                        </li>
-
-                                    </div>
-                                </ul>
-                            </li>
-
-
-
-
-                            <li class="has-sub">
-                                <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse"
-                                    data-target="#others" aria-expanded="false" aria-controls="others">
-                                    <span class="nav-text">Others</span> <b class="caret"></b>
-                                </a>
-                                <ul class="collapse" id="others">
-                                    <div class="sub-menu">
-
-                                        <li>
-                                            <a href="invoice.html">invoice</a>
-                                        </li>
-
-                                        <li>
-                                            <a href="error.html">Error</a>
-                                        </li>
-
-                                    </div>
-                                </ul>
-                            </li>
-
-
-
-                        </div>
+                <li class="nav-small-cap">--- FORMS, TABLE &amp; WIDGETS</li>
+                <li> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i
+                            class="ti-layout-media-right-alt"></i><span class="hide-menu">Forms</span></a>
+                    <ul aria-expanded="false" class="collapse">
+                        <li><a href="form-basic.html">Basic Forms</a></li>
+                        <li><a href="form-layout.html">Form Layouts</a></li>
+                        <li><a href="form-addons.html">Form Addons</a></li>
+                        <li><a href="form-material.html">Form Material</a></li>
+                        <li><a href="form-float-input.html">Floating Lable</a></li>
+                        <li><a href="form-pickers.html">Form Pickers</a></li>
+                        <li><a href="form-upload.html">File Upload</a></li>
+                        <li><a href="form-mask.html">Form Mask</a></li>
+                        <li><a href="form-validation.html">Form Validation</a></li>
+                        <li><a href="form-bootstrap-validation.html">Form Bootstrap Validation</a></li>
+                        <li><a href="form-dropzone.html">File Dropzone</a></li>
+                        <li><a href="form-icheck.html">Icheck control</a></li>
+                        <li><a href="form-img-cropper.html">Image Cropper</a></li>
+                        <li><a href="form-bootstrapwysihtml5.html">HTML5 Editor</a></li>
+                        <li><a href="form-typehead.html">Form Typehead</a></li>
+                        <li><a href="form-wizard.html">Form Wizard</a></li>
+                        <li><a href="form-xeditable.html">Xeditable Editor</a></li>
+                        <li><a href="form-summernote.html">Summernote Editor</a></li>
+                        <li><a href="form-tinymce.html">Tinymce Editor</a></li>
                     </ul>
                 </li>
-
-
-
-
-
-                <li class="has-sub">
-                    <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse"
-                        data-target="#documentation" aria-expanded="false" aria-controls="documentation">
-                        <i class="mdi mdi-book-open-page-variant"></i>
-                        <span class="nav-text">Documentation</span> <b class="caret"></b>
-                    </a>
-                    <ul class="collapse" id="documentation" data-parent="#sidebar-menu">
-                        <div class="sub-menu">
-
-
-
-                            <li class="section-title">
-                                Getting Started
-                            </li>
-
-
-
-
-
-
-                            <li>
-                                <a class="sidenav-item-link" href="introduction.html">
-                                    <span class="nav-text">Introduction</span>
-
-                                </a>
-                            </li>
-
-
-
-
-
-
-                            <li>
-                                <a class="sidenav-item-link" href="setup.html">
-                                    <span class="nav-text">Setup</span>
-
-                                </a>
-                            </li>
-
-
-
-
-
-
-                            <li>
-                                <a class="sidenav-item-link" href="customization.html">
-                                    <span class="nav-text">Customization</span>
-
-                                </a>
-                            </li>
-
-
-
-
-
-
-                            <li class="section-title">
-                                Layouts
-                            </li>
-
-
-
-
-
-                            <li class="has-sub">
-                                <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse"
-                                    data-target="#headers" aria-expanded="false" aria-controls="headers">
-                                    <span class="nav-text">Layout Headers</span> <b class="caret"></b>
-                                </a>
-                                <ul class="collapse" id="headers">
-                                    <div class="sub-menu">
-
-                                        <li>
-                                            <a href="header-fixed.html">Header Fixed</a>
-                                        </li>
-
-                                        <li>
-                                            <a href="header-static.html">Header Static</a>
-                                        </li>
-
-                                        <li>
-                                            <a href="header-light.html">Header Light</a>
-                                        </li>
-
-                                        <li>
-                                            <a href="header-dark.html">Header Dark</a>
-                                        </li>
-
-                                    </div>
-                                </ul>
-                            </li>
-
-
-
-
-                            <li class="has-sub">
-                                <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse"
-                                    data-target="#sidebar-navs" aria-expanded="false" aria-controls="sidebar-navs">
-                                    <span class="nav-text">layout Sidebars</span> <b class="caret"></b>
-                                </a>
-                                <ul class="collapse" id="sidebar-navs">
-                                    <div class="sub-menu">
-
-                                        <li>
-                                            <a href="sidebar-open.html">Sidebar Open</a>
-                                        </li>
-
-                                        <li>
-                                            <a href="sidebar-minimized.html">Sidebar Minimized</a>
-                                        </li>
-
-                                        <li>
-                                            <a href="sidebar-offcanvas.html">Sidebar Offcanvas</a>
-                                        </li>
-
-                                        <li>
-                                            <a href="sidebar-with-footer.html">Sidebar With Footer</a>
-                                        </li>
-
-                                        <li>
-                                            <a href="sidebar-without-footer.html">Sidebar Without Footer</a>
-                                        </li>
-
-                                        <li>
-                                            <a href="right-sidebar.html">Right Sidebar</a>
-                                        </li>
-
-                                    </div>
-                                </ul>
-                            </li>
-
-
-
-
-
-                            <li>
-                                <a class="sidenav-item-link" href="rtl.html">
-                                    <span class="nav-text">RTL Direction</span>
-
-                                </a>
-                            </li>
-
-
-
-
-                        </div>
+                <li> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i
+                            class="ti-layout-accordion-merged"></i><span class="hide-menu">Tables</span></a>
+                    <ul aria-expanded="false" class="collapse">
+                        <li><a href="table-basic.html">Basic Tables</a></li>
+                        <li><a href="table-layout.html">Table Layouts</a></li>
+                        <li><a href="table-data-table.html">Data Tables</a></li>
+                        <li><a href="table-footable.html">Footable</a></li>
+                        <li><a href="table-jsgrid.html">Js Grid Table</a></li>
+                        <li><a href="table-responsive.html">Responsive Table</a></li>
+                        <li><a href="table-bootstrap.html">Bootstrap Tables</a></li>
+                        <li><a href="table-editable-table.html">Editable Table</a></li>
                     </ul>
                 </li>
-
-
-
+                <li> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i
+                            class="ti-settings"></i><span class="hide-menu">Widgets</span></a>
+                    <ul aria-expanded="false" class="collapse">
+                        <li><a href="widget-data.html">Data Widgets</a></li>
+                        <li><a href="widget-apps.html">Apps Widgets</a></li>
+                        <li><a href="widget-charts.html">Charts Widgets</a></li>
+                    </ul>
+                </li>
+                <li class="nav-small-cap">--- EXTRA COMPONENTS</li>
+                <li> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i
+                            class="ti-gallery"></i><span class="hide-menu">Page Layout</span></a>
+                    <ul aria-expanded="false" class="collapse">
+                        <li><a href="layout-single-column.html">1 Column</a></li>
+                        <li><a href="layout-fix-header.html">Fix header</a></li>
+                        <li><a href="layout-fix-sidebar.html">Fix sidebar</a></li>
+                        <li><a href="layout-fix-header-sidebar.html">Fixe header &amp; Sidebar</a></li>
+                        <li><a href="layout-boxed.html">Boxed Layout</a></li>
+                        <li><a href="layout-logo-center.html">Logo in Center</a></li>
+                    </ul>
+                </li>
+                <li> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i
+                            class="ti-files"></i><span class="hide-menu">Sample Pages <span
+                                class="badge badge-pill badge-info">25</span></span></a>
+                    <ul aria-expanded="false" class="collapse">
+                        <li><a href="starter-kit.html">Starter Kit</a></li>
+                        <li><a href="pages-blank.html">Blank page</a></li>
+                        <li><a href="javascript:void(0)" class="has-arrow">Authentication <span
+                                    class="badge badge-pill badge-success pull-right">6</span></a>
+                            <ul aria-expanded="false" class="collapse">
+                                <li><a href="pages-login.html">Login 1</a></li>
+                                <li><a href="pages-login-2.html">Login 2</a></li>
+                                <li><a href="pages-register.html">Register</a></li>
+                                <li><a href="pages-register2.html">Register 2</a></li>
+                                <li><a href="pages-register3.html">Register 3</a></li>
+                                <li><a href="pages-lockscreen.html">Lockscreen</a></li>
+                                <li><a href="pages-recover-password.html">Recover password</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="pages-profile.html">Profile page</a></li>
+                        <li><a href="pages-animation.html">Animation</a></li>
+                        <li><a href="pages-fix-innersidebar.html">Sticky Left sidebar</a></li>
+                        <li><a href="pages-fix-inner-right-sidebar.html">Sticky Right sidebar</a></li>
+                        <li><a href="pages-invoice.html">Invoice</a></li>
+                        <li><a href="pages-treeview.html">Treeview</a></li>
+                        <li><a href="pages-utility-classes.html">Helper Classes</a></li>
+                        <li><a href="pages-search-result.html">Search result</a></li>
+                        <li><a href="pages-scroll.html">Scrollbar</a></li>
+                        <li><a href="pages-pricing.html">Pricing</a></li>
+                        <li><a href="pages-lightbox-popup.html">Lighbox popup</a></li>
+                        <li><a href="pages-gallery.html">Gallery</a></li>
+                        <li><a href="pages-faq.html">Faqs</a></li>
+                        <li><a href="javascript:void(0)" class="has-arrow">Error Pages</a>
+                            <ul aria-expanded="false" class="collapse">
+                                <li><a href="pages-error-400.html">400</a></li>
+                                <li><a href="pages-error-403.html">403</a></li>
+                                <li><a href="pages-error-404.html">404</a></li>
+                                <li><a href="pages-error-500.html">500</a></li>
+                                <li><a href="pages-error-503.html">503</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i
+                            class="ti-pie-chart"></i><span class="hide-menu">Charts</span></a>
+                    <ul aria-expanded="false" class="collapse">
+                        <li><a href="chart-morris.html">Morris Chart</a></li>
+                        <li><a href="chart-chartist.html">Chartis Chart</a></li>
+                        <li><a href="chart-echart.html">Echarts</a></li>
+                        <li><a href="chart-flot.html">Flot Chart</a></li>
+                        <li><a href="chart-knob.html">Knob Chart</a></li>
+                        <li><a href="chart-chart-js.html">Chartjs</a></li>
+                        <li><a href="chart-sparkline.html">Sparkline Chart</a></li>
+                        <li><a href="chart-extra-chart.html">Extra chart</a></li>
+                        <li><a href="chart-peity.html">Peity Charts</a></li>
+                    </ul>
+                </li>
+                <li> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i
+                            class="ti-light-bulb"></i><span class="hide-menu">Icons</span></a>
+                    <ul aria-expanded="false" class="collapse">
+                        <li><a href="icon-material.html">Material Icons</a></li>
+                        <li><a href="icon-fontawesome.html">Fontawesome Icons</a></li>
+                        <li><a href="icon-themify.html">Themify Icons</a></li>
+                        <li><a href="icon-weather.html">Weather Icons</a></li>
+                        <li><a href="icon-simple-lineicon.html">Simple Line icons</a></li>
+                        <li><a href="icon-flag.html">Flag Icons</a></li>
+                    </ul>
+                </li>
+                <li> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i
+                            class="ti-location-pin"></i><span class="hide-menu">Maps</span></a>
+                    <ul aria-expanded="false" class="collapse">
+                        <li><a href="map-google.html">Google Maps</a></li>
+                        <li><a href="map-vector.html">Vector Maps</a></li>
+                    </ul>
+                </li>
+                <li> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i
+                            class="ti-align-left"></i><span class="hide-menu">Multi level dd</span></a>
+                    <ul aria-expanded="false" class="collapse">
+                        <li><a href="javascript:void(0)">item 1.1</a></li>
+                        <li><a href="javascript:void(0)">item 1.2</a></li>
+                        <li> <a class="has-arrow" href="javascript:void(0)" aria-expanded="false">Menu 1.3</a>
+                            <ul aria-expanded="false" class="collapse">
+                                <li><a href="javascript:void(0)">item 1.3.1</a></li>
+                                <li><a href="javascript:void(0)">item 1.3.2</a></li>
+                                <li><a href="javascript:void(0)">item 1.3.3</a></li>
+                                <li><a href="javascript:void(0)">item 1.3.4</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="javascript:void(0)">item 1.4</a></li>
+                    </ul>
+                </li>
+                <li class="nav-small-cap">--- SUPPORT</li>
+                <li> <a class="waves-effect waves-dark" href="" aria-expanded="false"><i
+                            class="far fa-circle text-danger"></i><span class="hide-menu">Documentation</span></a></li>
+                <li> <a class="waves-effect waves-dark" href="pages-login.html" aria-expanded="false"><i
+                            class="far fa-circle text-success"></i><span class="hide-menu">Log Out</span></a></li>
+                <li> <a class="waves-effect waves-dark" href="pages-faq.html" aria-expanded="false"><i
+                            class="far fa-circle text-info"></i><span class="hide-menu">FAQs</span></a></li>
             </ul>
-
-        </div>
-
-
-        {{-- <div class="sidebar-footer">
-        <hr class="separator" />
-            <div class="sidebar-footer-content">
-                <h6 class="text-uppercase">
-                    Cpu Uses <span class="float-right">40%</span>
-                </h6>
-                <div class="progress progress-xs">
-                    <div class="progress-bar active" style="width: 40%;" role="progressbar"></div>
-                </div>
-                <h6 class="text-uppercase">
-                    Memory Uses <span class="float-right">65%</span>
-                </h6>
-                <div class="progress progress-xs">
-                    <div class="progress-bar progress-bar-warning" style="width: 65%;" role="progressbar"></div>
-                </div>
-            </div>
-        </div> --}}
+        </nav>
+        <!-- End Sidebar navigation -->
     </div>
+    <!-- End Sidebar scroll-->
 </aside>

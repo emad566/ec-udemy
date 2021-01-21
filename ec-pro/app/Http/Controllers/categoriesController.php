@@ -151,10 +151,13 @@ class categoriesController extends Controller
                     return back()->withInput($request->all())->with(['error' => 'Error: No Parent with ID '. $request->parent_id]);
 
             $node->update($request->except('_token'));
-            $node->parent_id = $request->parent_id;
-            $node->category_name = $request->category_name;
-            $node->save();
-            $node::fixTree();
+            if($node->id != $request->parent_id){
+                $node->parent_id = $request->parent_id;
+                $node->category_name = $request->category_name;
+                $node->save();
+                $node::fixTree();
+            }
+
 
             $notification = array(
                 'message' => 'Brand has Eddet sucessfully',

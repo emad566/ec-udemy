@@ -1,71 +1,191 @@
-@extends('dashboard.master-login')
+<!DOCTYPE html>
+<html lang="en">
 
-@section('content')
-    <div class="col-xl-5 col-lg-6 col-md-10">
-        <div class="card">
-            <div class="card-header bg-primary">
-                <div class="app-brand">
-                    <a href="https://www.emadeldeen.com" style="width:100%">
-                        <svg class="brand-icon" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid" width="30"
-                            height="33" viewBox="0 0 30 33">
-                            <g fill="none" fill-rule="evenodd">
-                                <path class="logo-fill-blue" fill="#7DBCFF" d="M0 4v25l8 4V0zM22 4v25l8 4V0z" />
-                                <path class="logo-fill-white" fill="#FFF" d="M11 4v25l8 4V0z" />
-                            </g>
-                        </svg>
-                        <span class="brand-name" style="width:100%">Emadeldeen Dashboard</span>
-                    </a>
-                </div>
-            </div>
-            <div class="card-body p-5">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('assets/dashboard/eliteadmin-theme/assets/images/favicon.png') }}">
+    <title>{{ trans('main.Sign In') }}</title>
 
-                <h4 class="text-dark mb-5">Sign In</h4>
-                @include('dashboard.includes.alerts.success')
-                @include('dashboard.includes.alerts.errors')
-                <form method="POST" action="{{ isset($guard) ? route($guard.'.login') : route('login') }}">
-                {{-- <form method="POST" action="{{ route('login') }}"> --}}
-                    @csrf
-                    <div class="row">
-                        <div class="form-group col-md-12 mb-4">
-                            <input type="email" name="email" class="form-control input-lg" id="email"
-                                aria-describedby="emailHelp" placeholder="Email" required value="{{ old('email') }}"
-                                required autofocus>
-                            @error('email')
-                                <span class="text-danger">{{ $message }}</span>
-                            @enderror
-                        </div>
-                        <div class="form-group col-md-12 ">
-                            <input type="password" name="password" class="form-control input-lg" id="password"
-                                placeholder="Password" required autocomplete="current-password">
-                            @error('password')
-                                <span class="text-danger">{{ $message }}</span>
-                            @enderror
-                        </div>
-                        <div class="col-md-12">
-                            <div class="d-flex my-2 justify-content-between">
-                                <div class="d-inline-block mr-3">
-                                    <label class="control control-checkbox">Remember me
-                                        <input type="checkbox" name="remember" />
-                                        <div class="control-indicator"></div>
-                                    </label>
+    <!-- page css -->
+    <link href="{{ asset('assets/dashboard/eliteadmin-theme/css/pages/login-register-lock.css') }}" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="{{ asset('assets/dashboard/eliteadmin-theme/css/style.min.css') }}" rel="stylesheet">
+    <!-- fontawesome-all -->
+    <link href="{{ asset('assets/dashboard/eliteadmin-theme/assets/icons/font-awesome/css/fontawesome-all.css') }}" rel="stylesheet">
 
-                                </div>
-                                @if (Route::has('password.request'))
-                                    <p><a class="text-blue" href="{{ route('password.request') }}">Forgot Your
-                                            Password?</a></p>
-                                @endif
-                            </div>
-                            <button type="submit" class="btn btn-lg btn-primary btn-block mb-4">Sign In</button>
-                            @if (Route::has('register'))
-                                <p>Don't have an account yet ?
-                                    <a class="text-blue" href="{{ route('register') }}">Register</a>
-                                </p>
-                            @endif
+    <!-- Cairo Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Cairo&display=swap" rel="stylesheet">
 
-                        </div>
-                    </div>
-                </form>
-            </div>
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js') }}"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js') }}"></script>
+<![endif]-->
+
+<style>
+    body {
+    --first-color:#36a265;
+    --second-color:#161f6a;
+    --third-color:#7d50de;
+    font-family: 'Cairo', Georgia, 'Times New Roman', Times, serif;
+    background-color:#f5f7fb
+    }
+
+    .h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+        font-family: 'Cairo', Georgia, 'Times New Roman', Times, serif;
+    }
+
+</style>
+</head>
+
+<body class="skin-default card-no-border">
+    <!-- ============================================================== -->
+    <!-- Preloader - style you can find in spinners.css -->
+    <!-- ============================================================== -->
+    <div class="preloader">
+        <div class="loader">
+            <div class="loader__figure"></div>
+            <p class="loader__label">Elite admin</p>
         </div>
     </div>
-@endsection
+    <!-- ============================================================== -->
+    <!-- Main wrapper - style you can find in pages.scss -->
+    <!-- ============================================================== -->
+    <section id="wrapper">
+        <div class="login-register" style="background-image:url({{ asset('assets/dashboard/eliteadmin-theme/assets/images/background/login-register.jpg') }});">
+            <div class="login-box card">
+                <div class="card-body">
+                    <form class="form-horizontal form-material" id="loginform" method="POST" action="{{ isset($guard) ? route($guard.'.login') : route('login') }}">
+                        @csrf
+                        <h3 class="text-center m-b-20">{{ trans('main.Sign In') }}</h3>
+
+                        @include('dashboard.includes.alerts.success')
+                        @include('dashboard.includes.alerts.errors')
+
+                        <div class="form-group ">
+                            <div class="col-xs-12">
+                                <input name="email" class="form-control" type="email" required="required"  placeholder="{{ trans('main.email') }}"
+                                    aria-describedby="emailHelp" placeholder="Email" required value="{{ old('email') }}" required autofocus
+                                >
+
+                                @error('email')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-xs-12">
+                                <input name="password" class="form-control" type="password" required="" placeholder="{{ trans('validation.attributes.password') }}" required autocomplete="current-password">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-12">
+                                <div class="d-flex no-block align-items-center">
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" id="customCheck1">
+                                        <label class="custom-control-label" for="customCheck1">{!! trans('main.Remember me') !!}</label>
+                                    </div>
+                                    <div class="ml-auto">
+                                        <a href="{{ route('password.request') }}" id="to-recover" class="text-muted"><i
+                                                class="fas fa-lock m-r-5"></i> {{ trans('main.Forgot pwd?') }}</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group text-center">
+                            <div class="col-xs-12 p-b-20">
+                                <button class="btn btn-block btn-lg btn-info btn-rounded" type="submit">{{ trans('main.Log In') }}</button>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-12 m-t-10 text-center">
+                                <div class="social">
+                                    <button class="btn  btn-facebook" data-toggle="tooltip" title="{{ trans('main.Login with Facebook') }}">
+                                        <i aria-hidden="true" class="fab fa-facebook-f"></i> </button>
+                                    <button class="btn btn-googleplus" data-toggle="tooltip" title="{{ trans('main.Login with Google') }}">
+                                        <i aria-hidden="true" class="fab fa-google-plus-g"></i> </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group m-b-0">
+                            <div class="col-sm-12 text-center">
+                                {{ trans('main.Don\'t have an account?') }}' <a href="{{ route('register') }}" class="text-info m-l-5"><b>{{ trans('main.Sign Up') }}</b></a>
+                            </div>
+                        </div>
+                    </form>
+                    <form method="POST"  class="form-horizontal" id="recoverform" action="{{ route('password.email') }}">
+                        @csrf
+                        <input type="hidden" name="token" value="{{ $request->route('token') }}">
+
+
+                        @include('dashboard.includes.alerts.success')
+                        @include('dashboard.includes.alerts.errors')
+
+                        <div class="form-group ">
+                            <div class="col-xs-12">
+                                <h3>{{ trans('main.Recover Password') }}</h3>
+                                <p class="text-muted">{{ trans('main.Enter your Email and instructions will be sent to you!') }} </p>
+                            </div>
+                        </div>
+                        <div class="form-group ">
+                            <div class="col-xs-12">
+                                <input name="email" class="form-control" type="email" value="{{ old('email') }}" required="" placeholder="{{ trans('main.Email') }}">
+
+                                @error('email')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="form-group text-center m-t-20">
+                            <div class="col-xs-12">
+                                <button class="btn btn-primary btn-lg btn-block text-uppercase waves-effect waves-light"
+                                    type="submit">{{ trans('main.Reset') }}</button>
+                            </div>
+                            </br>
+                            <div>
+                                <a class="btn btn-info btn-lg btn-block text-uppercase" class="col-xs-12" href="{{ route('login') }}">{{ trans('main.Do you have account?') }}</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================== -->
+    <!-- End Wrapper -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- All Jquery -->
+    <!-- ============================================================== -->
+    <script src="{{ asset('assets/dashboard/eliteadmin-theme/assets/node_modules/jquery/jquery-3.2.1.min.js') }}"></script>
+    <!-- Bootstrap tether Core JavaScript -->
+    <script src="{{ asset('assets/dashboard/eliteadmin-theme/assets/node_modules/popper/popper.min.js') }}"></script>
+    <script src="{{ asset('assets/dashboard/eliteadmin-theme/assets/node_modules/bootstrap/dist/js/bootstrap.min.js') }}"></script>
+    <!--Custom JavaScript -->
+    <script type="text/javascript">
+        $(function () {
+            $(".preloader").fadeOut();
+        });
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        });
+        // ==============================================================
+        // Login and Recover Password
+        // ==============================================================
+        $('#to-recover').on("click", function () {
+            $("#loginform").slideUp();
+            $("#recoverform").fadeIn();
+        });
+    </script>
+
+</body>
+
+</html>

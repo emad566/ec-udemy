@@ -1,4 +1,4 @@
-@extends('dashboard.master')
+@extends('dashboard.master', ['manualScripts'=>1])
 
 @section('content')
     <div class="card">

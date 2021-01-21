@@ -30,6 +30,7 @@ class FortifyServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        Fortify::ignoreRoutes();
         $this->app->when([
                     adminsController::class,
                     AttemptToAuthenticate::class,

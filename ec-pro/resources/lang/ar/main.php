@@ -591,16 +591,29 @@ return [
 
 
 
+
     //ec-pro Translations
+
+    //General Translations
+    'delete'=>'حذف',
+    'No Parent'=>'بدون أب',
+    'Edit'=>'تعديل',
+    'Delete'=>'حذف',
+    'Restore'=>'إستعادة',
+    'Permanently Delete'=>'حذف نهائي',
+    'Trash'=>'سلة المحذوفات',
+    'Created_at'=>'وقت الأنشاء',
+
+    //Coupons
     'fName'=>'الأسم الأول',
     'lName'=>'باقي الأسم',
     'CouponCode'=>'كود الخصم',
     'CouponDiscount'=>'نسبة الخصم',
-    'delete'=>'حذف',
+
     'Thenewsletters'=>'الأشتراكات',
-    ''=>'',
-    ''=>'',
-    ''=>'',
+
+
+    'Export data to Copy, CSV, Excel, PDF & Print'=>'Export data to Copy, CSV, Excel, PDF & Print',
     ''=>'',
     ''=>'',
     ''=>'',
@@ -639,4 +652,55 @@ return [
     ''=>'',
     ''=>'',
 
+    //Login Translations
+    'Remember me'=>'&nbsp; &nbsp; &nbsp; &nbsp; تذكرني ',
+    'Sign In'=>'تسجيل دخول',
+    'Forgot pwd?'=>'نسيت كلمة المرور؟',
+    'Log In'=>'تسجيل دخول',
+    'Don\'t have an account?'=>'ليس لديك حساب؟',
+    'Sign Up'=>'أنشأ حساب',
+    'Login with Facebook'=>'سجل دخول بالفيس بوك',
+    'Login with Google'=>'سجل دخول بجوجل',
+    'Recover Password'=>'إستعادة كلمة المرور',
+    'Enter your Email and instructions will be sent to you!'=>'أدخل بريدك و سيتم ارسال رسالة لك بالتعليمات!',
+    'Reset'=>'إرسال',
+    'Email'=>'البريد الإلكتروني',
+    'Do you have account?'=>'هل لديك حساب؟',
+    'Already have an account?'=>'لدي حساب بالفعل',
+    'Confirm Password'=>'تأكيد كلمة المرور',
+    'Password'=>'كلمة المرور',
+    'Thanks for signing up! Before getting started, could you verify your email address by clicking on the link we just emailed to you? If you didn\'t receive the email, we will gladly send you another.'=>'شكرا لتسجيلك! قبل البدء ، هل يمكنك التحقق من عنوان بريدك الإلكتروني من خلال النقر على الرابط الذي أرسلناه إليك عبر البريد الإلكتروني للتو؟ إذا لم تتلق البريد الإلكتروني ، فسنرسل لك رسالة أخرى بكل سرور.',
+    'A new verification link has been sent to the email address you provided during registration.'=>'تم إرسال رابط تحقق جديد إلى عنوان البريد الإلكتروني الذي قدمته أثناء التسجيل.',
+    'Logout'=>'تسجيل خروج',
+    'Resend Verification Email'=>'إعادة ارسال بريد التحقق',
+    'My Profile'=>'حسابي',
+    ''=>'',
+    ''=>'',
+
+    // Categories
+    'The Categories'=>'الأقسام',
+    'Show All'=>'عرض الكل',
+    'Add New'=>'أضف جديد',
+    'The Brands'=>'الماركات',
+    'The Coupons'=>'الكبونات',
+    'Add New Category'=>'أضف قسم جديد',
+    'Category Name'=>'إسم القسم',
+    'Slug'=>'اسم الرابط',
+    'Cetegory Description'=>'وصف القسم',
+    'Parent Category'=>'الأب',
+
+    ''=>'',
+    ''=>'',
+    ''=>'',
+    ''=>'',
+    ''=>'',
+    ''=>'',
+    ''=>'',
+    ''=>'',
+    ''=>'',
+    ''=>'',
+    ''=>'',
+    ''=>'',
+    ''=>'',
+    ''=>'',
 ];
