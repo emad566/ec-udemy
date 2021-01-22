@@ -5,7 +5,7 @@ use App\Http\Controllers\AdminController;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\DB;
-use Auth;
+// use Auth;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -116,7 +116,12 @@ Route::group([
         Route::get('newslettersUpdateIsActive/{newsletter}', 'newslettersController@updateIsActive')->name('newsletters.updateIsActive');
         //================ /newsletters =================//
 
-
+        //================ newsletters =================//
+        Route::resource('products', 'productsController');
+        Route::get('products/{product_id?}/delete', 'productsController@destroy')->name('products.destroy');
+        Route::post('products/delete', 'productsController@delete')->name('products.delete');
+        Route::get('productsUpdateIsActive/{product}', 'productsController@updateIsActive')->name('products.updateIsActive');
+        //================ /newsletters =================//
 
     });
     //================ /webGuard Routes =================//

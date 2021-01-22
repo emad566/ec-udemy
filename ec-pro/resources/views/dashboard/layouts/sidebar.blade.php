@@ -55,6 +55,24 @@
                 </li>
 
                 <li> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i
+                            class="icon-speedometer"></i><span class="hide-menu">{{ trans('main.The Newsletters') }} <span
+                                class="badge badge-pill badge-cyan ml-auto">{{ App\Models\Newsletter::all()->count() }}</span></span></a>
+                    <ul aria-expanded="false" class="collapse">
+                        <li><a href="{{ route('newsletters.index') }}">{{ trans('main.Show All') }}</a></li>
+                        <li><a href="{{ route('newsletters.create') }}">{{ trans('main.Add New') }}</a></li>
+                    </ul>
+                </li>
+
+                <li> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i
+                            class="icon-speedometer"></i><span class="hide-menu">{{ trans('main.The Products') }} <span
+                                class="badge badge-pill badge-cyan ml-auto">{{ App\Models\Product::all()->count() }}</span></span></a>
+                    <ul aria-expanded="false" class="collapse">
+                        <li><a href="{{ route('products.index') }}">{{ trans('main.Show All') }}</a></li>
+                        <li><a href="{{ route('products.create') }}">{{ trans('main.Add New') }}</a></li>
+                    </ul>
+                </li>
+
+                <li> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i
                             class="ti-layout-grid2"></i><span class="hide-menu">Apps</span></a>
                     <ul aria-expanded="false" class="collapse">
                         <li><a href="app-calendar.html">Calendar</a></li>

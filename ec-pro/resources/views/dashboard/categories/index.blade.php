@@ -48,7 +48,7 @@
                             <div class="form-group">
                                 <label for="parent_id"> Parent Category
                                 </label>
-                                <select name="parent_id" id="parent_id" class="select2 form-control">
+                                <select name="parent_id" id="parent_id" class=" form-control">
                                     <option value="">{{ trans('main.No Parent') }}</option>
                                     <?php
 

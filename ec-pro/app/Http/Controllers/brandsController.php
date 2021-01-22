@@ -175,8 +175,10 @@ class brandsController extends Controller
             if($brand_ids){
                 foreach($brand_ids as $brand_id){
                     $brand = Brand::find($brand_id);
-                    if($brand)
+                    if($brand){
+                        $brand->image_delete();
                         $brand->delete();
+                    }
                 }
             }
 

@@ -3,9 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule as ValidationRule;
 
-class RequestUpdatePass extends FormRequest
+class PostRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -14,7 +13,7 @@ class RequestUpdatePass extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        return false;
     }
 
     /**
@@ -25,7 +24,7 @@ class RequestUpdatePass extends FormRequest
     public function rules()
     {
         return [
-            'password'=> 'required|confirmed|min:6'
+            //
         ];
     }
 }

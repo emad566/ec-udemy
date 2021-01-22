@@ -2,7 +2,7 @@
 <html lang="en" dir="rtl">
 
 <head>
-    <?php $ver='1.3'; ?>
+    <?php $ver='1.0'; ?>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <!-- Tell the browser to be responsive to screen width -->
@@ -24,6 +24,16 @@
         <link href="{{ asset('assets/dashboard/eliteadmin-theme/assets/node_modules/toast-master/css/jquery.toast.css') }}" rel="stylesheet">
     @endisset
 
+    @isset($form)
+        <link href="{{ asset('assets/dashboard/eliteadmin-theme/assets/node_modules/bootstrap-datepicker/bootstrap-datepicker.min.css') }}" rel="stylesheet" type="text/css" />
+        <link href="{{ asset('assets/dashboard/eliteadmin-theme/assets/node_modules/select2/dist/css/select2.min.css') }}" rel="stylesheet" type="text/css" />
+        <link href="{{ asset('assets/dashboard/eliteadmin-theme/assets/node_modules/switchery/dist/switchery.min.css') }}" rel="stylesheet" />
+        <link href="{{ asset('assets/dashboard/eliteadmin-theme/assets/node_modules/bootstrap-select/bootstrap-select.min.css') }}" rel="stylesheet" />
+        <link href="{{ asset('assets/dashboard/eliteadmin-theme/assets/node_modules/bootstrap-tagsinput/dist/bootstrap-tagsinput.css') }}" rel="stylesheet" />
+        <link href="{{ asset('assets/dashboard/eliteadmin-theme/assets/node_modules/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.css') }}" rel="stylesheet" />
+        <link href="{{ asset('assets/dashboard/eliteadmin-theme/assets/node_modules/multiselect/css/multi-select.css') }}" rel="stylesheet" type="text/css" />
+    @endisset
+
     <!-- Font Aweseme -->
     <link href="{{ asset('assets/dashboard/eliteadmin-theme/assets/icons/font-awesome/css/fontawesome-all.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/dashboard/eliteadmin-theme/assets/icons/simple-line-icons/css/simple-line-icons.css') }}" rel="stylesheet">
@@ -39,6 +49,9 @@
         <!-- Dashboard 1 Page CSS -->
         <link href="{{ asset('assets/dashboard/eliteadmin-theme/css/pages/dashboard1.css') }}" rel="stylesheet">
     @endisset
+
+    <!-- toaster -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 
     <!-- Emad CSS -->
     @empty($emad_rtl)
@@ -220,7 +233,6 @@
 
 
     @isset($datatable)
-        <script src="{{ asset('assets/dashboard/eliteadmin-theme/js/dashboard1.js') }}"></script>
         <script src="{{ asset('assets/dashboard/eliteadmin-theme/assets/node_modules/toast-master/js/jquery.toast.js') }}"></script>
 
         <!-- dataTable Libs -->
@@ -295,9 +307,143 @@
         </script>
 
     @endisset <!-- /End isset DataTable -->
+
+
+    @isset($form)
+        <!-- ============================================================== -->
+        <!-- This page plugins -->
+        <!-- ============================================================== -->
+        <script src="{{ asset('assets/dashboard/eliteadmin-theme/assets/node_modules/switchery/dist/switchery.min.js') }}"></script>
+        <script src="{{ asset('assets/dashboard/eliteadmin-theme/assets/node_modules/select2/dist/js/select2.full.min.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('assets/dashboard/eliteadmin-theme/assets/node_modules/bootstrap-select/bootstrap-select.min.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('assets/dashboard/eliteadmin-theme/assets/node_modules/bootstrap-tagsinput/dist/bootstrap-tagsinput.min.js') }}"></script>
+        <script src="{{ asset('assets/dashboard/eliteadmin-theme/assets/node_modules/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('assets/dashboard/eliteadmin-theme/assets/node_modules/dff/dff.js') }}" type="text/javascript"></script>
+        <script type="text/javascript" src="{{ asset('assets/dashboard/eliteadmin-theme/assets/node_modules/multiselect/js/jquery.multi-select.js') }}"></script>
+        <script>
+            $(function () {
+                // Switchery
+                var elems = Array.prototype.slice.call(document.querySelectorAll('.js-switch'));
+                $('.js-switch').each(function () {
+                    new Switchery($(this)[0], $(this).data());
+                });
+                // For select 2
+                $(".select2").select2();
+                $('.selectpicker').selectpicker();
+                //Bootstrap-TouchSpin
+                $(".vertical-spin").TouchSpin({
+                    verticalbuttons: true
+                });
+                var vspinTrue = $(".vertical-spin").TouchSpin({
+                    verticalbuttons: true
+                });
+                if (vspinTrue) {
+                    $('.vertical-spin').prev('.bootstrap-touchspin-prefix').remove();
+                }
+                $("input[name='tch1']").TouchSpin({
+                    min: 0,
+                    max: 100,
+                    step: 0.1,
+                    decimals: 2,
+                    boostat: 5,
+                    maxboostedstep: 10,
+                    postfix: '%'
+                });
+                $("input[name='tch2']").TouchSpin({
+                    min: -1000000000,
+                    max: 1000000000,
+                    stepinterval: 50,
+                    maxboostedstep: 10000000,
+                    prefix: '$'
+                });
+                $("input[name='tch3']").TouchSpin();
+                $("input[name='tch3_22']").TouchSpin({
+                    initval: 40
+                });
+                $("input[name='tch5']").TouchSpin({
+                    prefix: "pre",
+                    postfix: "post"
+                });
+                // For multiselect
+                $('#pre-selected-options').multiSelect();
+                $('#optgroup').multiSelect({
+                    selectableOptgroup: true
+                });
+                $('#public-methods').multiSelect();
+                $('#select-all').click(function () {
+                    $('#public-methods').multiSelect('select_all');
+                    return false;
+                });
+                $('#deselect-all').click(function () {
+                    $('#public-methods').multiSelect('deselect_all');
+                    return false;
+                });
+                $('#refresh').on('click', function () {
+                    $('#public-methods').multiSelect('refresh');
+                    return false;
+                });
+                $('#add-option').on('click', function () {
+                    $('#public-methods').multiSelect('addOption', {
+                        value: 42,
+                        text: 'test 42',
+                        index: 0
+                    });
+                    return false;
+                });
+                $(".ajax").select2({
+                    ajax: {
+                        url: "https://api.github.com/search/repositories",
+                        dataType: 'json',
+                        delay: 250,
+                        data: function (params) {
+                            return {
+                                q: params.term, // search term
+                                page: params.page
+                            };
+                        },
+                        processResults: function (data, params) {
+                            // parse the results into the format expected by Select2
+                            // since we are using custom formatting functions we do not need to
+                            // alter the remote JSON data, except to indicate that infinite
+                            // scrolling can be used
+                            params.page = params.page || 1;
+                            return {
+                                results: data.items,
+                                pagination: {
+                                    more: (params.page * 30) < data.total_count
+                                }
+                            };
+                        },
+                        cache: true
+                    },
+                    escapeMarkup: function (markup) {
+                        return markup;
+                    }, // let our custom formatter work
+                    minimumInputLength: 1,
+                    //templateResult: formatRepo, // omitted for brevity, see the source of this page
+                    //templateSelection: formatRepoSelection // omitted for brevity, see the source of this page
+                });
+            });
+        </script>
+    @endisset <!-- /End isset Form -->
+
+    @isset($textEeditor)
+        <script src="https://cdn.tiny.cloud/1/6te8nxu8ugbz1akvw3cxy805yq5paofquv20a2vtc50ksxd2/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+        <script>
+            tinymce.init({
+              selector: '.textEeditor',
+              plugins: 'advlist autolink lists link image charmap print preview hr anchor pagebreak',
+              toolbar_mode: 'floating',
+           });
+        </script>
+    @endisset
+
     <!-- swal alert Files -->
     <script src="{{ asset('https://unpkg.com/sweetalert/dist/sweetalert.min.js')}}"></script>
     <!-- /swal alert Files -->
+
+    <!-- toaster -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
     <!-- manual Scripts -->
     @empty($manualScripts)
@@ -411,6 +557,17 @@
                         $('.boxItem').prop('checked', true)
                     }else{
                         $('.boxItem').prop('checked', false)
+                    }
+                });
+
+                //Prevent form submit on Enter
+                $("form").on("keypress", function (event) {
+                    console.log("aaya");
+                    var keyPressed = event.keyCode || event.which;
+                    if (keyPressed === 13) {
+                        // alert("You pressed the Enter key!!");
+                        event.preventDefault();
+                        return false;
                     }
                 });
 

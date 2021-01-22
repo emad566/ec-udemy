@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule as ValidationRule;
 
 class BrandRequest extends FormRequest
 {
@@ -26,6 +27,11 @@ class BrandRequest extends FormRequest
         return [
             'brand_name' => 'required|min:4',
             'image' => 'mimes:jpg,jpeg,png',
+            'brand_name' => ValidationRule::unique('brand_translations')
+                            ->ignore($this->id, 'brand_id')
+                            ->where(function ($query) {
+                                return $query->where('locale', app()->getLocale());
+                            }),
         ];
     }
 }

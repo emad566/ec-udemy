@@ -13,32 +13,34 @@ class CreateProductsTable extends Migration
      */
     public function up()
     {
-        Schema::create('products', function (Blueprint $table) {
+        Schema::create('products',
+        function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('user_id')->nullable();
-            $table->integer('category_id');
+            $table->integer('category_id')->nullable();
             $table->integer('brand_id')->nullable();
-            $table->string('product_name');
-
-            $table->string('product_code');
-            $table->string('product_quantity');
-            $table->text('product_details');
-            $table->string('product_color');
-            $table->string('product_size');
+            $table->string('product_code')->nullable();
+            $table->string('product_quantity')->nullable();
+            $table->string('product_color')->nullable();
+            $table->string('product_size')->nullable();
+            $table->double('product_weight', 8, 2)->nullable();
             $table->string('selling_price');
             $table->string('discount_price')->nullable();
             $table->string('video_link')->nullable();
-            $table->integer('main_slider')->nullable();
-            $table->integer('hot_deal')->nullable();
-            $table->integer('best_rated')->nullable();
-            $table->integer('mid_slider')->nullable();
-            $table->integer('hot_new')->nullable();
-            $table->integer('trend')->nullable();
+
+            $table->boolean('main_slider')->default(0);
+            $table->boolean('hot_deal')->default(0);
+            $table->boolean('best_rated')->default(0);
+            $table->boolean('mid_slider')->default(0);
+            $table->boolean('hot_new')->default(0);
+            $table->boolean('buyone_getone')->default(0);
+            $table->boolean('trend')->default(0);
+
             $table->string('image_one')->nullable();
             $table->string('image_two')->nullable();
             $table->string('image_three')->nullable();
-            $table->integer('status')->nullable();
             $table->boolean('is_active')->default(0);
+            $table->softDeletes();
             $table->timestamps();
         });
     }

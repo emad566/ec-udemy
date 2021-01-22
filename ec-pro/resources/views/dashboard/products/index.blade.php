@@ -7,11 +7,11 @@
     <!-- ============================================================== -->
     <div class="row page-titles">
         <div class="col-md-5 align-self-center">
-            <h4 class="text-themecolor">{{ trans('main.The Coupons') }}</h4>
+            <h4 class="text-themecolor">{{ trans('main.The Products') }}</h4>
         </div>
         <div class="col-md-7 align-self-center text-right">
             <div class="d-flex justify-content-end align-items-center">
-                <a href="{{ route('coupons.create') }}" class="btn btn-info d-none d-lg-block m-l-15"><i class="fa fa-plus-circle"></i> {{ trans('main.Add New') }}</a>
+                <a href="{{ route('products.create') }}" class="btn btn-info d-none d-lg-block m-l-15"><i class="fa fa-plus-circle"></i> {{ trans('main.Add New') }}</a>
             </div>
         </div>
     </div>
@@ -27,14 +27,14 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">{{ trans('main.The Coupons') }}</h4>
+                    <h4 class="card-title">{{ trans('main.The Products') }}</h4>
                     <h6 class="card-subtitle">{{ trans('main.Add New') }}</h6>
 
                     {{-- <h6 class="card-subtitle">{{ trans('main.Export data to Copy, CSV, Excel, PDF & Print') }}</h6> --}}
 
                     <form id='delete-formMulti' class='delete-formMulti'
                         method='post'
-                        action='{{ route('coupons.delete') }}'>
+                        action='{{ route('products.delete') }}'>
                         @csrf
                         <input type='hidden' name='_method' value='post'>
 
@@ -43,17 +43,18 @@
 
                         @php
                             $fields = [
-                                ['code', 'CouponCode'],
-                                ['discount', 'CouponDiscount'],
+                                ['image_one', 'Image One', 'img'],
+                                ['product_name', 'Product Name'],
+                                ['product_details', 'Product Details'],
                                 ];
                         @endphp
 
                         <div class="table-responsive m-t-40">
                             {!! indexTable([
-                                'objs'=>$coupons,
-                                'table'=>'coupons',
-                                'title'=>'code',
-                                'trans'=>'CouponCode',
+                                'objs'=>$products,
+                                'table'=>'products',
+                                'title'=>'product_name',
+                                'trans'=>'Product Name',
                                 'active'=>true,
                                 'indexEdit'=>true,
                                 'indexDel'=>true,

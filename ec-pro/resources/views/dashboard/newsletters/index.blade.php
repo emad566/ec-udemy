@@ -19,7 +19,7 @@
 
                         @php
                             $fields = [
-                                ['email', false, 'email'],
+                                ['email', 'email'],
                                 ];
                         @endphp
                         <div class="table-responsive">

@@ -7,8 +7,17 @@ use \Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 define('PAGINATION_COUNT', 10);
 function delete_img($img_path){
     if (file_exists($img_path)) {
-        unlink($img_path);
+        $path_info = pathinfo($img_path);
+        $mask = $path_info['dirname'] . '/' . $path_info['filename'] . '*.*';
+        array_map( "unlink", glob( $mask ) );
     }
+}
+
+function image_name($image, $image_name='', $size='')
+{
+    $size = ($size) ? '-'.$size : '';
+    $image_name = ($image_name) ? $image_name : hexdec(uniqid());
+    return $image_name . $size . '.' . $image->getClientOriginalExtension();
 }
 
 
@@ -34,11 +43,11 @@ function updateIsActive($obj, $table, $name='is_active', $field=''){
     $route = $table;
     $route .= ($name=='is_active')? '.updateIsActive' : '.update'.$name;
 
-    if(is_array($field) && array_key_exists(5,$field)){
-        $route = $field[5];
-    }
     if(is_array($field) && array_key_exists(4,$field)){
-        $checked = ($obj->$name == $field[4])? 'checked' : '';
+        $route = $field[4];
+    }
+    if(is_array($field) && array_key_exists(3,$field)){
+        $checked = ($obj->$name == $field[3])? 'checked' : '';
     }
 
     $html = '';
@@ -121,7 +130,7 @@ function indexTableHead($fields, $type='thead', $active=true, $action=true, $ind
         $html .= '<th>'. trans('main.Actions') .'</th>';
 
     foreach($fields as $field){
-        $html .= '<td>'. trans('main.'.$field[2]) .'</td>';
+        $html .= '<td>'. trans('main.'.$field[1]) .'</td>';
     }
 
     if($active)
@@ -148,10 +157,12 @@ function indexTableTds($obj, $fields, $table, $indexDel)
             if(array_key_exists($obj->id,$fieldArr)){
                 $html .= $fieldArr[$obj->id];
             }
-        }elseif(array_key_exists(3,$field) && $field[3] == 'check') {
+        }elseif(array_key_exists(2,$field) && $field[2] == 'check') {
             $html .= updateIsActive($obj, $table, $field[0], $field);
-        }elseif(array_key_exists(3,$field) && $field[3] == 'trans') {
+        }elseif(array_key_exists(2,$field) && $field[2] == 'trans') {
             $html .= trans('main.'.$obj->$attr);
+        }elseif(array_key_exists(2,$field) && $field[2] == 'img') {
+            $html .= '<img src="'.getSrc($obj, $field[0]).'" class="tableImage img-circle '.$field[0].'"/>';
         }else{
             if($field[1])
                 $html .= $obj->$attr;
@@ -413,13 +424,14 @@ function input($data){
     if($fontclass) $fontclass = '<i class="inputI '.$fontclass.'"></i>';
 
     $value = ($edit)? $edit->$name : '';
-
+    $value = (old($name))? old($name) : '';
+    $astrik = ($required) ?  '<span class="astrik">*<span>' : '';
 
     $html = '
     <div class="col-md-'.$cols.'">
         <div class="form-group">';
             if($label){
-            $html .= '<label for="'.$name.'"> '.$fontclass.' '.trans('main.'.$trans).'</label>
+            $html .= '<label for="'.$name.'"> '.$fontclass.' '.trans('main.'.$trans).$astrik.'</label>
             ';
             }
 
@@ -450,12 +462,15 @@ function textarea($data){
     if(!isset($attr)) $attr = "";
     if(!isset($class)) $class = "";
 
-    $value = ($edit)? $edit->name:'';
+    $value = ($edit)? $edit->$name:'';
+    $value = (old($name))? old($name) : '';
+
+    $astrik = ($required) ?  '<span class="astrik">*<span>' : '';
 
     $html = '
     <div class="col-md-'.$cols.' '.$name.'">
         <div class="form-group">
-            <label for="'.$name.'">'.trans('main.'.$trans).'</label>
+            <label for="'.$name.'">'.trans('main.'.$trans).$astrik.'</label>
             <textarea maxlength='.$maxlength.' '.$required.' id="'.$name.'"
                 class="form-control '.$name.' '.$class.'" '.$attr.' placeholder="'.trans('main.'.$trans).'"
                 name="'.$name.'">'.$value.'</textarea>
@@ -712,18 +727,20 @@ function select($data){
     if(!isset($cols)) $cols = 6;
     if(!isset($required)) $required = "";
 
+    $astrik = ($required) ?  '<span class="astrik">*<span>' : '';
+
     $html = '
     <div class="col-md-'.$cols.' '.$name.'">
         ';
-        if(($rows && is_object($rows) && $rows->count() > 0) || is_array($rows)){
+        if(($rows && is_object($rows)) || is_array($rows)){
      $html .= '<div class="form-group">';
             if($label){
-             $html .=' <label for="'.$name.'">'.trans('main.'.$trans).'</label>';
+             $html .=' <label for="'.$name.'">'.trans('main.'.$trans).$astrik.'</label>';
             }
              $html .='  <select '.$required.' id="'.$name.'" class="form-control '.$name.'" name="'.$name.'">
 
 
-                <option value="">'.trans('main.'.$trans).'</option>
+                <option value="">'.trans('main.'.$trans).$astrik.'</option>
     ';      if(is_array($rows)){
                 foreach ($rows as $row){
                     $html .='<option value="'.$row.'"';
@@ -746,7 +763,7 @@ function select($data){
                         // return $edit;
                         $html .='selected';
                     }
-                    $html .= '>'.$row->frkName .'</option>
+                    $html .= '>'.$row->$frkName .'</option>
                     ';
                 }
             }
