@@ -130,7 +130,7 @@ function indexTableHead($fields, $type='thead', $active=true, $action=true, $ind
         $html .= '<th>'. trans('main.Actions') .'</th>';
 
     foreach($fields as $field){
-        $html .= '<td>'. trans('main.'.$field[1]) .'</td>';
+        $html .= '<td class="'.$field[1].'">'. trans('main.'.$field[1]) .'</td>';
     }
 
     if($active)
@@ -150,7 +150,7 @@ function indexTableTds($obj, $fields, $table, $indexDel)
     $html = '';
     foreach($fields as $field){
         $attr = $field[0];
-        $html .= '<td>';
+        $html .= '<td class="'.$field[0].'">';
 
         if(is_array($field[0])){
             $fieldArr = $field[0];
@@ -423,8 +423,11 @@ function input($data){
     if(!isset($fontclass)) $fontclass = "";
     if($fontclass) $fontclass = '<i class="inputI '.$fontclass.'"></i>';
 
-    $value = ($edit)? $edit->$name : '';
-    $value = (old($name))? old($name) : '';
+    if(old($name)){
+        $value = old($name);
+    }else{
+        $value = ($edit)? $edit->$name : '';
+    }
     $astrik = ($required) ?  '<span class="astrik">*<span>' : '';
 
     $html = '
@@ -462,8 +465,11 @@ function textarea($data){
     if(!isset($attr)) $attr = "";
     if(!isset($class)) $class = "";
 
-    $value = ($edit)? $edit->$name:'';
-    $value = (old($name))? old($name) : '';
+    if(old($name)){
+        $value = old($name);
+    }else{
+        $value = ($edit)? $edit->$name : '';
+    }
 
     $astrik = ($required) ?  '<span class="astrik">*<span>' : '';
 

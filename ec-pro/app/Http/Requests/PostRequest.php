@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule as ValidationRule;
 
 class PostRequest extends FormRequest
 {
@@ -13,7 +14,7 @@ class PostRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +25,15 @@ class PostRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'category_id' => 'nullable|numeric',
+            'image' => 'image|mimes:jpg,png,jpeg,gif,svg|min:0|max:1024',
+            'is_active' => 'nullable|numeric',
+
+            'post_title' => ValidationRule::unique('post_translations')
+                    ->ignore($this->id, 'post_id')
+                    ->where(function ($query) {
+                        return $query->where('locale', app()->getLocale());
+                    }),
         ];
     }
 }

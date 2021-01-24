@@ -2,17 +2,26 @@
 <html lang="en">
 <head>
 <title>{{ $title }}</title>
+<?php $ver='1.27'; ?>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="description" content="OneTech shop project">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<?php $dir = (app()->getLocale()== 'ar')? 'rtl' : '' ; ?>
+
+@if($dir)
+    {{-- <link rel="stylesheet" type="text/css" href="{{ asset('assets/site/styles/bootstrap4/bootstrap.min.css') }}"> --}}
+
+    <link rel="stylesheet" href="https://cdn.rtlcss.com/bootstrap/v4.0.0/css/bootstrap.min.css"/>
+@else
 <link rel="stylesheet" type="text/css" href="{{ asset('assets/site/styles/bootstrap4/bootstrap.min.css') }}">
+@endif
 <link href="{{ asset('assets/site/plugins/fontawesome-free-5.0.1/css/fontawesome-all.css') }}" rel="stylesheet" type="text/css">
 <link rel="stylesheet" type="text/css" href="{{ asset('assets/site/plugins/OwlCarousel2-2.2.1/owl.carousel.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ asset('assets/site/plugins/OwlCarousel2-2.2.1/owl.theme.default.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ asset('assets/site/plugins/OwlCarousel2-2.2.1/animate.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ asset('assets/site/plugins/slick-1.8.0/slick.css') }}">
-<link rel="stylesheet" type="text/css" href="{{ asset('assets/site/styles/main_styles.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ asset('assets/site/styles/main_styles'.$dir.'.css?v='.$ver) }}">
 <link rel="stylesheet" type="text/css" href="{{ asset('assets/site/styles/responsive.css') }}">
 
 <!-- Toaster -->
@@ -23,13 +32,13 @@
 
 </head>
 
-<body>
+<body >
 
 <div class="super_container">
 
 	<!-- Header -->
 
-	<header class="header">
+	<header class="header" dir="{{ $dir }}">
 
 		<!-- Top Bar -->
 		@include('site.layouts.top_bar')
@@ -43,18 +52,19 @@
 		<!-- Menu -->
         @include('site.layouts.page_menu')
 
+        <!-- Banner -->
+        @include('site.layouts.banner')
+
+        <!-- Characteristics -->
+        @include('site.layouts.characteristics')
 	</header>
 
-	<!-- Banner -->
-    @include('site.layouts.banner')
 
 
-	<!-- Characteristics -->
-    @include('site.layouts.characteristics')
 
 	<!-- Deals of the week -->
 
-	<div class="deals_featured">
+	<div class="deals_featured" dir="{{ $dir }}">
 		<div class="container">
 			<div class="row">
 				<div class="col d-flex flex-lg-row flex-column align-items-center justify-content-start">
@@ -68,51 +78,65 @@
 				</div>
 			</div>
 		</div>
-	</div>
-
-	<!-- Popular Categories -->
-    @include('site.layouts.popular_categories')
+    </div>
 
 
-	<!-- Banner -->
-    @include('site.layouts.banner_2')
 
-	<!-- Hot New Arrivals -->
+
+
+    <div dir="{{ $dir }}">
+        <!-- Popular Categories -->
+        @include('site.layouts.popular_categories')
+        <!-- Banner -->
+        @include('site.layouts.banner_2')
+    </div>
+
+    <!-- Hot New Arrivals -->
     @include('site.layouts.new_arrivals')
 
-	<!-- Best Sellers -->
+
+    <!-- Best Sellers -->
     @include('site.layouts.best_sellers')
 
-	<!-- Adverts -->
+    <!-- Adverts -->
     @include('site.layouts.adverts')
 
-	<!-- Trends -->
+    <!-- Trends -->
     @include('site.layouts.trends')
 
 
-	<!-- Reviews -->
+    <!-- Reviews -->
     @include('site.layouts.reviews')
 
-	<!-- Recently Viewed -->
+    <!-- Recently Viewed -->
     @include('site.layouts.viewed')
 
-	<!-- Brands -->
+    <!-- Brands -->
     @include('site.layouts.brands')
 
-    <!-- Newsletter -->
-    @include('site.layouts.newsletter')
 
-	<!-- Footer -->
-    @include('site.layouts.footer')
+    <div dir="{{ $dir }}">
+        <!-- Newsletter -->
+        @include('site.layouts.newsletter')
+        <!-- Footer -->
+        @include('site.layouts.footer')
 
-	<!-- Copyright -->
-    @include('site.layouts.copyright')
-
+        <!-- Copyright -->
+        @include('site.layouts.copyright')
+    </div>
 </div>
 
 <script src="{{ asset('assets/site/js/jquery-3.3.1.min.js') }}"></script>
 <script src="{{ asset('assets/site/styles/bootstrap4/popper.js') }}"></script>
-<script src="{{ asset('assets/site/styles/bootstrap4/bootstrap.min.js') }}"></script>
+
+@if($dir)
+    {{-- <script src="{{ asset('assets/site/styles/bootstrap4/bootstrap.min.js') }}"></script> --}}
+
+    <script src="https://cdn.rtlcss.com/bootstrap/v4.0.0/js/bootstrap.min.js"></script>
+@else
+    <script src="{{ asset('assets/site/styles/bootstrap4/bootstrap.min.js') }}"></script>
+@endif
+
 <script src="{{ asset('assets/site/plugins/greensock/TweenMax.min.js') }}"></script>
 <script src="{{ asset('assets/site/plugins/greensock/TimelineMax.min.js') }}"></script>
 <script src="{{ asset('assets/site/plugins/scrollmagic/ScrollMagic.min.js') }}"></script>
@@ -121,7 +145,7 @@
 <script src="{{ asset('assets/site/plugins/OwlCarousel2-2.2.1/owl.carousel.js') }}"></script>
 <script src="{{ asset('assets/site/plugins/slick-1.8.0/slick.js') }}"></script>
 <script src="{{ asset('assets/site/plugins/easing/easing.js') }}"></script>
-<script src="{{ asset('assets/site/js/custom.js') }}"></script>
+<script src="{{ asset('assets/site/js/custom'.$dir.'.js?v='.$ver) }}"></script>
 
 <!-- toaster js-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>

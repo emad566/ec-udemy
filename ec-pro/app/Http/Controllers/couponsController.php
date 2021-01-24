@@ -140,7 +140,7 @@ class couponsController extends Controller
             if (!$coupon)
                 return back()->with(['error' => 'Error: No coupon with this ID ']);
 
-            // $coupon->delete();
+            $coupon->delete();
             DB::commit();
             $notification = array(
                 'message' => trans('main.DeleteSuccess'),

@@ -45,7 +45,6 @@
                             $fields = [
                                 ['image_one', 'Image One', 'img'],
                                 ['product_name', 'Product Name'],
-                                ['product_details', 'Product Details'],
                                 ];
                         @endphp
 

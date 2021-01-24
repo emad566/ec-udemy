@@ -79,9 +79,9 @@ class categoriesController extends Controller
             }
 
             $notification = array(
-                'message' => 'Brand has added sucessfully',
+                'message' => trans('main.SavedSuccessfully'),
                 'alert-type' => 'success',
-                'success' => 'ٍSave Success'
+                'success' => trans('main.SavedSuccessfully'),
             );
 
             DB::commit();
@@ -160,12 +160,18 @@ class categoriesController extends Controller
 
 
             $notification = array(
-                'message' => 'Brand has Eddet sucessfully',
+                'message' => trans('main.UpdateSuccess'),
                 'alert-type' => 'success',
-                'success' => 'ٍSave Success'
+                'success' => trans('main.UpdateSuccess'),
             );
 
             DB::commit();
+
+            $notification = array(
+                'message' => trans('main.UpdateSuccess'),
+                'alert-type' => 'success',
+                'success' => trans('main.UpdateSuccess'),
+            );
 
             return redirect()->route('categories.edit', $node->id)->with($notification);
 
@@ -190,11 +196,13 @@ class categoriesController extends Controller
                 return back()->withInput($request->all())->with(['error' => 'Error: No Category with this ID ']);
 
             $category->delete();
+
             $notification = array(
-                'message' => 'Brand has Eddet sucessfully',
+                'message' => trans('main.DeleteSuccess'),
                 'alert-type' => 'success',
-                'success' => 'ٍDelete Success'
+                'success' => trans('main.DeleteSuccess'),
             );
+
             return redirect()->route('categories.index')->with($notification);
 
         // } catch (\Exception $ex) {
@@ -215,7 +223,13 @@ class categoriesController extends Controller
                 }
             }
 
-            return redirect()->route('categories.index')->with(['success' => 'Delete Success']);
+            $notification = array(
+                'message' => trans('main.DeleteSuccess'),
+                'alert-type' => 'success',
+                'success' => trans('main.DeleteSuccess'),
+            );
+
+            return redirect()->route('categories.index')->with($notification);
 
         // } catch (\Exception $ex) {
         //     DB::rollback();
@@ -230,7 +244,13 @@ class categoriesController extends Controller
             if($category)
                 $category->forceDelete();
 
-            return redirect()->route('categories.index')->with(['success' => 'P Delete Success']);
+            $notification = array(
+                'message' => trans('main.DeleteSuccess'),
+                'alert-type' => 'success',
+                'success' => trans('main.DeleteSuccess'),
+            );
+
+            return redirect()->route('categories.index')->with($notification);
 
         // } catch (\Exception $ex) {
         //     DB::rollback();
@@ -250,7 +270,14 @@ class categoriesController extends Controller
                 }
             }
 
-            return redirect()->route('categories.index')->with(['success' => 'M P Delete Success']);
+            $notification = array(
+                'message' => trans('main.DeleteSuccess'),
+                'alert-type' => 'success',
+                'success' => trans('main.DeleteSuccess'),
+            );
+
+
+            return redirect()->route('categories.index')->with($notification);
 
         // } catch (\Exception $ex) {
         //     DB::rollback();

@@ -484,7 +484,7 @@
                         <div class="product_content">
                             <div class="product_price discount">$225<span>$300</span></div>
                             <div class="product_name">
-                                <div><a href="product.html">Huawei MediaPad...</a></div>
+                                <div><a href="product.html">on sale...</a></div>
                             </div>
                             <div class="product_extras">
                                 <div class="product_color">
@@ -945,7 +945,7 @@
                         <div class="product_content">
                             <div class="product_price discount">$225<span>$300</span></div>
                             <div class="product_name">
-                                <div><a href="product.html">Huawei MediaPad...</a></div>
+                                <div><a href="product.html">Best Related...</a></div>
                             </div>
                             <div class="product_extras">
                                 <div class="product_color">

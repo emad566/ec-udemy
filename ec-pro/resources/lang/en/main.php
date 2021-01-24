@@ -1,4 +1,4 @@
-<?php 
+<?php
 return [
 
     /*====================================
@@ -34,14 +34,14 @@ return [
     'Cancel'=>'Cancel',
     'Save'=>'Save',
     ''=>'',
-    
+
     /*====================================
     /admin/countries/edit
     countries.edit
     =====================================*/
     'CountryEditing'=>'Country Editing',
     ''=>'',
-    
+
     /*====================================
     /admin/langs/create
     langs.create
@@ -56,14 +56,14 @@ return [
     'RTL'=>'RTL',
     'LTR'=>'LTR',
     ''=>'',
-    
+
     /*====================================
     /admin/langs/create
     langs.edit
     =====================================*/
     'LangaugeEditing'=>'Langauge Editing',
     ''=>'',
-    
+
     /*====================================
     /admin/langs/create
     langs.edit
@@ -72,7 +72,7 @@ return [
     'AllLangauges'=>'All Langauges',
     'DoYouWantToDeleteThisItem'=>'DoYouWantToDeleteThisItem',
     ''=>'',
-    
+
     /*====================================
     /admin/langs/create
     settings.edit
@@ -100,7 +100,7 @@ return [
     'PlsSelectDeafaultWeblangauge'=>'Pls Select Deafault Web langauge',
     ''=>'',
     ''=>'',
-    
+
     /*====================================
     /admin/countries/index
     countries.index
@@ -116,7 +116,7 @@ return [
     =====================================*/
     'Mwjood'=>'Mwjood',
     'AllRightsReserved'=>'All Rights Reserved',
-    
+
     /*====================================
     admin.include.header
     =====================================*/
@@ -124,7 +124,7 @@ return [
     'Log Out'=>'Log Out',
     'ReadAllMessages'=>'Read All Messages',
     ''=>'',
-    
+
     /*====================================
     admin.include.sideNav
     =====================================*/
@@ -148,7 +148,7 @@ return [
     'logInToCpanel'=>'log In To Cpanel',
     ''=>'',
     ''=>'',
-    
+
     /*====================================
     admin.cities.index
     =====================================*/
@@ -177,7 +177,7 @@ return [
     ''=>'',
     ''=>'',
     ''=>'',
-    
+
     /*====================================
     admin.packages
     =====================================*/
@@ -190,7 +190,7 @@ return [
     'offer_qty' => 'Offer_qty',
     'period' => 'Period',
     'photo_galary' => 'Photo_galary',
-    'priority' => 'Priority',  
+    'priority' => 'Priority',
 
     'company_logo' => 'Company_logo',
     'company_pdf' => 'Company_pdf',
@@ -242,7 +242,7 @@ return [
 
     'mailNotFound'=>'No Account with this email.',
     'resetPassConfirm'=>'Password has been reset, Pls log in with the new password.',
-    
+
     'login'=>'Log In',
     'Newpartner'=>'New partner',
     'Youarebrowsing'=>'You Browsing',
@@ -437,7 +437,7 @@ return [
     'roleuser'=>'User',
     'roleadmin'=>'Admin',
     'RolesEdit'=>'Roles',
-    'oldpassword'=>'Old Password',  
+    'oldpassword'=>'Old Password',
     'newpassword'=>'New Password',
     'password_confirmation'=>'Password Confirmation',
     'oldpasserror'=>'Old Password Error',
@@ -475,6 +475,160 @@ return [
     ''=>'',
     ''=>'',
 
+    //ec-pro Translations
 
-    
+    //General Translations
+    'delete'=>'delete',
+    'No Parent'=>'No Parent',
+    'Edit'=>'Edit',
+    'Delete'=>'Delete',
+    'Restore'=>'Restore',
+    'Permanently Delete'=>'Permanently Delete',
+    'Trash'=>'Trash',
+    'Created_at'=>'Created_at',
+
+    //Coupons
+    'fName'=>'fName',
+    'lName'=>'lName',
+    'CouponCode'=>'CouponCode',
+    'CouponDiscount'=>'CouponDiscount',
+
+    'The Newsletters'=>'The Newsletters',
+
+
+    'Export data to Copy, CSV, Excel, PDF & Print'=>'Export data to Copy, CSV, Excel, PDF & Print',
+    ''=>'',
+    ''=>'',
+    ''=>'',
+    ''=>'',
+    ''=>'',
+    ''=>'',
+    ''=>'',
+    ''=>'',
+    ''=>'',
+    ''=>'',
+    ''=>'',
+    ''=>'',
+    ''=>'',
+    ''=>'',
+    ''=>'',
+    ''=>'',
+    ''=>'',
+    ''=>'',
+    ''=>'',
+    ''=>'',
+    ''=>'',
+    ''=>'',
+    ''=>'',
+    ''=>'',
+    ''=>'',
+    ''=>'',
+    ''=>'',
+    ''=>'',
+    ''=>'',
+    ''=>'',
+    ''=>'',
+    ''=>'',
+    ''=>'',
+    ''=>'',
+    ''=>'',
+    ''=>'',
+    ''=>'',
+
+    //Login Translations
+    'Remember me'=>'Remember me',
+    'Sign In'=>'Sign In',
+    'Forgot pwd?'=>'Forgot pwd?',
+    'Log In'=>'Log In',
+    'Don\'t have an account?'=>'Don\'t have an account?',
+    'Sign Up'=>'Sign Up',
+    'Login with Facebook'=>'Login with Facebook',
+    'Login with Google'=>'Login with Google',
+    'Recover Password'=>'Recover Password',
+    'Enter your Email and instructions will be sent to you!'=>'Enter your Email and instructions will be sent to you!',
+    'Reset'=>'Reset',
+    'Email'=>'Email',
+    'Do you have account?'=>'Do you have account?',
+    'Already have an account?'=>'Already have an account?',
+    'Confirm Password'=>'Confirm Password',
+    'Password'=>'Password',
+    'Thanks for signing up! Before getting started, could you verify your email address by clicking on the link we just emailed to you? If you didn\'t receive the email, we will gladly send you another.'=>'Thanks for signing up! Before getting started, could you verify your email address by clicking on the link we just emailed to you? If you didn\'t receive the email, we will gladly send you another.',
+    'A new verification link has been sent to the email address you provided during registration.'=>'A new verification link has been sent to the email address you provided during registration.',
+    'Logout'=>'Logout',
+    'Resend Verification Email'=>'Resend Verification Email',
+    'My Profile'=>'My Profile',
+    ''=>'',
+    ''=>'',
+
+    // Categories
+    'The Categories'=>'The Categories',
+    'Show All'=>'Show All',
+    'Add New'=>'Add New',
+    'The Brands'=>'The Brands',
+    'The Coupons'=>'The Coupons',
+    'Add New Category'=>'Add New Category',
+    'Category Name'=>'Category Name',
+    'Slug'=>'Slug',
+    'Cetegory Description'=>'Cetegory Description',
+    'Parent Category'=>'Parent Category',
+
+    //The Brands
+    'Brand Name'=>'Brand Name',
+    ''=>'',
+    ''=>'',
+    ''=>'',
+    ''=>'',
+    ''=>'',
+    ''=>'',
+    ''=>'',
+    ''=>'',
+    ''=>'',
+    ''=>'',
+
+
+    // The Products
+    'The Products'=>'The Products',
+    'Product Name'=>'Product Name',
+    'Product Details'=>'Product Details',
+    'Product Code'=>'Product Code',
+    'Quantity'=>'Quantity',
+    'Discount Price'=>'Discount Price',
+    'The Brand'=>'The Brand',
+    'The Category'=>'The Category',
+    'Product Size'=>'Product Size',
+    'Product Weight'=>'Product Weight',
+    'Product Colors'=>'Product Colors',
+    'Selling Price'=>'Selling Price',
+    'Video Link'=>'Video Link',
+    'Image One ( Main Thumbnali)'=>'Image One ( Main Thumbnali)',
+    'Image One'=>'Image One',
+    'Image Two'=>'Image Two',
+    'Image Three'=>'Image Three',
+    'Main Slider'=>'Main Slider',
+    'Hot Deal'=>'Hot Deal',
+    'Best Rated'=>'Best Rated',
+    'Trend Product'=>'Trend Product',
+    'Mid Slider'=>'Mid Slider',
+    'Hot New'=>'Hot New',
+    'Buyone Getone'=>'Buyone Getone',
+    'Product Quantity'=>'Product Quantity',
+    ''=>'',
+    ''=>'',
+    ''=>'',
+    ''=>'',
+    ''=>'',
+    ''=>'',
+
+
+    // THe POSTS
+    'Post Title'=>'Post Title',
+    'Post Details'=>'Post Details',
+    'Post Tags'=>'Post Tags',
+    'Image'=>'Image',
+    'The Blog'=>'The Blog',
+    ''=>'',
+    ''=>'',
+    ''=>'',
+
+
 ];

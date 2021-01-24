@@ -37,7 +37,7 @@
                         <input type="hidden" name="_method" value="POST">
 
                         <div class="row">
-                            {!! input(['errors'=>$errors, 'type'=>'text', 'name'=>'product_name', 'trans'=>'Product Name', 'maxlength'=>100, 'required'=>'required', 'cols'=>6]) !!}
+                            {!! input(['errors'=>$errors, 'type'=>'text', 'name'=>'product_name', 'trans'=>'Product Name', 'maxlength'=>191, 'required'=>'required', 'cols'=>6]) !!}
                             {!! input(['errors'=>$errors, 'type'=>'text', 'name'=>'product_code', 'trans'=>'Product Code', 'maxlength'=>20, 'required'=>'required', 'cols'=>6]) !!}
                         </div>
 
@@ -46,12 +46,13 @@
                             {!! input(['errors'=>$errors, 'type'=>'number', 'name'=>'selling_price', 'trans'=>'Selling Price', 'maxlength'=>8, 'required'=>'required', 'cols'=>6, 'attr'=>'min="0" value="0" max="999999" step="0.01"']) !!}
                         </div>
 
+
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="category_id"> {{ trans('main.The Category') }}
                                     </label>
-                                    <select name="category_id" id="category_id" class="form-control">
+                                    <select name="category_id[]" id="category_id" class="form-control select2 select2-hidden-accessible" data-placeholder="Choose Browser" multiple="" tabindex="-1" aria-hidden="true">
                                         <option value="">{{ trans('main.The Category') }}</option>
                                         <?php
 

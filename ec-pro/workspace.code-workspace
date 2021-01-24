@@ -7,5 +7,7 @@
 			"path": "..\\Laravel-Notes"
 		}
 	],
-	"settings": {}
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "ec-pro"
+	}
 }

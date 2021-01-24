@@ -148,3 +148,15 @@ Route::get('/email/verify', function () {
 config\fortify.php
 enable 
 Features::emailVerification(),
+
+---------------------------------------------------
+***
+Finshed product but you must fix choose product categories at create or edit product 
+(as HTML and in productsController),
+
+***
+also you must fix edit category.
+
+Next Video is (After Fix  previous notes):  Dynamic category,subcategory Part 1
+
+

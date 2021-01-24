@@ -38,7 +38,7 @@
                         <input type="hidden" name="id" value="{{ $product->id }}">
 
                         <div class="row">
-                            {!! input(['errors'=>$errors, 'edit'=>$product, 'type'=>'text', 'name'=>'product_name', 'trans'=>'Product Name', 'maxlength'=>100, 'required'=>'required', 'cols'=>6]) !!}
+                            {!! input(['errors'=>$errors, 'edit'=>$product, 'type'=>'text', 'name'=>'product_name', 'trans'=>'Product Name', 'maxlength'=>191, 'required'=>'required', 'cols'=>6]) !!}
                             {!! input(['errors'=>$errors, 'edit'=>$product, 'type'=>'text', 'name'=>'product_code', 'trans'=>'Product Code', 'maxlength'=>20, 'required'=>'required', 'cols'=>6]) !!}
                         </div>
 
@@ -52,23 +52,25 @@
                                 <div class="form-group">
                                     <label for="category_id"> {{ trans('main.The Category') }}
                                     </label>
-                                    <select name="category_id" id="category_id" class="form-control">
+                                    <select name="category_id" id="category_id" class="form-control  " >
                                         <option value="">{{ trans('main.No Parent') }}</option>
                                         <?php
                                             $traverse = '';
                                             $traverse = function ($categories, $prefix = '') use (&$traverse, $product) {
                                                 foreach ($categories as $category_item) {
                                         ?>
-                                                    <option @if($category_item->id == old('category_id') || $category_item->id == $product->category_id ) selected @endif value="{{$category_item-> id }}">{{ PHP_EOL.$prefix.' '.$category_item->category_name }}</option>
+                                                    <option @if(in_array($category_item->id, $product->categories()->pluck('category_id')->toArray())) selected @endif value="{{$category_item->id }}">{{$category_item->id }} =
+                                                        {{ PHP_EOL.$prefix.' '.$category_item->category_name }}</option>
                                         <?php
                                                     $traverse($category_item->children, $prefix.'-');
                                                 }
                                             };
 
-                                            $traverse($categories);
+                                            $traverse($nodes);
 
                                         ?>
                                     </select>
+
                                     @error('category_id')
                                     <span class="text-danger"> {{$message}}</span>
                                     @enderror
@@ -80,7 +82,7 @@
                         </div>
 
                         <div class="row">
-                            {!! input(['errors'=>$errors, 'edit'=>$product, 'type'=>'number', 'name'=>'product_weight', 'trans'=>'Product Weight', 'maxlength'=>50,'cols'=>4, 'attr'=>'min="0" value="0" max="999999" step="0.01"']) !!}
+                            {!! input(['errors'=>$errors, 'edit'=>$product, 'type'=>'text', 'name'=>'product_weight', 'trans'=>'Product Weight', 'maxlength'=>50,'cols'=>4, 'attr'=>'min="0" value="0" max="999999" step="0.01"']) !!}
                             {!! input(['errors'=>$errors, 'edit'=>$product, 'type'=>'text', 'name'=>'product_color', 'trans'=>'Product Colors', 'cols'=>4, 'attr'=>'data-role="tagsinput"']) !!}
                             {!! input(['errors'=>$errors, 'edit'=>$product, 'type'=>'number', 'name'=>'discount_price', 'trans'=>'Discount Price', 'maxlength'=>2, 'cols'=>4]) !!}
                         </div>

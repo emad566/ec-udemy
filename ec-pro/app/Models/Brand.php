@@ -49,13 +49,13 @@ class Brand extends Model
     }
 
     public function getActive(){
-        return  $this -> is_active  == 0 ?  'غير مفعل'   : 'مفعل' ;
+        return  $this -> is_active  == 0 ? trans('main.is_active')  : trans('main.is_not_active') ;
     }
 
     public static function files_path() {
         return 'assets/dashboard/images/brands/';
     }
-    
+
     public function image_delete()
     {
         delete_img($this->image_rel_path());
@@ -70,5 +70,7 @@ class Brand extends Model
         return ($val && file_exists($this->image_rel_path())) ?  asset($this->image_rel_path()) : false;
     }
 
-
+    public function  imageSrc(){
+        return $this->image_rel_path();
+    }
 }

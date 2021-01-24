@@ -84,4 +84,9 @@ class Category extends Model
     //     return $this -> belongsToMany(Product::class,'product_categories');
     // }
 
+    public function products()
+    {
+        return $this->morphToMany(Product::class, 'productable');
+    }
+
 }

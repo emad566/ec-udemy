@@ -2,7 +2,7 @@
 <html lang="en" dir="rtl">
 
 <head>
-    <?php $ver='1.0'; ?>
+    <?php $ver='1.4'; ?>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <!-- Tell the browser to be responsive to screen width -->
@@ -42,6 +42,7 @@
     <link href="{{ asset('assets/dashboard/eliteadmin-theme/assets/icons/flag-icon-css/flag-icon.min.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/dashboard/eliteadmin-theme/assets/icons/material-design-iconic-font/css/materialdesignicons.min.css') }}" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Cairo&display=swap" rel="stylesheet">
+
     <!-- Custom CSS -->
     <link href="{{ asset('assets/dashboard/eliteadmin-theme/css/style.min.css?v=11') }}" rel="stylesheet">
 
@@ -52,6 +53,13 @@
 
     <!-- toaster -->
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+
+    @isset($form)
+        <!-- Strat Form CSS -->
+        <link id="sleek-css" rel="stylesheet" href="{{ asset('assets/dashboard/eliteadmin-theme/css/perfect-scrollbar.min.css') }}" />
+        <link id="sleek-css" rel="stylesheet" href="{{ asset('assets/dashboard/eliteadmin-theme/css/select2.min.css') }}" />
+        <!-- /End Form CSS -->
+    @endempty
 
     <!-- Emad CSS -->
     @empty($emad_rtl)
@@ -314,13 +322,37 @@
         <!-- This page plugins -->
         <!-- ============================================================== -->
         <script src="{{ asset('assets/dashboard/eliteadmin-theme/assets/node_modules/switchery/dist/switchery.min.js') }}"></script>
-        <script src="{{ asset('assets/dashboard/eliteadmin-theme/assets/node_modules/select2/dist/js/select2.full.min.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('assets/dashboard/eliteadmin-theme/js/highlight.pack.js') }}"></script>
+        <script src="{{ asset('assets/dashboard/eliteadmin-theme/js/select2.min.js') }}"></script>
+        {{-- <script src="{{ asset('assets/dashboard/eliteadmin-theme/assets/node_modules/select2/dist/js/select2.full.min.js') }}" type="text/javascript"></script> --}}
         <script src="{{ asset('assets/dashboard/eliteadmin-theme/assets/node_modules/bootstrap-select/bootstrap-select.min.js') }}" type="text/javascript"></script>
         <script src="{{ asset('assets/dashboard/eliteadmin-theme/assets/node_modules/bootstrap-tagsinput/dist/bootstrap-tagsinput.min.js') }}"></script>
         <script src="{{ asset('assets/dashboard/eliteadmin-theme/assets/node_modules/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.js') }}" type="text/javascript"></script>
         <script src="{{ asset('assets/dashboard/eliteadmin-theme/assets/node_modules/dff/dff.js') }}" type="text/javascript"></script>
         <script type="text/javascript" src="{{ asset('assets/dashboard/eliteadmin-theme/assets/node_modules/multiselect/js/jquery.multi-select.js') }}"></script>
         <script>
+            /** Start Select2 */
+            $(function(){
+
+                'use strict';
+
+                $('.select2').select2({
+                minimumResultsForSearch: Infinity
+                });
+
+                // Select2 by showing the search
+                $('.select2-show-search').select2({
+                minimumResultsForSearch: ''
+                });
+
+                // Select2 with tagging support
+                $('.select2-tag').select2({
+                    tags: true,
+                    tokenSeparators: [',', ' ']
+                });
+            });
+            /** /End Select2 */
+
             $(function () {
                 // Switchery
                 var elems = Array.prototype.slice.call(document.querySelectorAll('.js-switch'));
@@ -429,14 +461,78 @@
 
     @isset($textEeditor)
         <script src="https://cdn.tiny.cloud/1/6te8nxu8ugbz1akvw3cxy805yq5paofquv20a2vtc50ksxd2/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+        {{-- <script src="{{ asset('assets/dashboard/eliteadmin-theme/assets/node_modules/tinymce/tinymce.min.js') }}"></script> --}}
         <script>
-            tinymce.init({
-              selector: '.textEeditor',
-              plugins: 'advlist autolink lists link image charmap print preview hr anchor pagebreak',
-              toolbar_mode: 'floating',
-           });
+           tinymce.init({
+                selector: ".textEeditor",
+                plugins: 'print preview powerpaste casechange importcss tinydrive searchreplace autolink autosave save directionality advcode visualblocks visualchars fullscreen image link media mediaembed template codesample table charmap hr pagebreak nonbreaking anchor toc insertdatetime advlist lists checklist wordcount tinymcespellchecker a11ychecker imagetools textpattern noneditable help formatpainter permanentpen pageembed charmap tinycomments mentions quickbars linkchecker emoticons advtable',
+  tinydrive_token_provider: 'URL_TO_YOUR_TOKEN_PROVIDER',
+  tinydrive_dropbox_app_key: 'YOUR_DROPBOX_APP_KEY',
+  tinydrive_google_drive_key: 'YOUR_GOOGLE_DRIVE_KEY',
+  tinydrive_google_drive_client_id: 'YOUR_GOOGLE_DRIVE_CLIENT_ID',
+  mobile: {
+    plugins: 'print preview powerpaste casechange importcss tinydrive searchreplace autolink autosave save directionality advcode visualblocks visualchars fullscreen image link media mediaembed template codesample table charmap hr pagebreak nonbreaking anchor toc insertdatetime advlist lists checklist wordcount tinymcespellchecker a11ychecker textpattern noneditable help formatpainter pageembed charmap mentions quickbars linkchecker emoticons advtable'
+  },
+  menu: {
+    tc: {
+      title: 'TinyComments',
+      items: 'addcomment showcomments deleteallconversations'
+    }
+  },
+  menubar: 'file edit view insert format tools table tc help',
+  toolbar: 'undo redo | bold italic underline strikethrough | fontselect fontsizeselect formatselect | alignleft aligncenter alignright alignjustify | outdent indent |  numlist bullist checklist | forecolor backcolor casechange permanentpen formatpainter removeformat | pagebreak | charmap emoticons | fullscreen  preview save print | insertfile image media pageembed template link anchor codesample | a11ycheck ltr rtl | showcomments addcomment',
+  autosave_ask_before_unload: true,
+  autosave_interval: '30s',
+  autosave_prefix: '{path}{query}-{id}-',
+  autosave_restore_when_empty: false,
+  autosave_retention: '2m',
+  image_advtab: true,
+  link_list: [
+    { title: 'My page 1', value: 'https://www.tiny.cloud' },
+    { title: 'My page 2', value: 'http://www.moxiecode.com' }
+  ],
+  image_list: [
+    { title: 'My page 1', value: 'https://www.tiny.cloud' },
+    { title: 'My page 2', value: 'http://www.moxiecode.com' }
+  ],
+  image_class_list: [
+    { title: 'None', value: '' },
+    { title: 'Some class', value: 'class-name' }
+  ],
+  importcss_append: true,
+  templates: [
+        { title: 'New Table', description: 'creates a new table', content: '<div class="mceTmpl"><table width="98%%"  border="0" cellspacing="0" cellpadding="0"><tr><th scope="col"> </th><th scope="col"> </th></tr><tr><td> </td><td> </td></tr></table></div>' },
+    { title: 'Starting my story', description: 'A cure for writers block', content: 'Once upon a time...' },
+    { title: 'New list with dates', description: 'New List with dates', content: '<div class="mceTmpl"><span class="cdate">cdate</span><br /><span class="mdate">mdate</span><h2>My List</h2><ul><li></li><li></li></ul></div>' }
+  ],
+  template_cdate_format: '[Date Created (CDATE): %m/%d/%Y : %H:%M:%S]',
+  template_mdate_format: '[Date Modified (MDATE): %m/%d/%Y : %H:%M:%S]',
+  height: 300,
+  image_caption: true,
+  quickbars_selection_toolbar: 'bold italic | quicklink h2 h3 blockquote quickimage quicktable',
+  noneditable_noneditable_class: 'mceNonEditable',
+  toolbar_mode: 'sliding',
+  spellchecker_whitelist: ['Ephox', 'Moxiecode'],
+  tinycomments_mode: 'embedded',
+  content_style: '.mymention{ color: gray; }',
+  contextmenu: 'link image imagetools table configurepermanentpen',
+  a11y_advanced_options: true,
+//   skin: useDarkMode ? 'oxide-dark' : 'oxide',
+//   content_css: useDarkMode ? 'dark' : 'default',
+  /*
+  The following settings require more configuration than shown here.
+  For information on configuring the mentions plugin, see:
+  https://www.tiny.cloud/docs/plugins/premium/mentions/.
+  */
+  mentions_selector: '.mymention',
+//   mentions_fetch: mentions_fetch,
+//   mentions_menu_hover: mentions_menu_hover,
+//   mentions_menu_complete: mentions_menu_complete,
+//   mentions_select: mentions_select
+            });
         </script>
     @endisset
+
 
     <!-- swal alert Files -->
     <script src="{{ asset('https://unpkg.com/sweetalert/dist/sweetalert.min.js')}}"></script>

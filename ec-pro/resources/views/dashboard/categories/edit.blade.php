@@ -22,7 +22,7 @@
     <!-- ============================================================== -->
 
     <div class="row">
-        <div class="col-lg-6">
+        <div class="col-lg-4">
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title">{{ trans('main.The Categories') }}</h4>
@@ -83,7 +83,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-lg-6">
+        <div class="col-lg-8">
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title">{{ trans('main.The Categories') }}</h4>
@@ -159,6 +159,7 @@
                     class="btn btn-outline-danger btn-min-width box-shadow-3 mr-1 mb-1">{{ trans('main.Delete') }}</a>
 
                     <hr>
+{{--
                     <h4 class="form-section"><i class="ft-home"></i> {{ trans('main.Trash') }} </h4>
                     <form id='delete-formMultiTrashed' class='delete-formMultiTrashed'
                         method='post'
@@ -230,6 +231,7 @@
                     }"
 
                     class="btn btn-outline-danger btn-min-width box-shadow-3 mr-1 mb-1">{{ trans('main.Permanently Delete') }}</a>
+ --}}
                 </div>
             </div>
         </div>

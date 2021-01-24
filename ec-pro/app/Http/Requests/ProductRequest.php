@@ -7,8 +7,6 @@ use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule as ValidationRule;
 
-// use Validator;
-
 class ProductRequest extends FormRequest
 {
     /**
@@ -29,7 +27,7 @@ class ProductRequest extends FormRequest
     public function rules()
     {
         return [
-            'category_id' => 'nullable|numeric',
+            // 'category_id' => 'nullable|numeric',
             'brand_id' => 'nullable|numeric',
             'product_code' => 'nullable|min:0|max:50',
             'product_quantity' => 'nullable|numeric|min:0|max:99999',
@@ -50,7 +48,7 @@ class ProductRequest extends FormRequest
             'image_two' => 'image|mimes:jpg,png,jpeg,gif,svg|min:0|max:1024',
             'image_three' => 'image|mimes:jpg,png,jpeg,gif,svg|min:0|max:1024',
             'is_active' => 'nullable|numeric',
-
+            'product_name'=>'required|max191',
             'product_name' => ValidationRule::unique('product_translations')
                     ->ignore($this->id, 'product_id')
                     ->where(function ($query) {

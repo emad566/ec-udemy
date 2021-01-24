@@ -75,7 +75,15 @@ class brandsController extends Controller
             $brand->save();
             DB::commit();
 
-            return redirect()->route('brands.index')->with(['success' => 'ٍSave Success']);
+            $notification = array(
+                'message' => trans('main.SavedSuccessfully'),
+                'alert-type' => 'success',
+                'success' => trans('main.SavedSuccessfully'),
+            );
+
+            DB::commit();
+
+            return redirect()->route('brands.index')->with($notification);
 
 
         // } catch (\Exception $ex) {
@@ -132,11 +140,17 @@ class brandsController extends Controller
                 $brand->image_delete();
             }
             $brand->update($inputs);
-
+            $brand->brand_name = $request->brand_name;
             $brand->save();
-
-            return redirect()->route('brands.edit', $brand->id)->with(['success' => 'ٍSave Success']);
             DB::commit();
+
+            $notification = array(
+                'message' => trans('main.UpdateSuccess'),
+                'alert-type' => 'success',
+                'success' => trans('main.UpdateSuccess'),
+            );
+
+            return redirect()->route('brands.edit', $brand->id)->with($notification);
 
         // } catch (\Exception $ex) {
         //     DB::rollback();
@@ -160,7 +174,13 @@ class brandsController extends Controller
             $brand->image_delete();
             $brand->delete();
 
-            return redirect()->route('brands.index')->with(['success' => 'Delete Success']);
+            $notification = array(
+                'message' => trans('main.DeleteSuccess'),
+                'alert-type' => 'success',
+                'success' => trans('main.DeleteSuccess'),
+            );
+
+            return redirect()->route('brands.index')->with($notification);
 
         // } catch (\Exception $ex) {
         //     DB::rollback();
@@ -182,12 +202,39 @@ class brandsController extends Controller
                 }
             }
 
-            return redirect()->route('brands.index')->with(['success' => 'Delete Success']);
+            $notification = array(
+                'message' => trans('main.DeleteSuccess'),
+                'alert-type' => 'success',
+                'success' => trans('main.DeleteSuccess'),
+            );
+
+            return redirect()->route('brands.index')->with($notification);
 
         // } catch (\Exception $ex) {
         //     DB::rollback();
         //     return back()->withInput($request->all())->with(['error' => $this->getFileNameError('destroy')]);
         // }
+    }
+
+    public function updateIsActive(Request $request, Brand $brand)
+    {
+        try {
+            DB::beginTransaction();
+            if($brand){
+                $is_active = ($brand->is_active)? 0 : 1;
+            }
+            $brand->update(['is_active'=>$is_active]);
+            DB::commit();
+            $notification = array(
+                'message' => trans('main.UpdateSuccess'),
+                'alert-type' => 'success',
+                'success' => trans('main.UpdateSuccess'),
+            );
+            return redirect()->route('brands.index')->with($notification);
+
+        } catch (\Exception $ex) {
+            return redirect()->route('brands.index')->with(['error' => $this->getFileNameError('updateIsActive')]);
+        }
     }
 
 }

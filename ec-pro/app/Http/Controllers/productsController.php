@@ -56,6 +56,7 @@ class productsController extends Controller
     {
         // try{
 
+
             DB::beginTransaction();
 
             $inputs = $request->except('_token');
@@ -105,6 +106,7 @@ class productsController extends Controller
                 $image = '';
             }
             $product->save();
+            $product->categories()->sync($request->category_id);
 
             DB::commit();
             $notification = array(
@@ -143,8 +145,9 @@ class productsController extends Controller
     public function edit(Product $product)
     {
         $brands = Brand::all();
-        $categories = Category::all();
-        return view('dashboard.products.edit', compact(['brands', 'product','categories']));
+        $nodes = Category::all();
+        // return in_array(2, $product->categories()->pluck('category_id')->toArray());
+        return view('dashboard.products.edit', compact(['brands', 'product','nodes']));
     }
 
     /**
@@ -157,6 +160,7 @@ class productsController extends Controller
     public function update(ProductRequest $request, Product $product)
     {
         // try{
+
             DB::beginTransaction();
 
             $inputs = $request->except('_token');
@@ -207,6 +211,7 @@ class productsController extends Controller
             $product->product_name = $request->product_name;
             $product->product_details = $request->product_details;
             $product->save();
+            $product->categories()->sync($request->category_id);
             DB::commit();
 
             $notification = array(

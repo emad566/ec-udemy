@@ -117,11 +117,11 @@ p a:hover::after
 }
 ::selection
 {
-	
+
 }
 p::selection
 {
-	
+
 }
 h1{font-size: 48px;}
 h2{font-size: 36px;}
@@ -136,14 +136,14 @@ h1, h2, h3, h4, h5, h6
 	-webkit-text-shadow: rgba(0,0,0,.01) 0 0 1px;
 	text-shadow: rgba(0,0,0,.01) 0 0 1px;
 }
-h1::selection, 
-h2::selection, 
-h3::selection, 
-h4::selection, 
-h5::selection, 
+h1::selection,
+h2::selection,
+h3::selection,
+h4::selection,
+h5::selection,
 h6::selection
 {
-	
+
 }
 .form-control
 {
@@ -580,15 +580,15 @@ section
 	line-height: 50px;
 	color: #a3a3a3 !important;
 }
-.header_search_input::-moz-placeholder /* Firefox 19+ */ 
+.header_search_input::-moz-placeholder /* Firefox 19+ */
 {
 	font-size: 16px !important;
 	font-weight: 300;
 	line-height: 50px;
 	color: #a3a3a3 !important;
-} 
+}
 .header_search_input:-ms-input-placeholder
-{ 
+{
 	font-size: 16px !important;
 	font-weight: 300;
 	line-height: 50px;
@@ -647,7 +647,7 @@ section
 }
 .custom_dropdown_placeholder i
 {
-	
+
 }
 .custom_list
 {
@@ -1700,7 +1700,7 @@ select option
 .product_name div
 {
 	width: 100%;
-	
+
 }
 .product_name div a
 {
@@ -1984,7 +1984,7 @@ select option
 {
 	display: inline-block;
 	visibility: visible;
-	opacity: 1;	
+	opacity: 1;
 }
 
 /*********************************
@@ -2212,7 +2212,7 @@ select option
 .new_arrivals_title
 {
 	position: absolute;
-	left: 0;
+	right: 0;
 	top: -7px;
 	font-size: 24px;
 	font-weight: 500;
@@ -2224,8 +2224,8 @@ select option
 }
 .arrivals_slider .slick-list
 {
-	padding-left: 20px;
 	padding-right: 20px;
+	padding-left: 20px;
 }
 .arrivals_slider .slick-track
 {
@@ -2250,7 +2250,7 @@ select option
 	display: none;
 	position: absolute;
 	top: 40px;
-	right: 0;
+	left: 0;
 	width: 1px;
 	height: 183px;
 	background: #e5e5e5;
@@ -2260,12 +2260,12 @@ select option
 .arrivals_slider .slick-dots
 {
 	position: absolute;
-	left: 50%;
-	-webkit-transform: translateX(-50%);
-	-moz-transform: translateX(-50%);
-	-ms-transform: translateX(-50%);
-	-o-transform: translateX(-50%);
-	transform: translateX(-50%);
+	right: 50%;
+	-webkit-transform: translateX(50%);
+	-moz-transform: translateX(50%);
+	-ms-transform: translateX(50%);
+	-o-transform: translateX(50%);
+	transform: translateX(50%);
 	bottom: 50px;
 }
 .arrivals_slider .slick-slide
@@ -2284,7 +2284,7 @@ select option
     border-radius: 50%;
     content: '';
     background: #e8e8e8;
-    margin-right: 20px;
+    margin-left: 20px;
     cursor: pointer;
     -webkit-transition: all 200ms ease;
 	-moz-transition: all 200ms ease;
@@ -2302,7 +2302,7 @@ select option
 }
 .arrivals_slider .slick-dots li:last-child
 {
-	margin-right: 0px;
+	margin-left: 0px;
 }
 .arrivals_slider .slick-dots li button
 {
@@ -2311,12 +2311,12 @@ select option
 .arrivals_slider_dots_cover
 {
 	position: absolute;
-	left: 50%;
-	-webkit-transform: translateX(-50%);
-	-moz-transform: translateX(-50%);
-	-ms-transform: translateX(-50%);
-	-o-transform: translateX(-50%);
-	transform: translateX(-50%);
+	right: 50%;
+	-webkit-transform: translateX(50%);
+	-moz-transform: translateX(50%);
+	-ms-transform: translateX(50%);
+	-o-transform: translateX(50%);
+	transform: translateX(50%);
 	bottom: 100px;
 	width: 100px;
 	height: 30px;
@@ -2332,7 +2332,7 @@ select option
 .arrivals_single > div
 {
 	width: 212px;
-	float: right;
+	float: left;
 }
 .arrivals_single_image
 {
@@ -2349,7 +2349,7 @@ select option
 .arrivals_single_button
 {
 	position: relative;
-	left: 0px;
+	right: 0px;
 	width: 100%;
 	height: 48px;
 	background: #0e8ce4;
@@ -2396,7 +2396,7 @@ select option
 .arrivals_single_name
 {
 	margin-top: 2px;
-	float: left;
+	float: right;
 }
 .arrivals_single_name a
 {
@@ -2416,18 +2416,18 @@ select option
 {
 	font-size: 16px;
 	font-weight: 500;
-	float: right;
+	float: left;
 }
 .arrivals_single_rating
 {
 	margin-top: 9px;
 }
-.arrivals_single_marks 
+.arrivals_single_marks
 {
 	display: block;
 	position: absolute;
 	top: -15px;
-	left: 0px;
+	right: 0px;
 	-webkit-transition: all 200ms ease;
 	-moz-transition: all 200ms ease;
 	-ms-transition: all 200ms ease;
@@ -2463,7 +2463,7 @@ select option
 {
 	position: absolute;
 	top: -15px;
-	right: 0px;
+	left: 0px;
 	width: 36px;
 	height: 36px;
 	background: #FFFFFF;
@@ -2485,12 +2485,12 @@ select option
 {
 	display: block;
 	position: absolute;
-	left: 50%;
-	-webkit-transform: translateX(-50%);
-	-moz-transform: translateX(-50%);
-	-ms-transform: translateX(-50%);
-	-o-transform: translateX(-50%);
-	transform: translateX(-50%);
+	right: 50%;
+	-webkit-transform: translateX(50%);
+	-moz-transform: translateX(50%);
+	-ms-transform: translateX(50%);
+	-o-transform: translateX(50%);
+	transform: translateX(50%);
 	color: #cccccc;
 	line-height: 36px;
 	pointer-events: none;
@@ -2531,7 +2531,7 @@ select option
 .bestsellers_slider
 {
 	width: calc(100% + 30px);
-	left: -15px;
+	right: -15px;
 	padding-bottom: 67px;
 }
 .bestsellers_item
@@ -2564,7 +2564,7 @@ select option
 }
 .bestsellers_content
 {
-	padding-left: 25px;
+	padding-right: 25px;
 }
 .bestsellers_category a
 {
@@ -2606,7 +2606,7 @@ select option
 .bestsellers_rating i::before
 {
 	font-size: 13px;
-	margin-right: 8px;
+	margin-left: 8px;
 }
 .bestsellers_price
 {
@@ -2624,13 +2624,13 @@ select option
 	font-size: 12px;
 	font-weight: 400;
 	color: rgba(0,0,0,0.6);
-	margin-left: 9px;
+	margin-right: 9px;
 }
 .bestsellers_price span::after
 {
 	display: block;
 	position: absolute;
-	left: -2px;
+	right: -2px;
 	top: 6px;
 	width: calc(100% + 4px);
 	height: 1px;
@@ -2643,7 +2643,7 @@ select option
 	display: none;
 	position: absolute;
 	top: 30px;
-	right: 29px;
+	left: 29px;
 }
 .bestsellers_fav.active
 {
@@ -2657,7 +2657,7 @@ select option
 .bestsellers_marks
 {
 	position: absolute;
-	left: 18px;
+	right: 18px;
 	top: 18px;
 }
 .bestsellers_mark
@@ -2688,12 +2688,12 @@ select option
 .bestsellers_slider .slick-dots
 {
 	position: absolute;
-	left: 50%;
-	-webkit-transform: translateX(-50%);
-	-moz-transform: translateX(-50%);
-	-ms-transform: translateX(-50%);
-	-o-transform: translateX(-50%);
-	transform: translateX(-50%);
+	right: 50%;
+	-webkit-transform: translateX(50%);
+	-moz-transform: translateX(50%);
+	-ms-transform: translateX(50%);
+	-o-transform: translateX(50%);
+	transform: translateX(50%);
 	bottom: -5px;
 }
 .bestsellers_slider .slick-dots li
@@ -2708,7 +2708,7 @@ select option
     border-radius: 50%;
     content: '';
     background: #e8e8e8;
-    margin-right: 20px;
+    margin-left: 20px;
     cursor: pointer;
     -webkit-transition: all 200ms ease;
 	-moz-transition: all 200ms ease;
@@ -2726,12 +2726,13 @@ select option
 }
 .bestsellers_slider .slick-dots li:last-child
 {
-	margin-right: 0px;
+	margin-left: 0px;
 }
 .bestsellers_slider .slick-dots li button
 {
 	display: none;
 }
+
 
 /*********************************
 11. Adverts
@@ -3457,9 +3458,9 @@ select option
 {
 	font-size: 16px;
 	color: rgba(0,0,0,0.3);
-} 
+}
 .newsletter_input:-ms-input-placeholder
-{ 
+{
 	font-size: 16px;
 	color: rgba(0,0,0,0.3);
 }
@@ -3622,7 +3623,7 @@ select option
 }
 .footer_list_2
 {
-	margin-top: 42px !important; 
+	margin-top: 42px !important;
 }
 
 .copyright
@@ -3646,7 +3647,7 @@ select option
 }
 .logos
 {
-	
+
 }
 .logos_list li
 {

@@ -1,4 +1,9 @@
-<div class="new_arrivals">
+<style>
+    .new_arrivals *{
+        direction: ltr !important;
+    }
+</style>
+<div class="new_arrivals" dir="ltr">
     <div class="container">
         <div class="row">
             <div class="col">
@@ -30,7 +35,7 @@
                                             <div class="product_content">
                                                 <div class="product_price">$225</div>
                                                 <div class="product_name">
-                                                    <div><a href="product.html">Astro M2 Black</a></div>
+                                                    <div><a href="product.html">Emad</a></div>
                                                 </div>
                                                 <div class="product_extras">
                                                     <div class="product_color">
@@ -80,7 +85,7 @@
                                             <div class="product_fav"><i class="fas fa-heart"></i></div>
                                             <ul class="product_marks">
                                                 <li class="product_mark product_discount"></li>
-                                                <li class="product_mark product_new">new</li>
+                                                <li class="product_mark product_new">Emad</li>
                                             </ul>
                                         </div>
                                     </div>

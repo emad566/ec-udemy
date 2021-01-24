@@ -92,6 +92,8 @@ Route::group([
         Route::resource('brands', 'brandsController');
         Route::get('brands/{category_id?}/delete', 'brandsController@destroy')->name('brands.destroy');
         Route::post('brands/delete', 'brandsController@delete')->name('brands.delete');
+        Route::get('brandsUpdateIsActive/{brand}', 'brandsController@updateIsActive')->name('brands.updateIsActive');
+
         //================ /Brands =================//
 
         //================ MainUser =================//
@@ -116,12 +118,19 @@ Route::group([
         Route::get('newslettersUpdateIsActive/{newsletter}', 'newslettersController@updateIsActive')->name('newsletters.updateIsActive');
         //================ /newsletters =================//
 
-        //================ newsletters =================//
+        //================ Products =================//
         Route::resource('products', 'productsController');
         Route::get('products/{product_id?}/delete', 'productsController@destroy')->name('products.destroy');
         Route::post('products/delete', 'productsController@delete')->name('products.delete');
         Route::get('productsUpdateIsActive/{product}', 'productsController@updateIsActive')->name('products.updateIsActive');
-        //================ /newsletters =================//
+        //================ /Products =================//
+
+        //================ Posts =================//
+        Route::resource('posts', 'postsController');
+        Route::get('posts/{post_id?}/delete', 'postsController@destroy')->name('posts.destroy');
+        Route::post('posts/delete', 'postsController@delete')->name('posts.delete');
+        Route::get('postsUpdateIsActive/{post}', 'postsController@updateIsActive')->name('posts.updateIsActive');
+        //================ /Posts =================//
 
     });
     //================ /webGuard Routes =================//

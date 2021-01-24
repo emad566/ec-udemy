@@ -614,7 +614,7 @@ return [
 
 
     'Export data to Copy, CSV, Excel, PDF & Print'=>'Export data to Copy, CSV, Excel, PDF & Print',
-    ''=>'',
+    'Close'=>'إغلاق',
     ''=>'',
     ''=>'',
     ''=>'',
@@ -689,6 +689,19 @@ return [
     'Cetegory Description'=>'وصف القسم',
     'Parent Category'=>'الأب',
 
+    //The Brands
+    'Brand Name'=>'اسم الماركة',
+    ''=>'',
+    ''=>'',
+    ''=>'',
+    ''=>'',
+    ''=>'',
+    ''=>'',
+    ''=>'',
+    ''=>'',
+    ''=>'',
+    ''=>'',
+
 
     // The Products
     'The Products'=>'المنتجات',
@@ -722,7 +735,14 @@ return [
     ''=>'',
     ''=>'',
     ''=>'',
-    ''=>'',
+
+
+    // THe POSTS
+    'Post Title'=>'عنوان المنشور',
+    'Post Details'=>'تفاصيل المنشور',
+    'Post Tags'=>'الكلمات المفتحية',
+    'Image'=>'الصورة المميزة',
+    'The Blog'=>'المدونة',
     ''=>'',
     ''=>'',
     ''=>'',

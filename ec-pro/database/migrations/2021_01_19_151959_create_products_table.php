@@ -23,7 +23,7 @@ class CreateProductsTable extends Migration
             $table->string('product_quantity')->nullable();
             $table->string('product_color')->nullable();
             $table->string('product_size')->nullable();
-            $table->double('product_weight', 8, 2)->nullable();
+            $table->string('product_weight')->nullable();
             $table->string('selling_price');
             $table->string('discount_price')->nullable();
             $table->string('video_link')->nullable();

@@ -32,7 +32,7 @@ class Product extends Model
      */
     protected $fillable = [
         'user_id',
-        'category_id',
+        // 'category_id',
         'brand_id',
         'product_code',
         'product_quantity',
@@ -133,5 +133,10 @@ class Product extends Model
 
     public function  image_threeSrc(){
         return $this->image_rel_path('image_three');
+    }
+
+    public function categories()
+    {
+        return $this->morphToMany(Category::class, 'categoryable');
     }
 }
